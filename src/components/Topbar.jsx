@@ -1,12 +1,19 @@
 import { getAuth } from 'firebase/auth'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Topbar() {
   const auth = getAuth()
   const navigate = useNavigate()
+  const [currentUser, setCurrentUser] = useState(auth)
+
+  useEffect(() => {
+    setCurrentUser(auth.currentUser)
+  }, [auth.currentUser])
 
   const onLogout = () => {
     auth.signOut()
+    setCurrentUser(null)
     navigate('/')
   }
 
@@ -16,9 +23,11 @@ function Topbar() {
         <li className="navbarListItem">
           Miyagi.com
         </li>
-        <li className="navbarListItem" onClick={onLogout}>
-          Logout
-        </li>
+        {currentUser &&
+          <li className="navbarListItem" onClick={onLogout}>
+            Logout
+          </li>
+        }
       </ul>
     </nav>
   )
