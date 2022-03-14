@@ -8,11 +8,13 @@ import Navbar from './components/Navbar'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import Topbar from './components/Topbar'
 
 function App() {
   return (
     <>
       <Router>
+        <Topbar />
         <Routes>
           <Route path='/' element={<Explore />} />
           <Route path='/profile' element={<PrivateRoute />}>
