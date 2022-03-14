@@ -23,10 +23,10 @@ function Topbar() {
         <li className="navbarListItem">
           Miyagi.com
         </li>
-        {currentUser &&
+        {currentUser ?
           <li className="navbarListItem" onClick={onLogout}>
             Logout
-          </li>
+          </li> : <div>{' '}</div>
         }
       </ul>
     </nav>
