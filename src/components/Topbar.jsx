@@ -18,14 +18,19 @@ function Topbar() {
   }
 
   return (
-    <nav className="topBar">
-      <ul className="navbarListItems">
-        <li className="navbarListItem">
-          Miyagi.com
+    <nav className="topbar">
+      <ul className="topbarListItems">
+        <li className="topbarListItem">
+          <h1>Miyagi.com</h1>
         </li>
-        {currentUser ?
-          <li className="navbarListItem" onClick={onLogout}>
+        {/* {currentUser ?
+          <li className="topbarListItem" onClick={onLogout}>
             Logout
+          </li> : <div>{' '}</div>
+        } */}
+        {currentUser ?
+          <li className="topbarListItem" onClick={onLogout}>
+            X
           </li> : <div>{' '}</div>
         }
       </ul>

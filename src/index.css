@@ -148,6 +148,29 @@ button {
 	}
 }
 
+.topbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	max-height: 60px;
+}
+
+.topbarListItems {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 975px;
+	list-style-type: none;
+	/* margin: 0; */
+	padding: 0px;
+}
+
+.topbarListItem {
+	cursor: pointer;
+}
+
 .navbar {
 	position: fixed;
 	left: 0;
