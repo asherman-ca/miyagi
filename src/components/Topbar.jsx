@@ -38,8 +38,13 @@ function Topbar() {
         </li>
         {currentUser ?
           <li className="topbarListItem logoutButton" onClick={onLogout}>
-            <i class="fa-solid fa-arrow-right-from-bracket fa-lg" />
-          </li> : <div>{' '}</div>
+            {/* <i className="fa-solid fa-arrow-right-from-bracket fa-lg" /> */}
+            Sign Out
+          </li> : 
+          <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>
+            {/* <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i> */}
+            Sign In
+          </li>
         }
       </ul>
     </nav>
