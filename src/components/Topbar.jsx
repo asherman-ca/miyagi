@@ -36,7 +36,7 @@ function Topbar() {
         </li>
         {currentUser ?
           <li className="topbarListItem" onClick={onLogout}>
-            X
+            <i class="fa-solid fa-arrow-right-from-bracket" />
           </li> : <div>{' '}</div>
         }
       </ul>
