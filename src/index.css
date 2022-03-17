@@ -158,6 +158,11 @@ button {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
+.topbarTitle:hover {
+	transform: scale(0.9);
+	transition-duration: 250ms;
+}
+
 .topbarListItems {
 	display: flex;
 	justify-content: space-between;
@@ -171,6 +176,11 @@ button {
 
 .topbarListItem {
 	cursor: pointer;
+}
+
+.logoutButton:hover {
+	transform: scale(0.9);
+	transition-duration: 250ms;
 }
 
 .navbar {

@@ -1,6 +1,7 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Topbar() {
   const navigate = useNavigate()
@@ -26,17 +27,18 @@ function Topbar() {
   const onLogout = () => {
     auth.signOut()
     navigate('/')
+    toast.info('Logged out')
   }
 
   return (
     <nav className="topbar">
       <ul className="topbarListItems">
-        <li className="topbarListItem">
+        <li className="topbarListItem topbarTitle">
           <h1>Miyagi.com</h1>
         </li>
         {currentUser ?
-          <li className="topbarListItem" onClick={onLogout}>
-            <i class="fa-solid fa-arrow-right-from-bracket" />
+          <li className="topbarListItem logoutButton" onClick={onLogout}>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg" />
           </li> : <div>{' '}</div>
         }
       </ul>
