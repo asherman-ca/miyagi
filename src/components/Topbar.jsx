@@ -11,7 +11,6 @@ function Topbar() {
 
   // onauthstatechanged works like useEffect here
   onAuthStateChanged(auth, (user) => {
-    console.log('user', user)
     setLoading(false)
     if (user) {
       // User is signed in, see docs for a list of available properties
@@ -30,6 +29,14 @@ function Topbar() {
     toast.info('Logged out')
   }
 
+  // TODO: authbutton logic refactor
+  let authButton
+  if(currentUser){
+    authButton = <li className="topbarListItem logoutButton" onClick={onLogout}>Sign Out</li>
+  }else{
+    authButton = <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>Sign In</li>
+  }
+
   return (
     <nav className="topbar">
       <ul className="topbarListItems">
@@ -40,7 +47,6 @@ function Topbar() {
         {loading && <></>}
         {currentUser && !loading ?
           <li className="topbarListItem logoutButton" onClick={onLogout}>
-            {/* <i className="fa-solid fa-arrow-right-from-bracket fa-lg" /> */}
             Sign Out
           </li> : null }
         {!currentUser && !loading ?  <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>
