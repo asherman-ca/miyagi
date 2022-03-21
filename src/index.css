@@ -158,9 +158,15 @@ button {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
-.topbarTitle:hover {
-	transform: scale(0.9);
+.topbarTitle:hover,
+.logoutButton:hover {
+	transform: scale(0.95);
 	transition-duration: 250ms;
+	cursor: pointer;
+}
+
+.topbarTitle {
+	font-family: 'Satisfy', cursive;
 }
 
 .topbarListItems {
@@ -172,15 +178,6 @@ button {
 	list-style-type: none;
 	/* margin: 0; */
 	padding: 0px;
-}
-
-.topbarListItem {
-	cursor: pointer;
-}
-
-.logoutButton:hover {
-	transform: scale(0.9);
-	transition-duration: 250ms;
 }
 
 .navbar {
@@ -216,6 +213,11 @@ button {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.navbarListItem:hover {
+	transform: scale(0.95);
+	transition-duration: 250ms;
 }
 
 .navbarListItemName,

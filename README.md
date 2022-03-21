@@ -10,6 +10,7 @@ The users use Google geocoding to get the coords from the address field. You nee
 
 https://trello.com/miyagi55
 https://www.figma.com/file/ZZb2InWMvD9K6CIUDR5hsk/Juji?node-id=0%3A1
+https://fontawesome.com/docs/web/style/style-cheatsheet
 
 ### Run
 

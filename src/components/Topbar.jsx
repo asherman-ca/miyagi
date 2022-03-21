@@ -6,23 +6,21 @@ import { toast } from 'react-toastify'
 function Topbar() {
   const navigate = useNavigate()
   const auth = getAuth();
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState({})
 
   // onauthstatechanged works like useEffect here
   onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-     const uid = user.uid;
-     console.log('found', uid)
-     setCurrentUser(user)
-    // ...
-  } else {
-    // User is signed out
-    // ...
-    setCurrentUser(null)
-  }
-});
+    console.log('user', user)
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      setCurrentUser(user)
+    } else {
+      // User is signed out
+      setCurrentUser(null)
+    }
+  });
 
   const onLogout = () => {
     auth.signOut()
