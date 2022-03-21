@@ -7,10 +7,12 @@ function Topbar() {
   const navigate = useNavigate()
   const auth = getAuth();
   const [currentUser, setCurrentUser] = useState({})
+  const [loading, setLoading] = useState(true)
 
   // onauthstatechanged works like useEffect here
   onAuthStateChanged(auth, (user) => {
     console.log('user', user)
+    setLoading(false)
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
@@ -34,16 +36,16 @@ function Topbar() {
         <li className="topbarListItem topbarTitle">
           <h1>Miyagi.com</h1>
         </li>
-        {currentUser ?
+        {console.log('loading', loading)}
+        {loading && <></>}
+        {currentUser && !loading ?
           <li className="topbarListItem logoutButton" onClick={onLogout}>
             {/* <i className="fa-solid fa-arrow-right-from-bracket fa-lg" /> */}
             Sign Out
-          </li> : 
-          <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>
-            {/* <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i> */}
+          </li> : null }
+        {!currentUser && !loading ?  <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>
             Sign In
-          </li>
-        }
+          </li> : null } 
       </ul>
     </nav>
   )
