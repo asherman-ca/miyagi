@@ -156,7 +156,23 @@ button {
 	max-height: 60px;
 	background: white;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	padding: 0 1rem;
 }
+@media (min-width: 1024px) {
+	.topbar {
+		padding: 0;
+	}
+}
+
+/* .topbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	max-height: 60px;
+	background: white;
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+} */
 
 .topbarTitle:hover,
 .logoutButton:hover {
