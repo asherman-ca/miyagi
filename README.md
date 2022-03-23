@@ -17,3 +17,7 @@ https://fontawesome.com/docs/web/style/style-cheatsheet
 ```bash
 npm start
 ```
+
+### Notes
+
+-private Route logic will protect from nullish auth objects using spinner and waiting (see profile route). Topbar uses a workaround from Firebase auth docs.

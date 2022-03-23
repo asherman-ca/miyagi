@@ -51,12 +51,27 @@ function Profile() {
   }
 
   return (
-    <div className="profile">
-      <header className="profileHeader">
-        <p className="pageHeader">My Profile</p>
-        <button type="button" className="logOut" onClick={onLogout}>Logout</button>
-      </header>
+    <div className="profilePage">
+      <div className="profileContainer">
+        <header className="profileHeader">
+          <div className="profileImageContainer">
+            <button className="profileImageButton">
+              <img src="" alt="Change Profile Photo" />
+            </button>
+          </div>
+          <div className="profileCard">
+            {name}
+          </div>
+        </header>
+      </div>
+
     </div>
+    // <div className="profile">
+    //   <header className="profileHeader">
+    //     <p className="pageHeader">My Profile</p>
+    //     <button type="button" className="logOut" onClick={onLogout}>Logout</button>
+    //   </header>
+    // </div>
   )
 }
 
