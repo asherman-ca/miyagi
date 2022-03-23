@@ -17,12 +17,7 @@ function Profile() {
 
   const { name, email } = formData
 
-  const navigate = useNavigate()
-
-  const onLogout = () => {
-    auth.signOut()
-    navigate('/')
-  }
+  console.log('auth', auth)
 
   const onSubmit = async () => {
     try {
@@ -50,13 +45,21 @@ function Profile() {
     }))
   }
 
+  let profileImage = auth.currentUser.profileImage
+  if (!profileImage && auth.currentUser.providerData[0].photoURL) {
+    profileImage = auth.currentUser.providerData[0].photoURL
+  } else if (!profileImage) {
+    profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
+  }
+
   return (
     <div className="profilePage">
       <div className="profileContainer">
         <header className="profileHeader">
           <div className="profileImageContainer">
             <button className="profileImageButton">
-              <img className="profileImage" src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png" alt="Change Profile Photo" />
+              {/* <img className="profileImage" src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png" alt="Change Profile Photo" /> */}
+              <img src={profileImage} alt="Change Profile Photo" className="profileImage" />
             </button>
           </div>
           <div className="profileCard">
