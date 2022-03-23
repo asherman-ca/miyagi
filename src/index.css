@@ -160,11 +160,22 @@ button {
 
 .profileHeader {
 	display: flex;
-	justify-content: space-between;
+}
+
+.profileImageContainer {
+	margin-right: 1rem;
+	height: 150px;
+	width: 150px;
 }
 
 .profileImageButton {
 	cursor: pointer;
+	height: 100%;
+	width: 100%;
+}
+
+.profileImage {
+	width: 100%;
 }
 
 .topbar {

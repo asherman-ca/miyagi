@@ -56,11 +56,11 @@ function Profile() {
         <header className="profileHeader">
           <div className="profileImageContainer">
             <button className="profileImageButton">
-              <img src="" alt="Change Profile Photo" />
+              <img className="profileImage" src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png" alt="Change Profile Photo" />
             </button>
           </div>
           <div className="profileCard">
-            {name}
+            Alex Sherman
           </div>
         </header>
       </div>
