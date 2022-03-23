@@ -15,35 +15,7 @@ function Profile() {
     email: auth.currentUser.email
   })
 
-  const { name, email } = formData
-
   console.log('auth', auth)
-
-  const onSubmit = async () => {
-    try {
-      if (auth.currentUser.displayName !== name) {
-        await updateProfile(auth.currentUser, {
-          displayName: name
-        })
-
-        const userRef = doc(db, 'users', auth.currentUser.uid)
-        await updateDoc(userRef, {
-          name
-        })
-        toast.info('Profile update successfull')
-      }
-    } catch (error) {
-      console.log('error', error)
-      toast.error('Could not update profile details')
-    }
-  }
-
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value
-    }))
-  }
 
   let profileImage = auth.currentUser.profileImage
   if (!profileImage && auth.currentUser.providerData[0].photoURL) {
@@ -58,7 +30,6 @@ function Profile() {
         <header className="profileHeader">
           <div className="profileImageContainer">
             <button className="profileImageButton">
-              {/* <img className="profileImage" src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png" alt="Change Profile Photo" /> */}
               <img src={profileImage} alt="Change Profile Photo" className="profileImage" />
             </button>
           </div>
@@ -69,12 +40,6 @@ function Profile() {
       </div>
 
     </div>
-    // <div className="profile">
-    //   <header className="profileHeader">
-    //     <p className="pageHeader">My Profile</p>
-    //     <button type="button" className="logOut" onClick={onLogout}>Logout</button>
-    //   </header>
-    // </div>
   )
 }
 
