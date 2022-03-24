@@ -31,8 +31,22 @@ function Profile() {
               <img src={profileImage} alt="Change Profile Photo" className="profileImage" />
             </button>
           </div>
+
           <div className="profileCard">
-            Alex Sherman
+            <div className="profileCardTitle">
+              <div className="profileCardName">
+                {formData.name}
+              </div>
+              <div className="profileCardEmail">
+                {formData.email}
+              </div>
+            </div>
+            <div className="profileCardDetails">
+              10 posts
+            </div>
+            <div className="profileCardFooter">
+              joined 2022
+            </div>
           </div>
         </header>
       </div>

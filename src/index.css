@@ -160,22 +160,34 @@ button {
 
 .profileHeader {
 	display: flex;
+	justify-content: left;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
 .profileImageContainer {
-	margin-right: 1rem;
+	margin-right: 2rem;
 	height: 150px;
 	width: 150px;
 }
 
 .profileImageButton {
 	cursor: pointer;
-	height: 100%;
-	width: 100%;
 }
 
 .profileImage {
 	width: 100%;
+}
+
+.profileCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.profileCardName {
+	font-weight: bold;
+	font-size: 1.15rem;
 }
 
 .topbar {
