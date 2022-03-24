@@ -15,8 +15,6 @@ function Profile() {
     email: auth.currentUser.email
   })
 
-  console.log('auth', auth)
-
   let profileImage = auth.currentUser.profileImage
   if (!profileImage && auth.currentUser.providerData[0].photoURL) {
     profileImage = auth.currentUser.providerData[0].photoURL
