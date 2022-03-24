@@ -29,7 +29,6 @@ function Topbar() {
     toast.info('Logged out')
   }
 
-  // TODO: authbutton logic refactor
   let authButton
   if(currentUser){
     authButton = <li className="topbarListItem logoutButton" onClick={onLogout}>Sign Out</li>
@@ -43,15 +42,7 @@ function Topbar() {
         <li className="topbarListItem topbarTitle">
           <h1>Miyagi.com</h1>
         </li>
-        {console.log('loading', loading)}
-        {loading && <></>}
-        {currentUser && !loading ?
-          <li className="topbarListItem logoutButton" onClick={onLogout}>
-            Sign Out
-          </li> : null }
-        {!currentUser && !loading ?  <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>
-            Sign In
-          </li> : null } 
+        {loading ? <></> : authButton}
       </ul>
     </nav>
   )
