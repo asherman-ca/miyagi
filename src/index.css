@@ -9,7 +9,8 @@ html::-webkit-scrollbar {
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-color: #f2f4f8;
+	/* background-color: #f2f4f8; */
+	background-color: rgba(var(--b3f, 250, 250, 250), 1);
 	margin: 0;
 	box-sizing: border-box;
 }
