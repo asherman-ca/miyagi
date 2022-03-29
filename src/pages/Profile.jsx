@@ -23,8 +23,8 @@ function Profile() {
   }
 
   return (
-    <div className="profilePage">
-      <div className="profileContainer">
+    <div className="pageContainer">
+      <div className="contentContainer">
         <header className="profileHeader">
           <div className="profileImageContainer">
             <button className="profileImageButton">

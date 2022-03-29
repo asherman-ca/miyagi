@@ -30,23 +30,23 @@ function Navbar() {
                   : 'navbarListItemName'
               }
             >
-              Trending
+              Explore
             </p>
           </li>
-          <li className='navbarListItem' onClick={() => navigate('/offers')}>
+          <li className='navbarListItem' onClick={() => navigate('/create')}>
             <OfferIcon
-              fill={pathMatchRoute('/offers') ? '#2c2c2c' : '#8f8f8f'}
+              fill={pathMatchRoute('/create') ? '#2c2c2c' : '#8f8f8f'}
               width='36px'
               height='36px'
             />
             <p
               className={
-                pathMatchRoute('/offers')
+                pathMatchRoute('/create')
                   ? 'navbarListItemNameActive'
                   : 'navbarListItemName'
               }
             >
-              Explore
+              Create
             </p>
           </li>
           <li className='navbarListItem' onClick={() => navigate('/profile')}>

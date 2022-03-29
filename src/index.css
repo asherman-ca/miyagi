@@ -87,7 +87,7 @@ button {
 	right: 20px;
 }
 
-.pageContainer,
+/* .pageContainer,
 .offers,
 .profile,
 .listingDetails,
@@ -105,7 +105,7 @@ button {
 	.explore {
 		margin: 3rem;
 	}
-}
+} */
 
 .loadingSpinnerContainer {
 	position: fixed;
@@ -147,6 +147,30 @@ button {
 		margin-top: 0px;
 		/* text-align: left; */
 	}
+}
+
+.pageContainer {
+	width: 100%;
+}
+
+.contentContainer {
+	max-width: 935px;
+	margin: 0 auto 30px;
+	padding: 30px 20px 0;
+}
+
+.createFormContainer {
+	display: flex;
+	flex-flow: column;
+}
+
+.createFormContainer label {
+	font-weight: bold;
+	margin-bottom: 0.1rem;
+}
+
+.createFormContainer input {
+	margin-bottom: 1rem;
 }
 
 .profilePage {
