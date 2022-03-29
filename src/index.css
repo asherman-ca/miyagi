@@ -52,13 +52,7 @@ button {
 	}
 }
 
-.textarea {
-	padding: 1rem 1.5rem;
-	height: 300px;
-	border-radius: 1rem;
-}
-
-.primaryButton {
+/* .primaryButton {
 	cursor: pointer;
 	background: #00cc66;
 	border-radius: 1rem;
@@ -71,6 +65,15 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+} */
+
+.primaryButton {
+	cursor: pointer;
+	background: black;
+	color: white;
+	border-radius: 8px;
+	width: 80px;
+	height: 40px;
 }
 
 .removeIcon {
@@ -171,6 +174,29 @@ button {
 
 .createFormContainer input {
 	margin-bottom: 1rem;
+	border: none;
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+.createFormImage::-webkit-file-upload-button {
+	border: none;
+	height: 40px;
+	background-color: black;
+	color: #ffffff;
+	padding: 0.5rem 0.75rem;
+	border-radius: 8px;
+	margin-right: 1rem;
+}
+
+.createFormImage {
+	border-bottom: none !important;
+	margin-top: 0.25rem;
+}
+
+.createFormContainer textarea {
+	margin-bottom: 1rem;
+	border: none;
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
 .profilePage {
