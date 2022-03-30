@@ -49,9 +49,11 @@ function Profile() {
             </div>
           </div>
         </header>
-        <iframe src="https://www.instagram.com/p/CaVixB0A206/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        <iframe src="https://www.instagram.com/p/CaVixB0A206/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true">
+        </iframe>
 
-        <iframe width="950" height="534" src="https://www.youtube.com/embed/3thEXIXTHyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="950" height="534" src="https://www.youtube.com/embed/3thEXIXTHyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
       </div>
 
     </div>
