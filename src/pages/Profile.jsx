@@ -14,6 +14,10 @@ function Profile() {
     name: auth.currentUser.displayName,
     email: auth.currentUser.email
   })
+  const instaUrl = 'https://www.instagram.com/p/CaVixB0A206/'
+  const youtubeUrl = 'https://www.youtube.com/watch?v=3thEXIXTHyY'
+  const youtubeId = youtubeUrl.split("=")[1]
+  // console.log('id',youtubeId)
 
   let profileImage = auth.currentUser.profileImage
   if (!profileImage && auth.currentUser.providerData[0].photoURL) {
@@ -49,11 +53,10 @@ function Profile() {
             </div>
           </div>
         </header>
-        <iframe src="https://www.instagram.com/p/CaVixB0A206/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true">
+        <iframe src={`${instaUrl}embed`} width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true">
         </iframe>
 
-        <iframe width="950" height="534" src="https://www.youtube.com/embed/3thEXIXTHyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
+        <iframe width="943" height="530" src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
     </div>
