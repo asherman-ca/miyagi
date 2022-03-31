@@ -17,14 +17,16 @@
     const navigate = useNavigate()
     const isMounted = useRef(true)
     const auth = getAuth();
+    // const instaUrl = 'https://www.instagram.com/p/CaVixB0A206/'
+    const instaUrl = ''
 
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
       title: '',
       images: {},
       notes: '',
-      instagramUrls: [],
-      youTubeUrls: []
+      instagramUrl: '',
+      youTubeUrl: ''
     })
 
     useEffect(() => {
@@ -126,10 +128,20 @@
       return <Spinner />
     }
 
+    const socialInputs = formData.instagramUrl.length > 10 || formData.youTubeUrl.length > 10
+
     return (
       <div className="pageContainer">
         <div className="contentContainer">
           <form className="createFormContainer" onSubmit={onSubmit}>
+            <label className="createFormLabel">Image</label>
+            <input 
+              id='imageUrl'
+              type='file' 
+              className="createFormImage"
+              accept='.jpg,.png,.jpeg'
+              onChange={onMutate}
+            />
             <label className="createFormLabel">Title</label>
             <input 
               id='title'
@@ -139,14 +151,6 @@
               minLength='3'
               maxLength='30'
               required
-            />
-            <label className="createFormLabel">Image</label>
-            <input 
-              id='imageUrl'
-              type='file' 
-              className="createFormImage"
-              accept='.jpg,.png,.jpeg'
-              onChange={onMutate}
             />
             <label className="createFormLabel">Notes</label>
             <textarea 
@@ -162,6 +166,9 @@
               className="createFormInput" 
               onChange={onMutate}
             />
+            <div className="previewInsta">
+                {formData.instagramUrl.length > 10 && <iframe src={`${formData.instagramUrl}embed`} width="200" height="220" frameborder="0" scrolling="no" allowtransparency="true" />}
+              </div>
             <label className="createFormLabel">YouTube</label>
             <input 
               id='youTubeUrl'
@@ -169,6 +176,9 @@
               className="createFormInput" 
               onChange={onMutate}
             />
+            <div className="previewYoutube">
+              {formData.youTubeUrl.length > 10 && <iframe width="250" height="125" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />}
+            </div>
             <button className="primaryButton">
               Submit
             </button>

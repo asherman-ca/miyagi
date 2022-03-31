@@ -95,11 +95,11 @@ button {
 .profile,
 .listingDetails,
 .category,
-.explore {
-	margin: 1rem;
-	overflow-y: hidden;
-}
-@media (min-width: 1024px) {
+.explore { */
+/* margin: 1rem; */
+/* overflow-y: hidden; */
+/* } */
+/* @media (min-width: 1024px) {
 	.pageContainer,
 	.offers,
 	.profile,
@@ -154,6 +154,9 @@ button {
 
 .pageContainer {
 	width: 100%;
+	padding-bottom: 70px;
+	height: 100vh;
+	overflow-y: scroll;
 }
 
 .contentContainer {
@@ -285,7 +288,7 @@ button {
 	left: 0;
 	bottom: 0;
 	right: 0;
-	height: 85px;
+	height: 80px;
 	background-color: #ffffff;
 	z-index: 1000;
 	display: flex;
@@ -837,7 +840,7 @@ button {
 	background-color: rgba(44, 44, 44, 0.1);
 } */
 
-.createListing {
+/* .createListing {
 	background-color: #ffffff;
 	border-radius: 1rem;
 	padding: 0.25rem 1rem;
@@ -857,6 +860,22 @@ button {
 
 .lisitingsList {
 	padding: 0;
+} */
+
+.previewContainer {
+	margin-top: 2rem;
+}
+
+.previewHeader {
+	text-decoration: underline;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+.previewCard {
+	max-width: 24rem;
+	border-radius: 0.5rem;
+	background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .formLabel {
