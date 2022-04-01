@@ -166,9 +166,6 @@
               className="createFormInput" 
               onChange={onMutate}
             />
-            <div className="previewInsta">
-                {formData.instagramUrl.length > 10 && <iframe src={`${formData.instagramUrl}embed`} width="200" height="220" frameborder="0" scrolling="no" allowtransparency="true" />}
-              </div>
             <label className="createFormLabel">YouTube</label>
             <input 
               id='youTubeUrl'
@@ -176,13 +173,24 @@
               className="createFormInput" 
               onChange={onMutate}
             />
-            <div className="previewYoutube">
-              {formData.youTubeUrl.length > 10 && <iframe width="250" height="125" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />}
-            </div>
             <button className="primaryButton">
               Submit
             </button>
           </form>
+          <div className="previewContainer">
+          {formData.instagramUrl.length > 10 && <div className="previewCard">
+              <iframe src={`${formData.instagramUrl}embed`} height="300" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
+              <div className="previewCardTitle">
+              <span>Instagram Preview</span>
+              </div>
+            </div>}
+          {formData.youTubeUrl.length > 10 && <div className="previewCard">
+              <iframe height="220" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+              <div className="previewCardTitle">
+              <span>Youtube Preview</span>
+              </div>
+            </div>}
+          </div>
         </div>
       </div>
       
