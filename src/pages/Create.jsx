@@ -12,6 +12,9 @@
   import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
   import { db } from '../firebase.config'
   import { v4 as uuidv4 } from 'uuid'
+  import { FloatingLabel, Form} from 'react-bootstrap';
+  
+
 
   export default function Create() {
     const navigate = useNavigate()
@@ -132,6 +135,17 @@
 
     return (
       <div className="pageContainer">
+          <FloatingLabel
+    controlId="floatingInput"
+    label="Email address"
+    className="mb-3"
+  >
+    <Form.Control type="email" placeholder="name@example.com" />
+  </FloatingLabel>
+  <FloatingLabel controlId="floatingPassword" label="Password">
+    <Form.Control type="password" placeholder="Password" />
+  </FloatingLabel>
+
         <div className="contentContainer">
           <form className="createFormContainer" onSubmit={onSubmit}>
             <label className="createFormLabel">Image</label>
