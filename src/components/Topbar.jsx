@@ -38,7 +38,7 @@ function Topbar() {
   }
 
   return (
-    <Navbar bg="white">
+    <Navbar bg="white" fixed="top">
       <Container>
         <Navbar.Brand className="topbarTitle">
           Miyagi.com

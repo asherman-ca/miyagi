@@ -14,11 +14,9 @@ body {
 }
 
 .heighter {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
+	padding: 62px 0px 56px 0px;
 }
 
-.bottomBar {
-	margin-top: auto !important;
+.navbarLinkActive {
+	color: black !important;
 }
