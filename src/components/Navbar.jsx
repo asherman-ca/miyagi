@@ -2,8 +2,9 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { ReactComponent as OfferIcon } from '../assets/localOfferIcon.svg'
 import { ReactComponent as ExploreIcon } from '../assets/exploreIcon.svg'
 import { ReactComponent as PersonOutlineIcon } from '../assets/personOutlineIcon.svg'
+import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap'
 
-function Navbar() {
+function Navbottom() {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -14,61 +15,80 @@ function Navbar() {
   }
 
   return (
-    <footer className='navbar'>
-      <nav className='navbarNav'>
-        <ul className='navbarListItems'>
-          <li className='navbarListItem' onClick={() => navigate('/')}>
-            <ExploreIcon
-              fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'}
-              width='36px'
-              height='36px'
-            />
-            <p
-              className={
-                pathMatchRoute('/')
-                  ? 'navbarListItemNameActive'
-                  : 'navbarListItemName'
-              }
-            >
-              Explore
-            </p>
-          </li>
-          <li className='navbarListItem' onClick={() => navigate('/create')}>
-            <OfferIcon
-              fill={pathMatchRoute('/create') ? '#2c2c2c' : '#8f8f8f'}
-              width='36px'
-              height='36px'
-            />
-            <p
-              className={
-                pathMatchRoute('/create')
-                  ? 'navbarListItemNameActive'
-                  : 'navbarListItemName'
-              }
-            >
-              Create
-            </p>
-          </li>
-          <li className='navbarListItem' onClick={() => navigate('/profile')}>
-            <PersonOutlineIcon
-              fill={pathMatchRoute('/profile') ? '#2c2c2c' : '#8f8f8f'}
-              width='36px'
-              height='36px'
-            />
-            <p
-              className={
-                pathMatchRoute('/profile')
-                  ? 'navbarListItemNameActive'
-                  : 'navbarListItemName'
-              }
-            >
-              Profile
-            </p>
-          </li>
-        </ul>
-      </nav>
-    </footer>
+    <Navbar bg="white" className="bottomBar">
+      <Container>
+        <Nav>
+          <Nav.Link onClick={() => navigate('/')}>
+            Explore
+          </Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link onClick={() => navigate('/create')}>
+            Create
+          </Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link onClick={() => navigate('/profile')}>
+            Profile
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+    // <footer className='navbar'>
+    //   <nav className='navbarNav'>
+    //     <ul className='navbarListItems'>
+    //       <li className='navbarListItem' onClick={() => navigate('/')}>
+    //         <ExploreIcon
+    //           fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'}
+    //           width='36px'
+    //           height='36px'
+    //         />
+    //         <p
+    //           className={
+    //             pathMatchRoute('/')
+    //               ? 'navbarListItemNameActive'
+    //               : 'navbarListItemName'
+    //           }
+    //         >
+    //           Explore
+    //         </p>
+    //       </li>
+    //       <li className='navbarListItem' onClick={() => navigate('/create')}>
+    //         <OfferIcon
+    //           fill={pathMatchRoute('/create') ? '#2c2c2c' : '#8f8f8f'}
+    //           width='36px'
+    //           height='36px'
+    //         />
+    //         <p
+    //           className={
+    //             pathMatchRoute('/create')
+    //               ? 'navbarListItemNameActive'
+    //               : 'navbarListItemName'
+    //           }
+    //         >
+    //           Create
+    //         </p>
+    //       </li>
+    //       <li className='navbarListItem' onClick={() => navigate('/profile')}>
+    //         <PersonOutlineIcon
+    //           fill={pathMatchRoute('/profile') ? '#2c2c2c' : '#8f8f8f'}
+    //           width='36px'
+    //           height='36px'
+    //         />
+    //         <p
+    //           className={
+    //             pathMatchRoute('/profile')
+    //               ? 'navbarListItemNameActive'
+    //               : 'navbarListItemName'
+    //           }
+    //         >
+    //           Profile
+    //         </p>
+    //       </li>
+    //     </ul>
+    //   </nav>
+    // </footer>
   )
 }
 
-export default Navbar
+export default Navbottom

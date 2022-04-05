@@ -43,11 +43,9 @@ function Topbar() {
         <Navbar.Brand className="topbarTitle">
           Miyagi.com
         </Navbar.Brand>
-        <Navbar.Collapse id="basic.navbar-nav">
-          <Nav className="marginLeftAuto">
-            {loading ? <></> : authButton}
-          </Nav>
-        </Navbar.Collapse>  
+        <Nav>
+          {loading ? <></> : authButton}
+        </Nav>
       </Container>
     </Navbar>
   )

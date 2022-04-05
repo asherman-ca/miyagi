@@ -1,3 +1,8 @@
+body {
+	background-color: #f2f4f8 !important;
+	height: 100vh;
+}
+
 .topbarTitle {
 	font-family: 'Satisfy', cursive;
 	font-size: 1.5rem !important;
@@ -8,6 +13,12 @@
 	margin-left: auto;
 }
 
-body {
-	background-color: #f2f4f8 !important;
+.heighter {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.bottomBar {
+	margin-top: auto !important;
 }
