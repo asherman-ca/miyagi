@@ -7,3 +7,7 @@
 .marginLeftAuto {
 	margin-left: auto;
 }
+
+body {
+	background-color: #f2f4f8 !important;
+}

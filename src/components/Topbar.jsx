@@ -32,23 +32,13 @@ function Topbar() {
 
   let authButton
   if(currentUser){
-    // authButton = <li className="topbarListItem logoutButton" onClick={onLogout}>Sign Out</li>
     authButton = <Nav.Link onClick={onLogout}>Sign Out</Nav.Link>
   }else{
-    // authButton = <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>Sign In</li>
     authButton = <Nav.Link onClick={() => navigate('/sign-in')}>Sign In</Nav.Link>
   }
 
   return (
-    // <nav className="topbar">
-    //   <ul className="topbarListItems">
-    //     <li className="topbarListItem topbarTitle">
-    //       <h1>Miyagi.com</h1>
-    //     </li>
-    //     {loading ? <></> : authButton}
-    //   </ul>
-    // </nav>
-    <Navbar bg="light">
+    <Navbar bg="white">
       <Container>
         <Navbar.Brand className="topbarTitle">
           Miyagi.com
