@@ -12,7 +12,8 @@
   import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
   import { db } from '../firebase.config'
   import { v4 as uuidv4 } from 'uuid'
-  import { FloatingLabel, Form} from 'react-bootstrap';
+  import { FloatingLabel, Form, Container, Row, Column, Col } from 'react-bootstrap';
+  
   
 
 
@@ -134,79 +135,97 @@
     const socialInputs = formData.instagramUrl.length > 10 || formData.youTubeUrl.length > 10
 
     return (
-      <div className="pageContainer">
-          <FloatingLabel
-    controlId="floatingInput"
-    label="Email address"
-    className="mb-3"
-  >
-    <Form.Control type="email" placeholder="name@example.com" />
-  </FloatingLabel>
-  <FloatingLabel controlId="floatingPassword" label="Password">
-    <Form.Control type="password" placeholder="Password" />
-  </FloatingLabel>
+      <Container>
+        <Row>
+          <Col sm={6}>
+            <Form className="formContainer">
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+  //     <div className="pageContainer">
+  //         <FloatingLabel
+  //   controlId="floatingInput"
+  //   label="Email address"
+  //   className="mb-3"
+  // >
+  //   <Form.Control type="email" placeholder="name@example.com" />
+  // </FloatingLabel>
+  // <FloatingLabel controlId="floatingPassword" label="Password">
+  //   <Form.Control type="password" placeholder="Password" />
+  // </FloatingLabel>
 
-        <div className="contentContainer">
-          <form className="createFormContainer" onSubmit={onSubmit}>
-            <label className="createFormLabel">Image</label>
-            <input 
-              id='imageUrl'
-              type='file' 
-              className="createFormImage"
-              accept='.jpg,.png,.jpeg'
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">Title</label>
-            <input 
-              id='title'
-              type="text" 
-              className="createFormInput"
-              onChange={onMutate}
-              minLength='3'
-              maxLength='30'
-              required
-            />
-            <label className="createFormLabel">Notes</label>
-            <textarea 
-              id='notes'
-              type="text"
-              className="createFormInput"
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">Instagram</label>
-            <input
-              id='instagramUrl' 
-              type="text" 
-              className="createFormInput" 
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">YouTube</label>
-            <input 
-              id='youTubeUrl'
-              type="text" 
-              className="createFormInput" 
-              onChange={onMutate}
-            />
-            <button className="primaryButton">
-              Submit
-            </button>
-          </form>
-          <div className="previewContainer">
-          {formData.instagramUrl.length > 10 && <div className="previewCard">
-              <iframe src={`${formData.instagramUrl}embed`} height="300" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
-              <div className="previewCardTitle">
-              <span>Instagram Preview</span>
-              </div>
-            </div>}
-          {formData.youTubeUrl.length > 10 && <div className="previewCard">
-              <iframe height="220" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-              <div className="previewCardTitle">
-              <span>Youtube Preview</span>
-              </div>
-            </div>}
-          </div>
-        </div>
-      </div>
+  //       <div className="contentContainer">
+  //         <form className="createFormContainer" onSubmit={onSubmit}>
+  //           <label className="createFormLabel">Image</label>
+  //           <input 
+  //             id='imageUrl'
+  //             type='file' 
+  //             className="createFormImage"
+  //             accept='.jpg,.png,.jpeg'
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">Title</label>
+  //           <input 
+  //             id='title'
+  //             type="text" 
+  //             className="createFormInput"
+  //             onChange={onMutate}
+  //             minLength='3'
+  //             maxLength='30'
+  //             required
+  //           />
+  //           <label className="createFormLabel">Notes</label>
+  //           <textarea 
+  //             id='notes'
+  //             type="text"
+  //             className="createFormInput"
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">Instagram</label>
+  //           <input
+  //             id='instagramUrl' 
+  //             type="text" 
+  //             className="createFormInput" 
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">YouTube</label>
+  //           <input 
+  //             id='youTubeUrl'
+  //             type="text" 
+  //             className="createFormInput" 
+  //             onChange={onMutate}
+  //           />
+  //           <button className="primaryButton">
+  //             Submit
+  //           </button>
+  //         </form>
+  //         <div className="previewContainer">
+  //         {formData.instagramUrl.length > 10 && <div className="previewCard">
+  //             <iframe src={`${formData.instagramUrl}embed`} height="300" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
+  //             <div className="previewCardTitle">
+  //             <span>Instagram Preview</span>
+  //             </div>
+  //           </div>}
+  //         {formData.youTubeUrl.length > 10 && <div className="previewCard">
+  //             <iframe height="220" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+  //             <div className="previewCardTitle">
+  //             <span>Youtube Preview</span>
+  //             </div>
+  //           </div>}
+  //         </div>
+  //       </div>
+  //     </div>
       
     )
   }
