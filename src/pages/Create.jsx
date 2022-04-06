@@ -12,7 +12,7 @@
   import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
   import { db } from '../firebase.config'
   import { v4 as uuidv4 } from 'uuid'
-  import { FloatingLabel, Form, Container, Row, OverlayTrigger, Col, Tooltip, Button } from 'react-bootstrap';
+  import { Form, Container, Row, Col, Button } from 'react-bootstrap';
   
   
 
@@ -139,7 +139,7 @@
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
             <div className="formHeader">Create Post</div>
-            <Form>
+            <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 {/* <Form.Label>Title</Form.Label> */}
                 <Form.Text className="text-muted">
@@ -205,7 +205,12 @@
                 />
               </Form.Group>
 
-              
+              <Button
+                variant="outline-dark"
+                type="submit"
+              >
+                Submit
+              </Button>
             </Form>
           </Col>
         </Row>
