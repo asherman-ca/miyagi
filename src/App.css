@@ -1,11 +1,13 @@
 body {
 	background-color: #f2f4f8 !important;
-	padding: 62px 0px 56px 0px;
-	height: 100vh !important;
+	/* padding: 62px 0px 56px 0px;
+	height: 100vh !important; */
 }
 
 #root {
-	height: 100%;
+	/* height: 100vh !important; */
+	padding: 62px 0px 56px 0px;
+	height: 100vh !important;
 }
 
 .topbarTitle {
@@ -17,11 +19,6 @@ body {
 .marginLeftAuto {
 	margin-left: auto;
 }
-
-/* .heighter {
-	height: 100%;
-	padding: 72px 0px 56px 0px;
-} */
 
 .navbarLinkActive {
 	color: black !important;
