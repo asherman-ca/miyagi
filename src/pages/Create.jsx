@@ -153,6 +153,19 @@
                 />
               </Form.Group>
 
+              <Form.Group controlId="formFile" className="mb-3">
+                {/* <Form.Label>Default file input example</Form.Label> */}
+                <Form.Text className="text-muted">
+                  Add an image to your post
+                </Form.Text>
+                <Form.Control 
+                  type="file"
+                  id="images"
+                  accept=".jpg,.png,.jpeg"
+                  onChange={onMutate}
+                />
+              </Form.Group>
+
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 {/* <Form.Label>Instagram</Form.Label> */}
                 <Form.Text className="text-muted">
@@ -191,6 +204,8 @@
                   onChange={onMutate}
                 />
               </Form.Group>
+
+              
             </Form>
           </Col>
         </Row>
