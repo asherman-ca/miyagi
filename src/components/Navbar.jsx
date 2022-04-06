@@ -20,7 +20,7 @@ function Navbottom() {
         <Nav>
           <Nav.Link 
             onClick={() => navigate('/')}
-            className={pathMatchRoute('/') ? 'navbarLinkActive' : 'navBarLink'}
+            className={pathMatchRoute('/') ? 'navbarLinkActive' : 'navbarLink'}
           >
             Explore
           </Nav.Link>
@@ -28,7 +28,7 @@ function Navbottom() {
         <Nav>
           <Nav.Link 
             onClick={() => navigate('/create')}
-            className={pathMatchRoute('/create') ? 'navbarLinkActive' : 'navBarLink'}
+            className={pathMatchRoute('/create') ? 'navbarLinkActive' : 'navbarLink'}
           >
             Create
           </Nav.Link>
@@ -36,7 +36,7 @@ function Navbottom() {
         <Nav>
           <Nav.Link 
             onClick={() => navigate('/profile')}
-            className={pathMatchRoute('/profile') ? 'navbarLinkActive' : 'navBarLink'}
+            className={pathMatchRoute('/profile') ? 'navbarLinkActive' : 'navbarLink'}
           >
             Profile
           </Nav.Link>

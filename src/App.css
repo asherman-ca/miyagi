@@ -1,3 +1,11 @@
+/* Utilities */
+
+.marginLeftAuto {
+	margin-left: auto;
+}
+
+/* Universals */
+
 body {
 	background-color: #f2f4f8 !important;
 	/* padding: 62px 0px 56px 0px;
@@ -8,9 +16,8 @@ body {
 }
 
 #root {
-	/* height: 100vh !important; */
-	padding: 62px 0px 56px 0px;
 	height: 100vh !important;
+	padding: 62px 0px 56px 0px !important;
 }
 
 .topbarTitle {
@@ -19,19 +26,22 @@ body {
 	font-weight: bold;
 }
 
-.marginLeftAuto {
-	margin-left: auto;
+.navbarLink {
+	border-radius: 5px;
+}
+
+.navbarLink:hover {
+	background-color: #eaeaea;
 }
 
 .navbarLinkActive {
+	border-radius: 5px;
 	color: black !important;
+	font-weight: bold;
 }
 
-.formHeader {
-	/* text-align: center; */
-	font-weight: bold;
-	font-size: 1.5rem;
-	padding: 20px 0px 10px;
+.navbarLinkActive:hover {
+	background-color: #eaeaea;
 }
 
 .topbar {
@@ -40,4 +50,13 @@ body {
 
 .bottombar {
 	border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+/* Pages */
+
+.formHeader {
+	/* text-align: center; */
+	font-weight: bold;
+	font-size: 1.5rem;
+	padding: 20px 0px 10px;
 }
