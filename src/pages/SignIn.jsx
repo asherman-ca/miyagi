@@ -47,7 +47,7 @@ function SignIn() {
   return (
     <Container>
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 6, offset: 3 }} className="signinForm">
           <div className="formHeader">Sign In</div>
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3">
@@ -61,7 +61,7 @@ function SignIn() {
                 onChange={onChange}
               />
             </Form.Group>
-            
+
             <Form.Group className="mb-3">
               <Form.Text className="text-muted">
                 Password

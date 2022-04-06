@@ -107,7 +107,7 @@
         timestamp: serverTimestamp()
       }
       delete formDataCopy.images
-      
+
       await addDoc(collection(db, 'posts'), formDataCopy)
 
       setLoading(false)
@@ -137,7 +137,7 @@
     return (
       <Container>
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 6, offset: 3 }} className="createForm">
             <div className="formHeader">Create Post</div>
             <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3">

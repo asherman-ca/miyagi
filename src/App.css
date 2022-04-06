@@ -37,11 +37,15 @@ body {
 .navbarLinkActive {
 	border-radius: 5px;
 	color: black !important;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 .navbarLinkActive:hover {
 	background-color: #eaeaea;
+}
+
+.navbarLinkTextActive {
+	text-decoration: underline auto;
 }
 
 .topbar {
@@ -54,9 +58,29 @@ body {
 
 /* Pages */
 
+/* Forms */
+
 .formHeader {
 	/* text-align: center; */
 	font-weight: bold;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	padding: 20px 0px 10px;
 }
+
+.signinForm {
+	margin-top: 20px !important;
+	padding-bottom: 20px !important;
+	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+.createForm {
+	margin-top: 20px !important;
+	padding-bottom: 20px !important;
+	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+/* Profile */
+
+/* Explore */
+
+/* Post View */
