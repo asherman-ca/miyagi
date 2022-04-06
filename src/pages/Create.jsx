@@ -12,7 +12,7 @@
   import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
   import { db } from '../firebase.config'
   import { v4 as uuidv4 } from 'uuid'
-  import { FloatingLabel, Form, Container, Row, Column, Col } from 'react-bootstrap';
+  import { FloatingLabel, Form, Container, Row, OverlayTrigger, Col, Tooltip, Button } from 'react-bootstrap';
   
   
 
@@ -137,16 +137,39 @@
     return (
       <Container>
         <Row>
-          <Col sm={6}>
-            <Form className="formContainer">
+          <Col md={{ span: 6, offset: 3 }}>
+            Create Post
+            <Form>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter email"
+                  type="title"
+                  placeholder="Enter title"
                 />
                 <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
+                  Create a title for your post
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Instagram</Form.Label>
+                <Form.Control
+                  type="instagram"
+                  placeholder="Enter Instagram address"
+                />
+                <Form.Text className="text-muted">
+                  Add an Instagram page to your post. You can add more later.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>YouTube</Form.Label>
+                <Form.Control
+                  type="youtube"
+                  placeholder="Enter YouTube address"
+                />
+                <Form.Text className="text-muted">
+                  Add a YouTube page to you post. You can add more later.
                 </Form.Text>
               </Form.Group>
             </Form>

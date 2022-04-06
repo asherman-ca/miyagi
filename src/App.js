@@ -14,7 +14,6 @@ import Create from './pages/Create'
 function App() {
   return (
     <>
-      <div className="heighter">
       <Router>
         <Topbar />
         <Routes>
@@ -29,7 +28,6 @@ function App() {
         <Navbar />
       </Router>
       <ToastContainer/>
-      </div>
     </>
   );
 }
