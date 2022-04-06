@@ -1,6 +1,11 @@
 body {
 	background-color: #f2f4f8 !important;
-	padding: 72px 0px 56px 0px;
+	padding: 62px 0px 56px 0px;
+	height: 100vh !important;
+}
+
+#root {
+	height: 100%;
 }
 
 .topbarTitle {
