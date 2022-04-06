@@ -15,7 +15,7 @@ function Navbottom() {
   }
 
   return (
-    <Navbar bg="white" className="bottomBar" fixed="bottom">
+    <Navbar bg="white" className="bottombar" fixed="bottom">
       <Container>
         <Nav>
           <Nav.Link 

@@ -33,3 +33,11 @@ body {
 	font-size: 1.5rem;
 	padding: 20px 0px 10px;
 }
+
+.topbar {
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+.bottombar {
+	border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
