@@ -138,39 +138,58 @@
       <Container>
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
-            Create Post
+            <div className="formHeader">Create Post</div>
             <Form>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  type="title"
-                  placeholder="Enter title"
-                />
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Label>Title</Form.Label> */}
                 <Form.Text className="text-muted">
                   Create a title for your post
                 </Form.Text>
+                <Form.Control
+                  type="title"
+                  placeholder="Enter title"
+                  id="title"
+                  onChange={onMutate}
+                />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Instagram</Form.Label>
-                <Form.Control
-                  type="instagram"
-                  placeholder="Enter Instagram address"
-                />
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Label>Instagram</Form.Label> */}
                 <Form.Text className="text-muted">
                   Add an Instagram page to your post. You can add more later.
                 </Form.Text>
+                <Form.Control
+                  type="instagram"
+                  placeholder="Enter Instagram address"
+                  id="instragramUrl"
+                  onChange={onMutate}
+                />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>YouTube</Form.Label>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Label>YouTube</Form.Label> */}
+                <Form.Text className="text-muted">
+                  Add a YouTube page to your post. You can add more later.
+                </Form.Text>
                 <Form.Control
                   type="youtube"
                   placeholder="Enter YouTube address"
+                  id="youTubeUrl"
+                  onChange={onMutate}
                 />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Text className="text-muted">
-                  Add a YouTube page to you post. You can add more later.
+                  Add notes to your post. You can update them later.
                 </Form.Text>
+                <Form.Control
+                  as="textarea" 
+                  rows={3}
+                  placeholder="Enter notes"
+                  id="notes"
+                  onChange={onMutate}
+                />
               </Form.Group>
             </Form>
           </Col>
