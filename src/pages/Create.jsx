@@ -137,7 +137,7 @@
     return (
       <Container>
         <Row>
-          <Col md={{ span: 6, offset: 3 }} className="createForm">
+          <Col md={{ span: 6, offset: 3 }} className="formBorder">
             <div className="formHeader">Create Post</div>
             <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3">

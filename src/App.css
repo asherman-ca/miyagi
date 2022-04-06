@@ -67,16 +67,24 @@ body {
 	padding: 20px 0px 10px;
 }
 
-.signinForm {
+.formBorder {
 	margin-top: 20px !important;
 	padding-bottom: 20px !important;
 	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	border-radius: 5px;
 }
 
-.createForm {
-	margin-top: 20px !important;
-	padding-bottom: 20px !important;
-	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+/* .googleButton {
+	margin-left: auto !important;
+} */
+
+.googleCol {
+	display: flex;
+	justify-content: right;
+}
+
+.googleButton:hover {
+	cursor: pointer;
 }
 
 /* Profile */

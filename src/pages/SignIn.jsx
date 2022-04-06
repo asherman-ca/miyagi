@@ -47,7 +47,7 @@ function SignIn() {
   return (
     <Container>
       <Row>
-        <Col md={{ span: 6, offset: 3 }} className="signinForm">
+        <Col md={{ span: 6, offset: 3 }} className="formBorder">
           <div className="formHeader">Sign In</div>
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3">
@@ -74,13 +74,21 @@ function SignIn() {
               />
             </Form.Group>
 
-            <Button
-                variant="outline-dark"
-                type="submit"
-              >
-                Submit
+            <Row>
+              <Col>
+              <Button
+                  variant="outline-dark"
+                  type="submit"
+                >
+                  Sign In
               </Button>
+              </Col>
+              <Col className="googleCol">
+                <OAuth />
+              </Col>
+            </Row>
           </Form>
+          
         </Col>
       </Row>
     </Container>
