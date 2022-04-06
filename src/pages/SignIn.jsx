@@ -5,6 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import OAuth from '../components/OAuth'
 import { ReactComponent as ArrowRightIcon } from '../assets/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/visibilityIcon.svg'
+import { Row, Col, Container, Form, Button } from 'react-bootstrap'
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false)
@@ -44,59 +45,98 @@ function SignIn() {
   }
 
   return (
-    <>
-      <div className='pageContainer'>
-        <header>
-          <p className='pageHeader'>Welcome Back!</p>
-        </header>
+    <Container>
+      <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+          <div className="formHeader">Sign In</div>
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Text className="text-muted">
+                Email address
+              </Form.Text>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                id="email"
+                onChange={onChange}
+              />
+            </Form.Group>
+            
+            <Form.Group className="mb-3">
+              <Form.Text className="text-muted">
+                Password
+              </Form.Text>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                id="password"
+                onChange={onChange}
+              />
+            </Form.Group>
 
-        <form onSubmit={onSubmit}>
-          <input
-            type='email'
-            className='emailInput'
-            placeholder='Email'
-            id='email'
-            value={email}
-            onChange={onChange}
-          />
+            <Button
+                variant="outline-dark"
+                type="submit"
+              >
+                Submit
+              </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+    // <>
+    //   <div className='pageContainer'>
+    //     <header>
+    //       <p className='pageHeader'>Welcome Back!</p>
+    //     </header>
 
-          <div className='passwordInputDiv'>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className='passwordInput'
-              placeholder='Password'
-              id='password'
-              value={password}
-              onChange={onChange}
-            />
+    //     <form onSubmit={onSubmit}>
+    //       <input
+    //         type='email'
+    //         className='emailInput'
+    //         placeholder='Email'
+    //         id='email'
+    //         value={email}
+    //         onChange={onChange}
+    //       />
 
-            <img
-              src={visibilityIcon}
-              alt='show password'
-              className='showPassword'
-              onClick={() => setShowPassword((prevState) => !prevState)}
-            />
-          </div>
+    //       <div className='passwordInputDiv'>
+    //         <input
+    //           type={showPassword ? 'text' : 'password'}
+    //           className='passwordInput'
+    //           placeholder='Password'
+    //           id='password'
+    //           value={password}
+    //           onChange={onChange}
+    //         />
+
+    //         <img
+    //           src={visibilityIcon}
+    //           alt='show password'
+    //           className='showPassword'
+    //           onClick={() => setShowPassword((prevState) => !prevState)}
+    //         />
+    //       </div>
           
-          <Link to='/forgot-password' className='forgotPasswordLink'>
-            Forgot Password
-          </Link>
+    //       <Link to='/forgot-password' className='forgotPasswordLink'>
+    //         Forgot Password
+    //       </Link>
 
-          <div className='signInBar'>
-            <p className='signInText'>Sign In</p>
-            <button className='signInButton'>
-              <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
-            </button>
-          </div>
-        </form>
+    //       <div className='signInBar'>
+    //         <p className='signInText'>Sign In</p>
+    //         <button className='signInButton'>
+    //           <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
+    //         </button>
+    //       </div>
+    //     </form>
 
-        <OAuth />
+    //     <OAuth />
 
-        <Link to='/sign-up' className='registerLink'>
-          Sign Up Instead
-        </Link>
-      </div>
-    </>
+    //     <Link to='/sign-up' className='registerLink'>
+    //       Sign Up Instead
+    //     </Link>
+    //   </div>
+    // </>
   )
 }
 

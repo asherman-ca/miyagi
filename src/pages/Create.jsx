@@ -28,7 +28,7 @@
     const [formData, setFormData] = useState({
       title: '',
       images: {},
-      notes: '',
+      notes: "",
       instagramUrl: '',
       youTubeUrl: ''
     })
@@ -107,7 +107,7 @@
         timestamp: serverTimestamp()
       }
       delete formDataCopy.images
-
+      
       await addDoc(collection(db, 'posts'), formDataCopy)
 
       setLoading(false)
@@ -140,8 +140,7 @@
           <Col md={{ span: 6, offset: 3 }}>
             <div className="formHeader">Create Post</div>
             <Form onSubmit={onSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                {/* <Form.Label>Title</Form.Label> */}
+              <Form.Group className="mb-3">
                 <Form.Text className="text-muted">
                   Create a title for your post
                 </Form.Text>
@@ -150,10 +149,11 @@
                   placeholder="Enter title"
                   id="title"
                   onChange={onMutate}
+                  required
                 />
               </Form.Group>
 
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group className="mb-3">
                 {/* <Form.Label>Default file input example</Form.Label> */}
                 <Form.Text className="text-muted">
                   Add an image to your post
@@ -163,10 +163,11 @@
                   id="images"
                   accept=".jpg,.png,.jpeg"
                   onChange={onMutate}
+                  required
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3">
                 {/* <Form.Label>Instagram</Form.Label> */}
                 <Form.Text className="text-muted">
                   Add an Instagram page to your post. You can add more later.
@@ -179,7 +180,7 @@
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3">
                 {/* <Form.Label>YouTube</Form.Label> */}
                 <Form.Text className="text-muted">
                   Add a YouTube page to your post. You can add more later.
@@ -192,7 +193,7 @@
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+              <Form.Group className="mb-3">
                 <Form.Text className="text-muted">
                   Add notes to your post. You can update them later.
                 </Form.Text>
