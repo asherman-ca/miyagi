@@ -20,9 +20,10 @@ function Profile() {
   const youtubeId = youtubeUrl.split("=")[1]
   // console.log('id',youtubeId)
 
+  console.log('currnetuser', auth.currentUser)
   let profileImage = auth.currentUser.profileImage
-  if (!profileImage && auth.currentUser.providerData[0].photoURL) {
-    profileImage = auth.currentUser.providerData[0].photoURL
+  if (!profileImage && auth.currentUser.photoURL) {
+    profileImage = auth.currentUser.photoURL
   } else if (!profileImage) {
     profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
   }
