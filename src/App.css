@@ -7,17 +7,17 @@
 /* Universals */
 
 body {
+	padding: 62px 0px 56px 0px;
 	/* background-color: #f2f4f8 !important; */
-	/* padding: 62px 0px 56px 0px;
-	height: 100vh !important;
-	height: 100%;
-	width: 100%;
-	position: absolute; */
+	/* height: 100vh !important; */
+	/* height: 100%; */
+	/* width: 100%; */
+	/* position: absolute; */
 }
 
 #root {
-	height: 100vh !important;
-	padding: 62px 0px 56px 0px !important;
+	/* height: 100vh !important; */
+	/* padding: 62px 0px 56px 0px !important; */
 }
 
 .topbarTitle {
