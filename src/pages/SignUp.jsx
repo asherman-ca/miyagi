@@ -11,6 +11,7 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from '../assets/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/visibilityIcon.svg'
+import { Row, Col, Container, Form, Button } from 'react-bootstrap'
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false)
@@ -61,67 +62,125 @@ function SignUp() {
   }
 
   return (
-    <>
-      <div className='pageContainer'>
-        <header>
-          <p className='pageHeader'>Welcome Back!</p>
-        </header>
+    <Container>
+      <Row>
+        <Col md={{ span: 6, offset: 3 }} className="formBorder">
+          <div className="formHeader">Sign Up</div>
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Text className="text-muted">
+                Name
+              </Form.Text>
+              <Form.Control
+                type="name"
+                placeholder="Enter name"
+                id="name"
+                onChange={onChange}
+              />
+            </Form.Group>
 
-        <form onSubmit={onSubmit}>
-          <input
-            type='text'
-            className='nameInput'
-            placeholder='Name'
-            id='name'
-            value={name}
-            onChange={onChange}
-          />
-          <input
-            type='email'
-            className='emailInput'
-            placeholder='Email'
-            id='email'
-            value={email}
-            onChange={onChange}
-          />
+            <Form.Group className="mb-3">
+              <Form.Text className="text-muted">
+                Email
+              </Form.Text>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                id="email"
+                onChange={onChange}
+              />
+            </Form.Group>
 
-          <div className='passwordInputDiv'>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className='passwordInput'
-              placeholder='Password'
-              id='password'
-              value={password}
-              onChange={onChange}
-            />
+            <Form.Group className="mb-3">
+              <Form.Text className="text-muted">
+                Password
+              </Form.Text>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                id="password"
+                onChange={onChange}
+              />
+            </Form.Group>
 
-            <img
-              src={visibilityIcon}
-              alt='show password'
-              className='showPassword'
-              onClick={() => setShowPassword((prevState) => !prevState)}
-            />
-          </div>
+            <Row>
+              <Col>
+                <Button
+                    variant="outline-dark"
+                    type="submit"
+                  >
+                    Sign Up
+                </Button>
+              </Col>
+              <Col className="googleCol">
+                <OAuth />
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+    // <>
+    //   <div className='pageContainer'>
+    //     <header>
+    //       <p className='pageHeader'>Welcome Back!</p>
+    //     </header>
 
-          <Link to='/forgot-password' className='forgotPasswordLink'>
-            Forgot Password
-          </Link>
+    //     <form onSubmit={onSubmit}>
+    //       <input
+    //         type='text'
+    //         className='nameInput'
+    //         placeholder='Name'
+    //         id='name'
+    //         value={name}
+    //         onChange={onChange}
+    //       />
+    //       <input
+    //         type='email'
+    //         className='emailInput'
+    //         placeholder='Email'
+    //         id='email'
+    //         value={email}
+    //         onChange={onChange}
+    //       />
 
-          <div className='signUpBar'>
-            <p className='signUpText'>Sign Up</p>
-            <button className='signUpButton'>
-              <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
-            </button>
-          </div>
-        </form>
+    //       <div className='passwordInputDiv'>
+    //         <input
+    //           type={showPassword ? 'text' : 'password'}
+    //           className='passwordInput'
+    //           placeholder='Password'
+    //           id='password'
+    //           value={password}
+    //           onChange={onChange}
+    //         />
 
-        <OAuth />
+    //         <img
+    //           src={visibilityIcon}
+    //           alt='show password'
+    //           className='showPassword'
+    //           onClick={() => setShowPassword((prevState) => !prevState)}
+    //         />
+    //       </div>
 
-        <Link to='/sign-in' className='registerLink'>
-          Sign In Instead
-        </Link>
-      </div>
-    </>
+    //       <Link to='/forgot-password' className='forgotPasswordLink'>
+    //         Forgot Password
+    //       </Link>
+
+    //       <div className='signUpBar'>
+    //         <p className='signUpText'>Sign Up</p>
+    //         <button className='signUpButton'>
+    //           <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
+    //         </button>
+    //       </div>
+    //     </form>
+
+    //     <OAuth />
+
+    //     <Link to='/sign-in' className='registerLink'>
+    //       Sign In Instead
+    //     </Link>
+    //   </div>
+    // </>
   )
 }
 

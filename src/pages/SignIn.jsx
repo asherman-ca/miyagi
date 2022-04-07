@@ -76,12 +76,17 @@ function SignIn() {
 
             <Row>
               <Col>
-              <Button
-                  variant="outline-dark"
-                  type="submit"
-                >
-                  Sign In
-              </Button>
+                <Button
+                    variant="outline-dark"
+                    type="submit"
+                  >
+                    Sign In
+                </Button>
+                <Link to='/forgot-password'>
+                  <Button className="resetButton" variant="outline-dark">
+                    Reset Password
+                  </Button>
+                </Link>
               </Col>
               <Col className="googleCol">
                 <OAuth />

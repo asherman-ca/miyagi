@@ -78,6 +78,10 @@ body {
 	margin-left: auto !important;
 } */
 
+.resetButton {
+	margin-left: 10px;
+}
+
 .googleCol {
 	display: flex;
 	justify-content: right;
