@@ -5,6 +5,7 @@ import { db } from '../firebase.config'
 import { useNavigate } from 'react-router-dom'
 import { updateDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
+import { Row, Col, Container, Image } from 'react-bootstrap'
 
 function Profile() {
   const auth = getAuth()
@@ -27,38 +28,65 @@ function Profile() {
   }
 
   return (
-    <div className="pageContainer">
-      <div className="contentContainer">
-        <header className="profileHeader">
-          <div className="profileImageContainer">
-            <button className="profileImageButton">
-              <img src={profileImage} alt="Change Profile Photo" className="profileImage" />
-            </button>
-          </div>
+    <Container>
+      <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+          <Row className="profileHeader mb-3">
+            <Col md={3}>
+              <Image 
+                rounded
+                className="profileImage"
+                src={profileImage}
+                alt="Change Profile Photo"
+              />
+            </Col>            
+            <Col md={9} className="profileHeaderText">
+              <span>{auth.currentUser.displayName}</span>
+              <span>{auth.currentUser.email}</span>
+              <span>Joined a while ago</span>
+            </Col>
+          </Row>
+          
+          <Row>
+            <Col>
+              Posts
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+    // <div className="pageContainer">
+    //   <div className="contentContainer">
+    //     <header className="profileHeader">
+    //       <div className="profileImageContainer">
+    //         <button className="profileImageButton">
+    //           <img src={profileImage} alt="Change Profile Photo" className="profileImage" />
+    //         </button>
+    //       </div>
 
-          <div className="profileCard">
-            <div className="profileCardTitle">
-              <div className="profileCardName">
-                {formData.name}
-              </div>
-              <div className="profileCardEmail">
-                {formData.email}
-              </div>
-            </div>
-            <div className="profileCardDetails">
-              10 posts
-            </div>
-            <div className="profileCardFooter">
-              joined 2022
-            </div>
-          </div>
-        </header>
-        {/* <iframe src={`${instaUrl}embed`} width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true" />
+    //       <div className="profileCard">
+    //         <div className="profileCardTitle">
+    //           <div className="profileCardName">
+    //             {formData.name}
+    //           </div>
+    //           <div className="profileCardEmail">
+    //             {formData.email}
+    //           </div>
+    //         </div>
+    //         <div className="profileCardDetails">
+    //           10 posts
+    //         </div>
+    //         <div className="profileCardFooter">
+    //           joined 2022
+    //         </div>
+    //       </div>
+    //     </header>
+    //     <iframe src={`${instaUrl}embed`} width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true" />
 
-        <iframe width="943" height="530" src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen /> */}
-      </div>
+    //     <iframe width="943" height="530" src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    //   </div>
 
-    </div>
+    // </div>
   )
 }
 

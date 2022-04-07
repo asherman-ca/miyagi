@@ -94,6 +94,23 @@ body {
 
 /* Profile */
 
+.profileHeader {
+	padding: 10px 0px;
+	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+.profileImage {
+	max-width: 100%;
+	height: auto;
+}
+
+.profileHeaderText {
+	padding: 10px 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 /* Explore */
 
 /* Post View */
