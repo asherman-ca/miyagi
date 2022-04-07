@@ -1,11 +1,12 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import {  useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Navbar, Container, Nav } from 'react-bootstrap';
 
 function Topbar() {
   const navigate = useNavigate()
+  const location = useLocation()
   const auth = getAuth();
   const [currentUser, setCurrentUser] = useState({})
   const [loading, setLoading] = useState(true)
@@ -33,7 +34,9 @@ function Topbar() {
   let authButton
   if(currentUser){
     authButton = <Nav.Link className="navbarLink" onClick={onLogout}>Sign Out</Nav.Link>
-  }else{
+  }else if(location.pathname === '/sign-in'){
+    authButton = <Nav.Link className="navbarLink" onClick={() => navigate('/sign-up')}>Sign Up</Nav.Link>
+  } else {
     authButton = <Nav.Link className="navbarLink" onClick={() => navigate('/sign-in')}>Sign In</Nav.Link>
   }
 
