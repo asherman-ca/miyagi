@@ -38,7 +38,6 @@ body {
 .navbarLinkActive {
 	border-radius: 5px;
 	color: black !important;
-	/* font-weight: bold; */
 }
 
 .navbarLinkActive:hover {
