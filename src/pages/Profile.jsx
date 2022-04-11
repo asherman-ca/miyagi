@@ -62,7 +62,7 @@ function Profile() {
     <Container>
       {console.log('posts', posts)}
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-3">
             <Col md={3}>
               <Image 

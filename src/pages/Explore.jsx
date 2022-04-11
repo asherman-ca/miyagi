@@ -45,7 +45,7 @@ export default function Explore() {
   return (
     <Container>
       <Row className="exploreContainer">
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col md={{ span: 8, offset: 2 }}>
         <Nav variant="tabs" defaultActiveKey="link-0" className="mb-3">
           <Nav.Item>
             <Nav.Link eventKey="link-0" className="tabLink">Newest</Nav.Link>

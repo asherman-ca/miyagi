@@ -43,9 +43,11 @@ function Topbar() {
   return (
     <Navbar className="topbar" bg="white" fixed="top">
       <Container>
-        <Navbar.Brand className="topbarTitle">
-          Miyagi.com
-        </Navbar.Brand>
+        <Nav.Link className="logoLink" onClick={() => navigate('/')}>
+          <Navbar.Brand className="topbarTitle">
+            Miyagi.com
+          </Navbar.Brand>
+        </Nav.Link>
         <Nav>
           {loading ? <></> : authButton}
         </Nav>
