@@ -44,9 +44,9 @@ body {
 	background-color: #eaeaea;
 }
 
-.navbarLinkTextActive {
+/* .navbarLinkTextActive {
 	text-decoration: underline auto;
-}
+} */
 
 .topbar {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
@@ -54,6 +54,16 @@ body {
 
 .bottombar {
 	border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	padding: 0px !important;
+}
+
+.bottomNavDiv {
+	padding: 0.5rem 0;
+	/* border-top: 2px solid black; */
+}
+
+.bottomNavDivActive {
+	border-top: 2px solid black;
 }
 
 /* Pages */

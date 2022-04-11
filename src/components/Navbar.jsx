@@ -17,31 +17,28 @@ function Navbottom() {
   return (
     <Navbar bg="white" className="bottombar" fixed="bottom">
       <Container>
-        <Nav className="bottomNavDiv">
+        <Nav className={pathMatchRoute('/') ? 'bottomNavDiv bottomNavDivActive' : 'bottomNavDiv'}>
           <Nav.Link 
             onClick={() => navigate('/')}
-            className={pathMatchRoute('/') ? 'navbarLinkActive' : 'navbarLink'}
-          >
+            className="navbarLink">
             <span
               className={pathMatchRoute('/') ? 'navbarLinkTextActive' : 'navbarLinkText'}
             >Explore</span>
           </Nav.Link>
         </Nav>
-        <Nav className="bottomNavDiv">
+        <Nav className={pathMatchRoute('/create') ? 'bottomNavDiv bottomNavDivActive' : 'bottomNavDiv'}>
           <Nav.Link 
             onClick={() => navigate('/create')}
-            className={pathMatchRoute('/create') ? 'navbarLinkActive' : 'navbarLink'}
-          >
+            className="navbarLink">
             <span
               className={pathMatchRoute('/create') ? 'navbarLinkTextActive' : 'navbarLinkText'}
             >Create</span>
           </Nav.Link>
         </Nav>
-        <Nav className="bottomNavDiv">
+        <Nav className={pathMatchRoute('/profile') ? 'bottomNavDiv bottomNavDivActive' : 'bottomNavDiv'}>
           <Nav.Link 
             onClick={() => navigate('/profile')}
-            className={pathMatchRoute('/profile') ? 'navbarLinkActive' : 'navbarLink'}
-          >
+            className="navbarLink">
             <span
               className={pathMatchRoute('/profile') ? 'navbarLinkTextActive' : 'navbarLinkText'}
             >Profile</span>
