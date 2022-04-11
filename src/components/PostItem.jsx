@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
+import { Card, Col } from 'react-bootstrap'
 
-function PostItem() {
+function PostItem({post, id}) {
+  console.log('post', post)
   return (
-    <div>
-      Post Item
-    </div>
+    <Col md={4}>
+      <Card.Img className="cardImage" variant="top" src={post.imgUrls[0]}/>
+      <Card.Body>
+        <Card.Title>{post.title}</Card.Title>
+      </Card.Body>
+    </Col>
   )
 }
 

@@ -84,10 +84,6 @@ body {
 	border-radius: 5px;
 }
 
-/* .googleButton {
-	margin-left: auto !important;
-} */
-
 .resetButton {
 	margin-left: 10px;
 }
@@ -119,6 +115,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+.cardImage {
+	width: 100%;
+	height: 196px;
+	/* max-height: 10rem; */
 }
 
 /* Explore */

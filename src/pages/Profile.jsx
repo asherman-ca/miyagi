@@ -81,9 +81,11 @@ function Profile() {
           {!loading && posts?.length > 0 && (
             <Row>
               {posts.map((post) => (
-                <Col md={4}>
-                  <PostItem />
-                </Col>
+                <PostItem
+                  key={post.id}
+                  post={post.data}
+                  id={post.id}
+                />
               ))}
             </Row>
           )}
