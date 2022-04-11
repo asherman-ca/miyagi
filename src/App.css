@@ -66,6 +66,10 @@ body {
 	border-top: 2px solid black;
 }
 
+.tabLink {
+	color: #495057 !important;
+}
+
 /* Pages */
 
 /* Forms */

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Container, Image } from 'react-bootstrap'
+import { Row, Col, Container, Nav } from 'react-bootstrap'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import PostItem from '../components/PostItem'
@@ -46,6 +46,14 @@ export default function Explore() {
     <Container>
       <Row className="exploreContainer">
         <Col md={{ span: 6, offset: 3 }}>
+        <Nav variant="tabs" defaultActiveKey="link-0" className="mb-3">
+          <Nav.Item>
+            <Nav.Link eventKey="link-0" className="tabLink">Newest</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1" className="tabLink">Popular</Nav.Link>
+          </Nav.Item>
+        </Nav>
         {!loading && posts?.length > 0 && (
           <Row>
             {posts.map((post) => (
