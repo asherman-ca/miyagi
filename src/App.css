@@ -123,6 +123,16 @@ body {
 	/* max-height: 10rem; */
 }
 
+.cardTitleText {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 /* Explore */
+
+.exploreContainer {
+	margin-top: 20px !important;
+}
 
 /* Post View */

@@ -7,7 +7,7 @@ function PostItem({post, id}) {
     <Col md={4}>
       <Card.Img className="cardImage" variant="top" src={post.imgUrls[0]}/>
       <Card.Body>
-        <Card.Title>{post.title}</Card.Title>
+        <Card.Title className="cardTitleText">{post.title}</Card.Title>
       </Card.Body>
     </Col>
   )
