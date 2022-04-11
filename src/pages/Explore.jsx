@@ -51,7 +51,7 @@ export default function Explore() {
             <Nav.Link eventKey="link-0" className="tabLink">Newest</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-1" className="tabLink">Popular</Nav.Link>
+            <Nav.Link eventKey="link-1" className="tabLink">Placeholder</Nav.Link>
           </Nav.Item>
         </Nav>
         {!loading && posts?.length > 0 && (
