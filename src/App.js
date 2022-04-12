@@ -11,6 +11,8 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Create from './pages/Create'
 import ForgotPassword from './pages/ForgotPassword'
+import Post from './pages/Post'
+import EditPost from './pages/EditPost'
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/post/:postId' element={<Post />} />
+          <Route path='/edit-post/:postId' element={<EditPost />} />
         </Routes>
         <Navbar />
       </Router>

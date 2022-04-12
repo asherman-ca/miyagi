@@ -48,10 +48,10 @@ export default function Explore() {
         <Col md={{ span: 8, offset: 2 }}>
         <Nav variant="tabs" defaultActiveKey="link-0" className="mb-3">
           <Nav.Item>
-            <Nav.Link eventKey="link-0" className="tabLink">Newest</Nav.Link>
+            <Nav.Link eventKey="link-0" className="tabLink">New</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-1" className="tabLink">Placeholder</Nav.Link>
+            <Nav.Link eventKey="link-1" className="tabLink">Popular</Nav.Link>
           </Nav.Item>
         </Nav>
         {!loading && posts?.length > 0 && (
