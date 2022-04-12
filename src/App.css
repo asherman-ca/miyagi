@@ -130,8 +130,15 @@ body {
 .cardImage {
 	width: 100%;
 	height: 269px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	transition-property: box-shadow;
+	transition-duration: 0.2s;
 	/* height: auto; */
 	/* max-height: 10rem; */
+}
+
+.cardImage:hover {
+	box-shadow: none;
 }
 
 .cardTitleText {
