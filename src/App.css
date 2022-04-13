@@ -116,15 +116,35 @@ body {
 
 .profileImage {
 	width: 100%;
-	/* max-width: 100%; */
 	height: auto;
 }
 
 .profileHeaderText {
+	position: relative !important;
 	padding: 10px 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+.profileHeaderText div {
+	display: flex;
+	flex-direction: column;
+	height: 33%;
+}
+
+.asdasvrw {
+	margin: auto 0;
+}
+
+.profileHeaderName {
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.profileHeaderEmail {
+	font-size: smaller;
+	color: grey;
 }
 
 .cardImage {

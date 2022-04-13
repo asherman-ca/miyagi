@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
-import { Row, Col, Container, Image } from 'react-bootstrap'
+import { Row, Col, Container, Image, Button } from 'react-bootstrap'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 
@@ -73,9 +73,19 @@ function Profile() {
               />
             </Col>            
             <Col md={9} className="profileHeaderText">
-              <span>{auth.currentUser.displayName}</span>
-              <span>{auth.currentUser.email}</span>
-              <span>Joined a while ago</span>
+              <div>
+                <span className="profileHeaderName">{auth.currentUser.displayName}</span>
+                <span className="profileHeaderEmail">{auth.currentUser.email}</span>
+              </div>
+              <div>
+                <span className="asdasvrw">Posts: 10</span>
+              </div>
+              <div>
+                <span className="asdasvrw">Joined a while ago</span>
+              </div>
+              <Link className="editButton" to={'/'}>
+                <Button variant="outline-dark">Edit</Button>
+              </Link>
             </Col>
           </Row>
           {!loading && posts?.length > 0 && (
