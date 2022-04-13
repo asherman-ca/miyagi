@@ -78,10 +78,10 @@ function Profile() {
                 <span className="profileHeaderEmail">{auth.currentUser.email}</span>
               </div>
               <div>
-                <span className="asdasvrw">Posts: 10</span>
+                <span className="asdasvrw">{posts.length} posts</span>
               </div>
               <div>
-                <span className="asdasvrw">Joined a while ago</span>
+                <span className="asdasvrw">Joined {auth.currentUser.metadata.creationTime}</span>
               </div>
               <Link className="editButton" to={'/'}>
                 <Button variant="outline-dark">Edit</Button>
