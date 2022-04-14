@@ -206,3 +206,13 @@ body {
 	top: 0;
 	right: calc(var(--bs-gutter-x) * 0.5);
 }
+
+.socialColumn {
+	display: flex;
+	flex-direction: column;
+}
+
+.socialColumn span {
+	font-weight: bold;
+	padding-bottom: 1rem;
+}

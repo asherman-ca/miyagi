@@ -21,8 +21,6 @@
     const navigate = useNavigate()
     const isMounted = useRef(true)
     const auth = getAuth();
-    // const instaUrl = 'https://www.instagram.com/p/CaVixB0A206/'
-    const instaUrl = ''
 
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
@@ -101,12 +99,19 @@
         return
       })
 
+      const instaUrls = formData.instagramUrl ? [formData.instagramUrl] : []
+      const youTubeUrls = formData.youTubeUrl ? [formData.youTubeUrl] : []
+
       const formDataCopy = {
         ...formData,
         imgUrls,
+        instaUrls,
+        youTubeUrls,
         timestamp: serverTimestamp()
       }
       delete formDataCopy.images
+      delete formDataCopy.instagramUrl
+      delete formDataCopy.youTubeUrl
 
       await addDoc(collection(db, 'posts'), formDataCopy)
 
@@ -175,7 +180,7 @@
                 <Form.Control
                   type="instagram"
                   placeholder="Enter Instagram address"
-                  id="instragramUrl"
+                  id="instagramUrl"
                   onChange={onMutate}
                 />
               </Form.Group>
