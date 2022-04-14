@@ -121,7 +121,7 @@ body {
 
 .profileHeaderText {
 	position: relative !important;
-	padding: 10px 0px;
+	/* padding: 10px 0px; */
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -145,6 +145,13 @@ body {
 .profileHeaderEmail {
 	font-size: smaller;
 	color: grey;
+}
+
+/* TODO: make this reorient instead of hiding */
+@media (max-width: 1200px) {
+	.profileHeaderName {
+		line-height: 1rem;
+	}
 }
 
 .cardImage {

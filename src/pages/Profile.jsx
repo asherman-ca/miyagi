@@ -58,6 +58,10 @@ function Profile() {
     fetchUserPosts()
   }, [auth.currentUser.uid])
 
+  if (loading) {
+    return <div></div>
+  }
+
   return (
     <Container>
       {console.log('posts', posts)}
@@ -73,7 +77,7 @@ function Profile() {
               />
             </Col>            
             <Col md={9} className="profileHeaderText">
-              <div>
+              <div className="profileHeaderInfo">
                 <span className="profileHeaderName">{auth.currentUser.displayName}</span>
                 <span className="profileHeaderEmail">{auth.currentUser.email}</span>
               </div>
