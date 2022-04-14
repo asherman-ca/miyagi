@@ -7,6 +7,7 @@ import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc }
 import { Row, Col, Container, Image, Button } from 'react-bootstrap'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
+import Spinner from '../components/Spinner'
 
 function Profile() {
   const auth = getAuth()
@@ -59,8 +60,10 @@ function Profile() {
   }, [auth.currentUser.uid])
 
   if (loading) {
-    return <div></div>
+    return <div><Spinner/></div>
   }
+
+  const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')
 
   return (
     <Container>
@@ -85,9 +88,9 @@ function Profile() {
                 <span className="asdasvrw">{posts.length} posts</span>
               </div>
               <div>
-                <span className="asdasvrw">Joined {auth.currentUser.metadata.creationTime}</span>
+                <span className="asdasvrw">Joined {creationTime}</span>
               </div>
-              <Link className="editButton" to={'/'}>
+              <Link className="editButton" to={'/edit-profile'}>
                 <Button variant="outline-dark">Edit</Button>
               </Link>
             </Col>
