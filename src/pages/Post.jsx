@@ -12,8 +12,6 @@ const Post = () => {
   const [loading, setLoading] = useState(true)
   const [newInsta, setNewInsta] = useState('')
   const [newYouTube, setNewYouTube] = useState('')
-
-
   
   useEffect(() => {
     const fetchPost = async () => {
@@ -76,12 +74,20 @@ const Post = () => {
         <Col md={{ span: 8, offset: 2}}>
           <Row>
             <Col className="socialColumn" md={6}>
-              <span>Instagrams</span>
-              <iframe src={`${instagramUrl}embed`} height="500" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
+              <div>
+                <span>Instagram</span>
+                <Button variant="outline-dark">+</Button>
+              </div>
+              <iframe src={`${instagramUrl}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
+              <Button variant="outline-danger">Remove</Button>
             </Col>
             <Col className="socialColumn" md={6}>
-              <span>YouTubes</span>
-              <iframe height="500" src={`https://www.youtube.com/embed/${youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+              <div>
+                <span>YouTube</span>
+                <Button variant="outline-dark">+</Button>
+              </div>
+              <iframe width="420" height="315" src={`https://www.youtube.com/embed/${youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+              <Button variant="outline-danger">Remove</Button>
             </Col>
           </Row>
         </Col>
