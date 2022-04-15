@@ -55,11 +55,32 @@ const Post = () => {
     }))
   }
 
-  const onInstaRemove = (url) => {
+  const onInstaRemove = async (url) => {
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: instaUrls.filter((prev) => prev === url)
     }))
+    setLoading(true)
+    const docRef = doc(db, 'posts', params.postId)
+    await updateDoc(docRef, formData)
+    setLoading(false)
+    // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
+  }
+
+  const onYouTubeRemove = async (url) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      youTubeUrls: youTubeUrls.filter((prev) => prev === url)
+    }))
+    const formDataCopy = {
+      ...formData,
+      youTubeUrls: youTubeUrls.filter((prev) => prev === url)
+    }
+    setLoading(true)
+    const docRef = doc(db, 'posts', params.postId)
+    await updateDoc(docRef, formDataCopy)
+    setLoading(false)
+    // console.log('formdataonremove', formData)
     // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
   }
 
@@ -115,8 +136,8 @@ const Post = () => {
               </div>
               {instaUrls.map((url) => (
                 <>
-                <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
-                <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
+                  <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
+                  <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
                 </>
               ))}
             </Col>
@@ -128,7 +149,7 @@ const Post = () => {
               {youTubeUrls.map((url) => (
                 <>
                   <iframe width="420" height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-                  <Button variant="outline-danger">Remove</Button>
+                  <Button variant="outline-danger" onClick={(url) => onYouTubeRemove(url)}>Remove</Button>
                 </>
               ))}
             </Col>
