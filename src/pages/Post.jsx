@@ -55,6 +55,14 @@ const Post = () => {
     }))
   }
 
+  const onInstaRemove = (url) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      instaUrls: instaUrls.filter((prev) => prev === url)
+    }))
+    // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
+  }
+
   if (loading) {
     return <Container>Loading</Container>
   }
@@ -63,6 +71,7 @@ const Post = () => {
 
   return(
     <Container>
+      {console.log('formdata', formData)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
@@ -86,9 +95,9 @@ const Post = () => {
                 }
                 <EditModal 
                   show={show}
-                  handleClose={handleClose}
                   title={title}
                   notes={notes}
+                  handleClose={handleClose}
                   onSubmit={onSubmit}
                   onChange={onChange}
                 />
@@ -107,7 +116,7 @@ const Post = () => {
               {instaUrls.map((url) => (
                 <>
                 <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
-                <Button variant="outline-danger">Remove</Button>
+                <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
                 </>
               ))}
             </Col>
