@@ -79,6 +79,9 @@ const Post = () => {
     setLoading(true)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
+    setPost((prevState) => ({
+      ...formDataCopy
+    }))
     setLoading(false)
     // console.log('formdataonremove', formData)
     // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
