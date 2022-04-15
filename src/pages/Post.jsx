@@ -135,26 +135,30 @@ const Post = () => {
         <Col md={{ span: 8, offset: 2}}>
           <Row>
             <Col className="socialColumn" md={6}>
-              <div>
+              <div className="socialColumnTitle">
                 <span>Instagram</span>
                 <Button variant="outline-dark">+</Button>
               </div>
               {instaUrls.map((url) => (
                 <>
                   <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
-                  <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
+                  {post.userRef == auth.currentUser.uid &&
+                    <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
+                  }
                 </>
               ))}
             </Col>
             <Col className="socialColumn" md={6}>
-              <div>
+              <div className="socialColumnTitle">
                 <span>YouTube</span>
                 <Button variant="outline-dark">+</Button>
               </div>
               {youTubeUrls.map((url) => (
                 <>
-                  <iframe width="420" height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-                  <Button variant="outline-danger" onClick={(url) => onYouTubeRemove(url)}>Remove</Button>
+                  <iframe height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                  {post.userRef == auth.currentUser.uid &&
+                    <Button variant="outline-danger socialColumnDelete" onClick={(url) => onYouTubeRemove(url)}>Remove</Button>
+                  }
                 </>
               ))}
             </Col>
