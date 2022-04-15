@@ -43,8 +43,6 @@ const Post = () => {
     console.log('submitted form data', formData)
     handleClose()
     e.preventDefault()
-    // console.log(e)
-    // setLoading(true)
   }
 
   const onChange = (e) => {
@@ -60,11 +58,17 @@ const Post = () => {
       ...prevState,
       instaUrls: instaUrls.filter((prev) => prev === url)
     }))
+    const formDataCopy = {
+      ...formData,
+      instaUrls: instaUrls.filter((prev) => prev === url)
+    }
     setLoading(true)
     const docRef = doc(db, 'posts', params.postId)
-    await updateDoc(docRef, formData)
+    await updateDoc(docRef, formDataCopy)
+    setPost((prevState) => ({
+      ...formDataCopy
+    }))
     setLoading(false)
-    // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
   }
 
   const onYouTubeRemove = async (url) => {
@@ -83,8 +87,6 @@ const Post = () => {
       ...formDataCopy
     }))
     setLoading(false)
-    // console.log('formdataonremove', formData)
-    // console.log('instaremoved', instaUrls.filter((prev) => prev === url))
   }
 
   if (loading) {
