@@ -9,7 +9,7 @@
 body {
 	padding: 62px 0px 56px 0px;
 	overflow-y: overlay;
-	/* background-color: #f2f4f8 !important; */
+	/* background-color: #f9f9f9 !important; */
 	/* height: 100vh !important; */
 	/* height: 100%; */
 	/* width: 100%; */
@@ -190,6 +190,7 @@ body {
 .postImage {
 	width: 100%;
 	height: 269px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .postCard {

@@ -10,8 +10,14 @@ const Post = () => {
   const auth = getAuth()
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [newInsta, setNewInsta] = useState('')
-  const [newYouTube, setNewYouTube] = useState('')
+  const [formData, setFormData] = useState({
+    title: '',
+    notes: '',
+    userRef: '',
+    instaUrls: [],
+    youTubeUrls: [],
+    images: []
+  })
   
   useEffect(() => {
     const fetchPost = async () => {
@@ -20,6 +26,7 @@ const Post = () => {
 
       if (docSnap.exists()) {
         setPost(docSnap.data())
+        setFormData({...docSnap.data()})
         setLoading(false)
       }
     }
@@ -41,6 +48,7 @@ const Post = () => {
   return(
     <Container>
       {console.log('poster', post)}
+      {console.log('formdata', formData)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
