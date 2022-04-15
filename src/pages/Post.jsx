@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getDoc, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 
 const Post = () => {
   const params = useParams()
@@ -18,6 +18,11 @@ const Post = () => {
     youTubeUrls: [],
     images: []
   })
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
   useEffect(() => {
     const fetchPost = async () => {
@@ -34,9 +39,19 @@ const Post = () => {
   }, [params.postId])
 
   const onSubmit = async (e) => {
+    console.log('submitted form data', formData)
+    handleClose()
     e.preventDefault()
-    console.log(e)
+    // console.log(e)
     // setLoading(true)
+  }
+
+  const onChange = (e) => {
+    e.preventDefault()
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value
+    }))
   }
 
   if (loading) {
@@ -47,8 +62,6 @@ const Post = () => {
 
   return(
     <Container>
-      {console.log('poster', post)}
-      {console.log('formdata', formData)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
@@ -60,7 +73,6 @@ const Post = () => {
                   alt="Post Image"
                 />
               </Col>
-
               <Col md={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardTitle">{title}</Card.Title>
@@ -68,11 +80,43 @@ const Post = () => {
                     {notes}
                   </Card.Text>
                 </Card>
-                {post.userRef == auth.currentUser.uid ?
-                  <Link className="editButton" to={`/edit-post/${params.postId}`}>
-                    <Button variant="outline-dark">Edit</Button>
-                  </Link> : null
+                {post.userRef == auth.currentUser.uid &&
+                    <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
                 }
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Edit Post</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Form onSubmit={onSubmit}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          id="title"
+                          placeholder={title}
+                          onChange={onChange}
+                          autoFocus
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        className="mb-3"
+                      >
+                        <Form.Label>Notes</Form.Label>
+                        <Form.Control 
+                          onChange={onChange} id="notes" placeholder={notes} as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={onSubmit}>
+                      Save Changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </Col>
             </Row>
         </Col>
