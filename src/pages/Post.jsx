@@ -4,6 +4,7 @@ import { getDoc, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
+import EditModal from '../components/EditModal'
 
 const Post = () => {
   const params = useParams()
@@ -83,40 +84,14 @@ const Post = () => {
                 {post.userRef == auth.currentUser.uid &&
                     <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
                 }
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Edit Post</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Form onSubmit={onSubmit}>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                          type="text"
-                          id="title"
-                          placeholder={title}
-                          onChange={onChange}
-                          autoFocus
-                        />
-                      </Form.Group>
-                      <Form.Group
-                        className="mb-3"
-                      >
-                        <Form.Label>Notes</Form.Label>
-                        <Form.Control 
-                          onChange={onChange} id="notes" placeholder={notes} as="textarea" rows={3} />
-                      </Form.Group>
-                    </Form>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={onSubmit}>
-                      Save Changes
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                <EditModal 
+                  show={show}
+                  handleClose={handleClose}
+                  title={title}
+                  notes={notes}
+                  onSubmit={onSubmit}
+                  onChange={onChange}
+                />
               </Col>
             </Row>
         </Col>
