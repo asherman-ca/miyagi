@@ -36,9 +36,6 @@ const Post = () => {
     return <Container>Loading</Container>
   }
 
-  const instagramUrl = 'https://www.instagram.com/p/CcVbPCDDZbS/'
-  const youTubeUrl = 'https://www.youtube.com/watch?v=oeF6KLRARzQ'
-
   const { instaUrls, youTubeUrls, title, notes, imgUrls } = post
 
   return(
