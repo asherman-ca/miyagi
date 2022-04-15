@@ -39,6 +39,8 @@ const Post = () => {
   const instagramUrl = 'https://www.instagram.com/p/CcVbPCDDZbS/'
   const youTubeUrl = 'https://www.youtube.com/watch?v=oeF6KLRARzQ'
 
+  const { instaUrls, youTubeUrls, title, notes, imgUrls } = post
+
   return(
     <Container>
       {console.log('poster', post)}
@@ -49,16 +51,16 @@ const Post = () => {
                 <Image
                   rounded
                   className="postImage"
-                  src={post.imgUrls[0]}
+                  src={imgUrls[0]}
                   alt="Post Image"
                 />
               </Col>
 
               <Col md={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
-                  <Card.Title>{post.title}</Card.Title>
+                  <Card.Title className="postCardTitle">{title}</Card.Title>
                   <Card.Text>
-                    {post.notes}
+                    {notes}
                   </Card.Text>
                 </Card>
                 {post.userRef == auth.currentUser.uid ?
@@ -78,16 +80,24 @@ const Post = () => {
                 <span>Instagram</span>
                 <Button variant="outline-dark">+</Button>
               </div>
-              <iframe src={`${instagramUrl}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
-              <Button variant="outline-danger">Remove</Button>
+              {instaUrls.map((url) => (
+                <>
+                <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
+                <Button variant="outline-danger">Remove</Button>
+                </>
+              ))}
             </Col>
             <Col className="socialColumn" md={6}>
               <div>
                 <span>YouTube</span>
                 <Button variant="outline-dark">+</Button>
               </div>
-              <iframe width="420" height="315" src={`https://www.youtube.com/embed/${youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-              <Button variant="outline-danger">Remove</Button>
+              {youTubeUrls.map((url) => (
+                <>
+                  <iframe width="420" height="315" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                  <Button variant="outline-danger">Remove</Button>
+                </>
+              ))}
             </Col>
           </Row>
         </Col>

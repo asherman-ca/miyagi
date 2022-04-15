@@ -201,6 +201,11 @@ body {
 	position: relative !important;
 }
 
+.postCardTitle {
+	font-size: 1.25rem !important;
+	font-weight: bold !important;
+}
+
 .editButton {
 	position: absolute !important;
 	top: 0;
@@ -215,6 +220,7 @@ body {
 
 .socialColumn div {
 	font-weight: bold;
+	font-size: 1.25rem;
 	padding: 10px 0px;
 	display: flex;
 	justify-content: space-between;
