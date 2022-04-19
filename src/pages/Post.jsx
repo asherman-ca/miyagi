@@ -40,9 +40,14 @@ const Post = () => {
   }, [params.postId])
 
   const onSubmit = async (e) => {
-    console.log('submitted form data', formData)
-    handleClose()
     e.preventDefault()
+    console.log('submitted form data', formData)
+    const docRef = doc(db, 'posts', params.postId)
+    await updateDoc(docRef, formData)
+    setPost(() => ({
+      ...formData
+    }))
+    handleClose()
   }
 
   const onChange = (e) => {
