@@ -41,7 +41,6 @@ const Post = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log('submitted form data', formData)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formData)
     setPost(() => ({
@@ -56,6 +55,35 @@ const Post = () => {
       ...prevState,
       [e.target.id]: e.target.value
     }))
+  }
+
+  const onInstaAdd = async (url) => {
+    setLoading(true)
+    console.log('url', url)
+    // setFormData((prevState) => ({
+    //   ...prevState,
+    //   instaUrls: instaUrls.push(url)
+    // }))
+    console.log('instaurls', instaUrls)
+    instaUrls.push(url)
+    const instaUrlsCopy = instaUrls
+    // console.log('instaurls with add', instaUrls.push(url))
+    const formDataCopy = {
+      ...formData,
+      instaUrls: instaUrlsCopy
+    }
+    console.log('insta form data', formDataCopy)
+
+    const docRef = doc(db, 'posts', params.postId)
+    await updateDoc(docRef, formDataCopy)
+    setPost(() => ({
+      ...formDataCopy
+    }))
+    setLoading(false)
+  }
+
+  const onYouTubeAdd = async (url) => {
+
   }
 
   const onInstaRemove = async (url) => {
@@ -142,7 +170,7 @@ const Post = () => {
             <Col className="socialColumn" md={6}>
               <div className="socialColumnTitle">
                 <span>Instagram</span>
-                <Button variant="outline-dark">+</Button>
+                <Button variant="outline-dark" onClick={() => onInstaAdd('https://www.instagram.com/p/CcbzM6doNfg/')}>+</Button>
               </div>
               {instaUrls.map((url) => (
                 <>
