@@ -88,14 +88,18 @@ const Post = () => {
 
   const onInstaRemove = async (url) => {
     setLoading(true)
+    console.log('url arg', url)
+    console.log('render form data insta urls', formData.instaUrls)
+    console.log('formdata selection', formData.instaUrls.filter((el) => el != url))
     setFormData((prevState) => ({
       ...prevState,
-      instaUrls: instaUrls.filter((prev) => prev === url)
+      instaUrls: formData.instaUrls.filter((prev) => prev !== url)
     }))
     const formDataCopy = {
       ...formData,
-      instaUrls: instaUrls.filter((prev) => prev === url)
+      instaUrls: formData.instaUrls.filter((prev) => prev !== url)
     }
+    console.log('remove data copy', formDataCopy)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost((prevState) => ({
@@ -184,7 +188,7 @@ const Post = () => {
                 <>
                   <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
                   {post.userRef == auth.currentUser.uid &&
-                    <Button variant="outline-danger" onClick={(url) => onInstaRemove(url)}>Remove</Button>
+                    <Button variant="outline-danger" onClick={() => onInstaRemove(url)}>Remove</Button>
                   }
                 </>
               ))}
