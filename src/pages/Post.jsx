@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
+import AddInstaModal from '../components/AddInstaModal'
 
 const Post = () => {
   const params = useParams()
@@ -21,9 +22,12 @@ const Post = () => {
   })
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [instaAddShow, setInstaAddShow] = useState(false);
+  const handleInstaAddClose = () => setInstaAddShow(false);
+  const handleInstaAddShow = () => setInstaAddShow(true);
   
   useEffect(() => {
     const fetchPost = async () => {
@@ -77,6 +81,9 @@ const Post = () => {
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost(() => ({
+      ...formDataCopy
+    }))
+    setFormData(() => ({
       ...formDataCopy
     }))
     setLoading(false)
@@ -170,7 +177,14 @@ const Post = () => {
             <Col className="socialColumn" md={6}>
               <div className="socialColumnTitle">
                 <span>Instagram</span>
-                <Button variant="outline-dark" onClick={() => onInstaAdd('https://www.instagram.com/p/CcbzM6doNfg/')}>+</Button>
+                {post.userRef == auth.currentUser.uid &&
+                  <Button variant="outline-dark" onClick={handleInstaAddShow}>+</Button>
+                }
+                <AddInstaModal
+                  instaAddShow={instaAddShow}
+                  handleInstaAddClose={handleInstaAddClose}
+                  onInstaAdd={onInstaAdd}
+                />
               </div>
               {instaUrls.map((url) => (
                 <>
