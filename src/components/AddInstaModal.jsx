@@ -2,16 +2,11 @@ import { Modal, Form, Button } from 'react-bootstrap'
 import { useState } from 'react'
 
 const AddInstaModal = ({handleInstaAddClose, onInstaAdd, instaAddShow}) => {
-  const [url, setUrl] = useState('')
+  const [url, setUrl] = useState(null)
 
   const onChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
-    setUrl((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value
-    }))
-    console.log('modal onchange insta', url)
+    setUrl(() => (e.target.value))
   }
 
   return (
@@ -36,7 +31,7 @@ const AddInstaModal = ({handleInstaAddClose, onInstaAdd, instaAddShow}) => {
         <Button variant="secondary" onClick={handleInstaAddClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => onInstaAdd(url.url)}>
+        <Button variant="primary" onClick={() => onInstaAdd(url)}>
           Save Changes
         </Button>
       </Modal.Footer>

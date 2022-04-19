@@ -63,12 +63,6 @@ const Post = () => {
 
   const onInstaAdd = async (url) => {
     setLoading(true)
-    console.log('url', url)
-    // setFormData((prevState) => ({
-    //   ...prevState,
-    //   instaUrls: instaUrls.push(url)
-    // }))
-    console.log('instaurls', instaUrls)
     instaUrls.push(url)
     const instaUrlsCopy = instaUrls
     // console.log('instaurls with add', instaUrls.push(url))
@@ -76,8 +70,6 @@ const Post = () => {
       ...formData,
       instaUrls: instaUrlsCopy
     }
-    console.log('insta form data', formDataCopy)
-
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost(() => ({
@@ -86,6 +78,7 @@ const Post = () => {
     setFormData(() => ({
       ...formDataCopy
     }))
+    handleInstaAddClose()
     setLoading(false)
   }
 
@@ -94,6 +87,7 @@ const Post = () => {
   }
 
   const onInstaRemove = async (url) => {
+    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: instaUrls.filter((prev) => prev === url)
@@ -102,13 +96,13 @@ const Post = () => {
       ...formData,
       instaUrls: instaUrls.filter((prev) => prev === url)
     }
-    setLoading(true)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost((prevState) => ({
       ...formDataCopy
     }))
     setLoading(false)
+    
   }
 
   const onYouTubeRemove = async (url) => {
@@ -137,7 +131,7 @@ const Post = () => {
 
   return(
     <Container>
-      {console.log('formdata', formData)}
+      {console.log('renderdata', formData)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
