@@ -7,7 +7,7 @@
 /* Universals */
 
 body {
-	padding: 62px 0px 56px 0px;
+	padding: 57px 0px 56px 0px;
 	overflow-y: overlay;
 	/* background-color: #f9f9f9 !important; */
 	/* height: 100vh !important; */
@@ -214,7 +214,7 @@ body {
 }
 
 .socialColumn {
-	padding: 10px 0;
+	padding: 20px 0px;
 	display: flex;
 	flex-direction: column;
 }
@@ -222,7 +222,7 @@ body {
 .socialColumnTitle {
 	font-weight: bold;
 	font-size: 1.25rem;
-	padding: 10px 0px;
+	padding-bottom: 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
