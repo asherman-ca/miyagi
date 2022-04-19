@@ -65,7 +65,6 @@ const Post = () => {
     setLoading(true)
     instaUrls.push(url)
     const instaUrlsCopy = instaUrls
-    // console.log('instaurls with add', instaUrls.push(url))
     const formDataCopy = {
       ...formData,
       instaUrls: instaUrlsCopy
@@ -88,9 +87,6 @@ const Post = () => {
 
   const onInstaRemove = async (url) => {
     setLoading(true)
-    console.log('url arg', url)
-    console.log('render form data insta urls', formData.instaUrls)
-    console.log('formdata selection', formData.instaUrls.filter((el) => el != url))
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: formData.instaUrls.filter((prev) => prev !== url)
@@ -99,7 +95,6 @@ const Post = () => {
       ...formData,
       instaUrls: formData.instaUrls.filter((prev) => prev !== url)
     }
-    console.log('remove data copy', formDataCopy)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost((prevState) => ({
@@ -202,7 +197,7 @@ const Post = () => {
                 <>
                   <iframe height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
                   {post.userRef == auth.currentUser.uid &&
-                    <Button variant="outline-danger socialColumnDelete" onClick={(url) => onYouTubeRemove(url)}>Remove</Button>
+                    <Button variant="outline-danger socialColumnDelete" onClick={() => onYouTubeRemove(url)}>Remove</Button>
                   }
                 </>
               ))}
