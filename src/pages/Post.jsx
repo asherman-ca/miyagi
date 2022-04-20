@@ -39,8 +39,10 @@ const Post = () => {
 
       if (docSnap.exists()) {
         console.log('id', docSnap.id)
-        setPost({id: docSnap.id,
-          ...docSnap.data()})
+        setPost({
+          id: docSnap.id,
+          ...docSnap.data()
+        })
         setFormData({...docSnap.data()})
         setLoading(false)
       }
@@ -141,8 +143,6 @@ const Post = () => {
 
   return(
     <Container>
-      {console.log('renderdata', formData)}
-      {console.log('post', post)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
