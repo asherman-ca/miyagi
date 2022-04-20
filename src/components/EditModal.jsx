@@ -1,6 +1,6 @@
 import { Modal, Form, Button } from 'react-bootstrap'
 
-const EditModal = ({handleClose, onSubmit, title, notes, show, onChange}) => {
+const EditModal = ({handleClose, onSubmit, title, notes, show, onChange, onDelete, id}) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -28,6 +28,9 @@ const EditModal = ({handleClose, onSubmit, title, notes, show, onChange}) => {
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close
+        </Button>
+        <Button variant="secondary" onClick={() => onDelete(id)}>
+          Delete Post
         </Button>
         <Button variant="primary" onClick={onSubmit}>
           Save Changes

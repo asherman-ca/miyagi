@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { getDoc, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { useParams, useNavigate } from 'react-router-dom'
+import { getDoc, doc, updateDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
 import InstaGramTile from '../components/InstagramTile'
+import { toast } from 'react-toastify'
 
 const Post = () => {
+  const navigate = useNavigate()
   const params = useParams()
   const auth = getAuth()
   const [post, setPost] = useState(null)
@@ -36,7 +38,9 @@ const Post = () => {
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        setPost(docSnap.data())
+        console.log('id', docSnap.id)
+        setPost({id: docSnap.id,
+          ...docSnap.data()})
         setFormData({...docSnap.data()})
         setLoading(false)
       }
@@ -52,6 +56,14 @@ const Post = () => {
       ...formData
     }))
     handleClose()
+  }
+
+  const onDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await deleteDoc(doc(db, 'posts', id))
+      toast.success('Post deleted')
+      navigate('/profile')
+    }
   }
 
   const onChange = (e) => {
@@ -98,11 +110,9 @@ const Post = () => {
     }
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
-    setPost((prevState) => ({
-      ...formDataCopy
-    }))
+    setPost({...formDataCopy})
     setLoading(false)
-    
+
   }
 
   const onYouTubeRemove = async (url) => {
@@ -127,11 +137,12 @@ const Post = () => {
     return <Container>Loading</Container>
   }
 
-  const { instaUrls, youTubeUrls, title, notes, imgUrls } = post
+  const { instaUrls, youTubeUrls, title, notes, imgUrls, id } = post
 
   return(
     <Container>
       {console.log('renderdata', formData)}
+      {console.log('post', post)}
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
@@ -160,6 +171,8 @@ const Post = () => {
                   handleClose={handleClose}
                   onSubmit={onSubmit}
                   onChange={onChange}
+                  onDelete={onDelete}
+                  id={id}
                 />
               </Col>
             </Row>
