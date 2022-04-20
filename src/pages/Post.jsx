@@ -114,19 +114,18 @@ const Post = () => {
     await updateDoc(docRef, formDataCopy)
     setPost({...formDataCopy})
     setLoading(false)
-
   }
 
   const onYouTubeRemove = async (url) => {
+    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
-      youTubeUrls: youTubeUrls.filter((prev) => prev === url)
+      youTubeUrls: youTubeUrls.filter((prev) => prev !== url)
     }))
     const formDataCopy = {
       ...formData,
-      youTubeUrls: youTubeUrls.filter((prev) => prev === url)
+      youTubeUrls: youTubeUrls.filter((prev) => prev !== url)
     }
-    setLoading(true)
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost((prevState) => ({

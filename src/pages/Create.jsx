@@ -14,9 +14,6 @@
   import { v4 as uuidv4 } from 'uuid'
   import { Form, Container, Row, Col, Button } from 'react-bootstrap';
   
-  
-
-
   export default function Create() {
     const navigate = useNavigate()
     const isMounted = useRef(true)
