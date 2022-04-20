@@ -6,6 +6,7 @@ import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
+import InstaGramTile from '../components/InstagramTile'
 
 const Post = () => {
   const params = useParams()
@@ -180,12 +181,12 @@ const Post = () => {
                 />
               </div>
               {instaUrls.map((url) => (
-                <>
-                  <iframe src={`${url}embed`} height="480" frameborder="0" scrolling="yes" allowtransparency="true" className="previewFrame" />
-                  {post.userRef == auth.currentUser.uid &&
-                    <Button variant="outline-danger" onClick={() => onInstaRemove(url)}>Remove</Button>
-                  }
-                </>
+                <InstaGramTile 
+                  url={url}
+                  onInstaRemove={onInstaRemove}
+                  postUser={post.userRef}
+                  currentUser={auth.currentUser.uid}
+                />
               ))}
             </Col>
             <Col className="socialColumn" md={6}>
