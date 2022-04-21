@@ -23,7 +23,7 @@ function ProfileView() {
   // }
 
   useEffect(() => {
-    const fetchUserPosts = async () => {
+    const fetchUserAndPosts = async () => {
       // console.log('hitssss')
       const postsRef = collection(db, 'posts')
       const q = query(
@@ -53,36 +53,8 @@ function ProfileView() {
       setLoading(false)
     }
 
-    // TODO figure out how to add userDoc id when creating posts so that it can be fetched
-    // it should work the way I was trying - turned out that tester@gmail didn't have an associated user doc
-
-    // const fetchUser = async () => {
-    //   // console.log('fetchuserhits')
-    //   const docRef = doc(db, 'users', params.profileId)
-    //   const docSnap = await getDoc(docRef)
-    //   console.log('docsnap data', docSnap.data())
-    //   setUser(docSnap.data())
-    // }
-
-    // fetchUser()
-    fetchUserPosts()
-    // setLoading(false)
+    fetchUserAndPosts()
   }, [params.profileId])
-
-  // useEffect(() => {
-  //   // setLoading(true)
-  //   const fetchUser = async () => {
-  //     // console.log('fetchuserhits')
-  //     const docRef = doc(db, 'users', params.profileId)
-  //     const docSnap = await getDoc(docRef)
-  //     console.log('docsnap data', docSnap.data())
-  //     // console.log('docsnap date', docSnap.data().timestamp.toDate())
-  //     setUser(docSnap.data())
-  //     setLoading(false)
-  //   }
-
-  //   fetchUser()
-  // }, [params.userId])
 
   if (loading) {
     return <div><Spinner/></div>
@@ -92,21 +64,22 @@ function ProfileView() {
 
   const creationTime = '123'
 
+  const profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
+
   return (
     <Container>
       {console.log('posts at render', posts)}
       {console.log('user at render', user)}
-      {!loading && 
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-3">
             <Col md={3}>
-              {/* <Image 
+              <Image 
                 rounded
                 className="profileImage"
                 src={profileImage}
                 alt="Change Profile Photo"
-              /> */}
+              />
             </Col>            
             <Col md={9} className="profileHeaderText">
               <div className="profileHeaderInfo">
@@ -137,7 +110,6 @@ function ProfileView() {
           )}
         </Col>
       </Row>
-    }
     </Container>
   )
 }
