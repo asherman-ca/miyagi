@@ -33,11 +33,11 @@ function Topbar() {
 
   let authButton
   if(currentUser){
-    authButton = <Nav.Link className="navbarLink" onClick={onLogout}>Sign Out</Nav.Link>
+    authButton = <Nav.Link className="topbarLink" onClick={onLogout}>Sign Out</Nav.Link>
   }else if(location.pathname === '/sign-in'){
-    authButton = <Nav.Link className="navbarLink" onClick={() => navigate('/sign-up')}>Sign Up</Nav.Link>
+    authButton = <Nav.Link className="topbarLink" onClick={() => navigate('/sign-up')}>Sign Up</Nav.Link>
   } else {
-    authButton = <Nav.Link className="navbarLink" onClick={() => navigate('/sign-in')}>Sign In</Nav.Link>
+    authButton = <Nav.Link className="topbarLink" onClick={() => navigate('/sign-in')}>Sign In</Nav.Link>
   }
 
   return (

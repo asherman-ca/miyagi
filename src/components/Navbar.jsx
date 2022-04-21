@@ -17,7 +17,7 @@ function Navbottom() {
   return (
     <Navbar bg="white" className="bottombar" fixed="bottom">
       <Container>
-        <Nav className={pathMatchRoute('/') ? 'bottomNavDiv bottomNavDivActive' : 'bottomNavDiv'}>
+        <Nav className={pathMatchRoute('/') || pathMatchRoute('/oldest') ? 'bottomNavDiv bottomNavDivActive' : 'bottomNavDiv'}>
           <Nav.Link 
             onClick={() => navigate('/')}
             className="navbarLink">

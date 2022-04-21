@@ -27,6 +27,15 @@ body {
 	font-weight: bold;
 }
 
+.topbarLink {
+	border-radius: 5px;
+	padding: 0.35rem !important;
+}
+
+.topbarLink:hover {
+	background-color: #eaeaea;
+}
+
 .navbarLink {
 	border-radius: 5px;
 }
@@ -44,12 +53,9 @@ body {
 	background-color: #eaeaea;
 }
 
-/* .navbarLinkTextActive {
-	text-decoration: underline auto;
-} */
-
 .topbar {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	/* padding: 5px 0px !important; */
 }
 
 .bottombar {
