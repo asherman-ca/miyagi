@@ -167,7 +167,7 @@ const Post = () => {
                     {notes}
                   </Card.Text>
                 </Card>
-                {post.userRef == auth.currentUser.uid &&
+                {post.userRef == auth.currentUser?.uid &&
                     <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
                 }
                 <EditModal 
@@ -204,7 +204,7 @@ const Post = () => {
                   url={url}
                   onInstaRemove={onInstaRemove}
                   postUser={post.userRef}
-                  currentUser={auth.currentUser.uid}
+                  currentUser={auth.currentUser?.uid}
                 />
               ))}
             </Col>
@@ -216,7 +216,7 @@ const Post = () => {
               {youTubeUrls.map((url) => (
                 <>
                   <iframe height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-                  {post.userRef == auth.currentUser.uid &&
+                  {post.userRef == auth.currentUser?.uid &&
                     <Button variant="outline-danger socialColumnDelete" onClick={() => onYouTubeRemove(url)}>Remove</Button>
                   }
                 </>
