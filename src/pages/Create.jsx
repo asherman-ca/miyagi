@@ -12,19 +12,18 @@
   import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
   import { db } from '../firebase.config'
   import { v4 as uuidv4 } from 'uuid'
-
+  import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+  
   export default function Create() {
     const navigate = useNavigate()
     const isMounted = useRef(true)
     const auth = getAuth();
-    // const instaUrl = 'https://www.instagram.com/p/CaVixB0A206/'
-    const instaUrl = ''
 
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
       title: '',
       images: {},
-      notes: '',
+      notes: "",
       instagramUrl: '',
       youTubeUrl: ''
     })
@@ -33,7 +32,8 @@
       if (isMounted) {
         onAuthStateChanged(auth, (user) => {
           if(user) {
-            setFormData({...formData, userRef: user.uid })
+            console.log('user', user)
+            setFormData({...formData, userRef: user.uid, userName: user.displayName })
           } else {
             Navigate('/sign-in')
           }
@@ -97,12 +97,19 @@
         return
       })
 
+      const instaUrls = formData.instagramUrl ? [formData.instagramUrl] : []
+      const youTubeUrls = formData.youTubeUrl ? [formData.youTubeUrl] : []
+
       const formDataCopy = {
         ...formData,
         imgUrls,
+        instaUrls,
+        youTubeUrls,
         timestamp: serverTimestamp()
       }
       delete formDataCopy.images
+      delete formDataCopy.instagramUrl
+      delete formDataCopy.youTubeUrl
 
       await addDoc(collection(db, 'posts'), formDataCopy)
 
@@ -131,68 +138,160 @@
     const socialInputs = formData.instagramUrl.length > 10 || formData.youTubeUrl.length > 10
 
     return (
-      <div className="pageContainer">
-        <div className="contentContainer">
-          <form className="createFormContainer" onSubmit={onSubmit}>
-            <label className="createFormLabel">Image</label>
-            <input 
-              id='imageUrl'
-              type='file' 
-              className="createFormImage"
-              accept='.jpg,.png,.jpeg'
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">Title</label>
-            <input 
-              id='title'
-              type="text" 
-              className="createFormInput"
-              onChange={onMutate}
-              minLength='3'
-              maxLength='30'
-              required
-            />
-            <label className="createFormLabel">Notes</label>
-            <textarea 
-              id='notes'
-              type="text"
-              className="createFormInput"
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">Instagram</label>
-            <input
-              id='instagramUrl' 
-              type="text" 
-              className="createFormInput" 
-              onChange={onMutate}
-            />
-            <label className="createFormLabel">YouTube</label>
-            <input 
-              id='youTubeUrl'
-              type="text" 
-              className="createFormInput" 
-              onChange={onMutate}
-            />
-            <button className="primaryButton">
-              Submit
-            </button>
-          </form>
-          <div className="previewContainer">
-          {formData.instagramUrl.length > 10 && <div className="previewCard">
-              <iframe src={`${formData.instagramUrl}embed`} height="300" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
-              <div className="previewCardTitle">
-              <span>Instagram Preview</span>
-              </div>
-            </div>}
-          {formData.youTubeUrl.length > 10 && <div className="previewCard">
-              <iframe height="220" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-              <div className="previewCardTitle">
-              <span>Youtube Preview</span>
-              </div>
-            </div>}
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col md={{ span: 6, offset: 3 }} className="formBorder">
+            <div className="formHeader">Create Post</div>
+            <Form onSubmit={onSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Text className="text-muted">
+                  Create a title for your post
+                </Form.Text>
+                <Form.Control
+                  type="title"
+                  placeholder="Enter title"
+                  id="title"
+                  onChange={onMutate}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                {/* <Form.Label>Default file input example</Form.Label> */}
+                <Form.Text className="text-muted">
+                  Add an image to your post
+                </Form.Text>
+                <Form.Control 
+                  type="file"
+                  id="images"
+                  accept=".jpg,.png,.jpeg"
+                  onChange={onMutate}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                {/* <Form.Label>Instagram</Form.Label> */}
+                <Form.Text className="text-muted">
+                  Add an Instagram page to your post. You can add more later.
+                </Form.Text>
+                <Form.Control
+                  type="instagram"
+                  placeholder="Enter Instagram address"
+                  id="instagramUrl"
+                  onChange={onMutate}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                {/* <Form.Label>YouTube</Form.Label> */}
+                <Form.Text className="text-muted">
+                  Add a YouTube page to your post. You can add more later.
+                </Form.Text>
+                <Form.Control
+                  type="youtube"
+                  placeholder="Enter YouTube address"
+                  id="youTubeUrl"
+                  onChange={onMutate}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Text className="text-muted">
+                  Add notes to your post. You can update them later.
+                </Form.Text>
+                <Form.Control
+                  as="textarea" 
+                  rows={3}
+                  placeholder="Enter notes"
+                  id="notes"
+                  onChange={onMutate}
+                />
+              </Form.Group>
+
+              <Button
+                variant="outline-dark"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+  //     <div className="pageContainer">
+  //         <FloatingLabel
+  //   controlId="floatingInput"
+  //   label="Email address"
+  //   className="mb-3"
+  // >
+  //   <Form.Control type="email" placeholder="name@example.com" />
+  // </FloatingLabel>
+  // <FloatingLabel controlId="floatingPassword" label="Password">
+  //   <Form.Control type="password" placeholder="Password" />
+  // </FloatingLabel>
+
+  //       <div className="contentContainer">
+  //         <form className="createFormContainer" onSubmit={onSubmit}>
+  //           <label className="createFormLabel">Image</label>
+  //           <input 
+  //             id='imageUrl'
+  //             type='file' 
+  //             className="createFormImage"
+  //             accept='.jpg,.png,.jpeg'
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">Title</label>
+  //           <input 
+  //             id='title'
+  //             type="text" 
+  //             className="createFormInput"
+  //             onChange={onMutate}
+  //             minLength='3'
+  //             maxLength='30'
+  //             required
+  //           />
+  //           <label className="createFormLabel">Notes</label>
+  //           <textarea 
+  //             id='notes'
+  //             type="text"
+  //             className="createFormInput"
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">Instagram</label>
+  //           <input
+  //             id='instagramUrl' 
+  //             type="text" 
+  //             className="createFormInput" 
+  //             onChange={onMutate}
+  //           />
+  //           <label className="createFormLabel">YouTube</label>
+  //           <input 
+  //             id='youTubeUrl'
+  //             type="text" 
+  //             className="createFormInput" 
+  //             onChange={onMutate}
+  //           />
+  //           <button className="primaryButton">
+  //             Submit
+  //           </button>
+  //         </form>
+  //         <div className="previewContainer">
+  //         {formData.instagramUrl.length > 10 && <div className="previewCard">
+  //             <iframe src={`${formData.instagramUrl}embed`} height="300" frameborder="0" scrolling="no" allowtransparency="true" className="previewFrame" />
+  //             <div className="previewCardTitle">
+  //             <span>Instagram Preview</span>
+  //             </div>
+  //           </div>}
+  //         {formData.youTubeUrl.length > 10 && <div className="previewCard">
+  //             <iframe height="220" src={`https://www.youtube.com/embed/${formData.youTubeUrl.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+  //             <div className="previewCardTitle">
+  //             <span>Youtube Preview</span>
+  //             </div>
+  //           </div>}
+  //         </div>
+  //       </div>
+  //     </div>
       
     )
   }

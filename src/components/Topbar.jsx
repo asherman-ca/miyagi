@@ -1,10 +1,12 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import {  useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
 function Topbar() {
   const navigate = useNavigate()
+  const location = useLocation()
   const auth = getAuth();
   const [currentUser, setCurrentUser] = useState({})
   const [loading, setLoading] = useState(true)
@@ -31,20 +33,26 @@ function Topbar() {
 
   let authButton
   if(currentUser){
-    authButton = <li className="topbarListItem logoutButton" onClick={onLogout}>Sign Out</li>
-  }else{
-    authButton = <li className="topbarListItem logoutButton" onClick={() => navigate('/sign-in')}>Sign In</li>
+    authButton = <Nav.Link className="topbarLink" onClick={onLogout}>Sign Out</Nav.Link>
+  }else if(location.pathname === '/sign-in'){
+    authButton = <Nav.Link className="topbarLink" onClick={() => navigate('/sign-up')}>Sign Up</Nav.Link>
+  } else {
+    authButton = <Nav.Link className="topbarLink" onClick={() => navigate('/sign-in')}>Sign In</Nav.Link>
   }
 
   return (
-    <nav className="topbar">
-      <ul className="topbarListItems">
-        <li className="topbarListItem topbarTitle">
-          <h1>Miyagi.com</h1>
-        </li>
-        {loading ? <></> : authButton}
-      </ul>
-    </nav>
+    <Navbar className="topbar" bg="white" fixed="top">
+      <Container>
+        <Nav.Link className="logoLink" onClick={() => navigate('/')}>
+          <Navbar.Brand className="topbarTitle">
+            Miyagi.com
+          </Navbar.Brand>
+        </Nav.Link>
+        <Nav>
+          {loading ? <></> : authButton}
+        </Nav>
+      </Container>
+    </Navbar>
   )
 }
 
