@@ -95,6 +95,11 @@ function Profile() {
               </Link>
             </Col>
           </Row>
+          {!loading && !posts.length && (
+            <Row>
+              <span style={{textAlign: 'center'}}>Create your first post</span>
+            </Row>
+          )}
           {!loading && posts?.length > 0 && (
             <Row>
               {posts.map((post) => (

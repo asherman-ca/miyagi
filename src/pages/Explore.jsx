@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Row, Col, Container, Nav } from 'react-bootstrap'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
@@ -6,6 +7,7 @@ import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 
 export default function Explore() {
+  const params = useParams()
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -14,11 +16,20 @@ export default function Explore() {
       try {
         const postsRef = collection(db, 'posts')
 
-        const q = query(
-          postsRef,
-          orderBy('timestamp', 'desc'),
-          limit(10)
-        )
+        let q
+        if (params.exploreParam == 'oldest') {
+          q = query(
+            postsRef,
+            orderBy('timestamp', 'asc'),
+            limit(10)
+          )
+        } else {
+          q = query(
+            postsRef,
+            orderBy('timestamp', 'desc'),
+            limit(10)
+          )
+        }
 
         const querySnap = await getDocs(q)
 
@@ -46,12 +57,12 @@ export default function Explore() {
     <Container>
       <Row className="exploreContainer">
         <Col md={{ span: 8, offset: 2 }}>
-        <Nav variant="tabs" defaultActiveKey="link-0" className="mb-3">
+        <Nav variant="tabs" defaultActiveKey="/" activeKey={params.exploreParam} className="mb-3">
           <Nav.Item>
-            <Nav.Link eventKey="link-0" className="tabLink">Newest</Nav.Link>
+            <Nav.Link eventKey="/" href="/" className="tabLink">Newest</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-1" className="tabLink">Oldest</Nav.Link>
+            <Nav.Link eventKey="oldest" href="/oldest" className="tabLink">Oldest</Nav.Link>
           </Nav.Item>
         </Nav>
         {!loading && posts?.length > 0 && (
