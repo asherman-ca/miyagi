@@ -43,7 +43,12 @@ function ProfileView() {
         })
       })
 
-      console.log('hitts post', posts)
+      // console.log('hitts post', posts)
+      const docRef = doc(db, 'users', params.profileId)
+      const docSnap = await getDoc(docRef)
+      console.log('docsnap data', docSnap.data())
+      setUser(docSnap.data())
+
       setPosts(posts)
       setLoading(false)
     }
@@ -51,22 +56,47 @@ function ProfileView() {
     // TODO figure out how to add userDoc id when creating posts so that it can be fetched
     // it should work the way I was trying - turned out that tester@gmail didn't have an associated user doc
 
+    // const fetchUser = async () => {
+    //   // console.log('fetchuserhits')
+    //   const docRef = doc(db, 'users', params.profileId)
+    //   const docSnap = await getDoc(docRef)
+    //   console.log('docsnap data', docSnap.data())
+    //   setUser(docSnap.data())
+    // }
+
+    // fetchUser()
     fetchUserPosts()
-    
     // setLoading(false)
   }, [params.profileId])
+
+  // useEffect(() => {
+  //   // setLoading(true)
+  //   const fetchUser = async () => {
+  //     // console.log('fetchuserhits')
+  //     const docRef = doc(db, 'users', params.profileId)
+  //     const docSnap = await getDoc(docRef)
+  //     console.log('docsnap data', docSnap.data())
+  //     // console.log('docsnap date', docSnap.data().timestamp.toDate())
+  //     setUser(docSnap.data())
+  //     setLoading(false)
+  //   }
+
+  //   fetchUser()
+  // }, [params.userId])
 
   if (loading) {
     return <div><Spinner/></div>
   }
 
-  // const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')
+  // const creationTime = user.timestamp.toDate().split(' ').slice(0, 4).join(' ')
 
   const creationTime = '123'
 
   return (
     <Container>
-      {console.log('posts', posts)}
+      {console.log('posts at render', posts)}
+      {console.log('user at render', user)}
+      {!loading && 
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-3">
@@ -107,6 +137,7 @@ function ProfileView() {
           )}
         </Col>
       </Row>
+    }
     </Container>
   )
 }
