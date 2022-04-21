@@ -45,7 +45,7 @@ function Topbar() {
       <Container>
         <Nav.Link className="logoLink" onClick={() => navigate('/')}>
           <Navbar.Brand className="topbarTitle">
-            Miyagi.com
+            Miyagi.tech
           </Navbar.Brand>
         </Nav.Link>
         <Nav>
