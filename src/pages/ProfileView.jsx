@@ -15,16 +15,8 @@ function ProfileView() {
   const [posts, setPosts] = useState(null)
   const [user, setUser] = useState(null)
 
-  // let profileImage = auth.currentUser.profileImage
-  // if (!profileImage && auth.currentUser.photoURL) {
-  //   profileImage = auth.currentUser.photoURL
-  // } else if (!profileImage) {
-  //   profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
-  // }
-
   useEffect(() => {
     const fetchUserAndPosts = async () => {
-      // console.log('hitssss')
       const postsRef = collection(db, 'posts')
       const q = query(
         postsRef,
@@ -43,7 +35,6 @@ function ProfileView() {
         })
       })
 
-      // console.log('hitts post', posts)
       const docRef = doc(db, 'users', params.profileId)
       const docSnap = await getDoc(docRef)
       console.log('docsnap data', docSnap.data())
@@ -60,10 +51,9 @@ function ProfileView() {
     return <div><Spinner/></div>
   }
 
-  // const creationTime = user.timestamp.toDate().split(' ').slice(0, 4).join(' ')
-
   const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
 
+  // TODO: add provider images to profileimage key in user records
   const profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
 
   return (
@@ -92,9 +82,6 @@ function ProfileView() {
               <div>
                 <span className="asdasvrw">Joined {creationTime}</span>
               </div>
-              <Link className="editButton" to={'/edit-profile'}>
-                <Button variant="outline-dark">Edit</Button>
-              </Link>
             </Col>
           </Row>
           {!loading && posts?.length > 0 && (
