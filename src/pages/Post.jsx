@@ -190,7 +190,7 @@ const Post = () => {
             <Col className="socialColumn" md={6}>
               <div className="socialColumnTitle">
                 <span>Instagram</span>
-                {post.userRef == auth.currentUser.uid &&
+                {post.userRef == auth.currentUser?.uid &&
                   <Button variant="outline-dark" onClick={handleInstaAddShow}>+</Button>
                 }
                 <AddInstaModal
