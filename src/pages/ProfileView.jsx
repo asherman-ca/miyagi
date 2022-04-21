@@ -62,7 +62,7 @@ function ProfileView() {
 
   // const creationTime = user.timestamp.toDate().split(' ').slice(0, 4).join(' ')
 
-  const creationTime = '123'
+  const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
 
   const profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
 
