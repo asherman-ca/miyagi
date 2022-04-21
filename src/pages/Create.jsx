@@ -32,7 +32,8 @@
       if (isMounted) {
         onAuthStateChanged(auth, (user) => {
           if(user) {
-            setFormData({...formData, userRef: user.uid })
+            console.log('user', user)
+            setFormData({...formData, userRef: user.uid, userName: user.displayName })
           } else {
             Navigate('/sign-in')
           }

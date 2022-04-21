@@ -26,13 +26,13 @@ const EditModal = ({handleClose, onSubmit, title, notes, show, onChange, onDelet
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="secondary" onClick={() => onDelete(id)}>
+        <Button variant="outline-danger" className="postDeleteButton" onClick={() => onDelete(id)}>
           Delete Post
         </Button>
-        <Button variant="primary" onClick={onSubmit}>
+        <Button variant="outline-dark" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="outline-dark" onClick={onSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>

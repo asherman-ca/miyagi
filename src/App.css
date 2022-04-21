@@ -202,15 +202,34 @@ body {
 	position: relative !important;
 }
 
+.postCardHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
 .postCardTitle {
-	font-size: 1.25rem !important;
+	font-size: 1.5rem;
 	font-weight: bold !important;
+}
+
+.postCardHeaderLink {
+	border-radius: 5px;
+	color: black;
+	text-decoration: none;
+}
+
+.postCardHeaderLink:hover {
+	color: grey;
 }
 
 .editButton {
 	position: absolute !important;
-	top: 0;
+	bottom: 0;
 	right: calc(var(--bs-gutter-x) * 0.5);
+}
+
+.postDeleteButton {
+	margin-right: auto !important;
 }
 
 .socialColumn {

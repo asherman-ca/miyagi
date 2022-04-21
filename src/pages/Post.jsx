@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getDoc, doc, updateDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
@@ -31,6 +31,10 @@ const Post = () => {
   const [instaAddShow, setInstaAddShow] = useState(false);
   const handleInstaAddClose = () => setInstaAddShow(false);
   const handleInstaAddShow = () => setInstaAddShow(true);
+
+  const [youTubeAddShow, setYouTubeAddShow] = useState(false);
+  const handleYouTubeAddClose = () => setYouTubeAddShow(false);
+  const handleYouTubeAddShow = () => setYouTubeAddShow(true);
   
   useEffect(() => {
     const fetchPost = async () => {
@@ -137,9 +141,9 @@ const Post = () => {
   if (loading) {
     return <Container>Loading</Container>
   }
-
-  const { instaUrls, youTubeUrls, title, notes, imgUrls, id } = post
-
+  
+  const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef } = post
+  
   return(
     <Container>
       <Row>
@@ -155,7 +159,10 @@ const Post = () => {
               </Col>
               <Col md={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
-                  <Card.Title className="postCardTitle">{title}</Card.Title>
+                  <Card.Title className="postCardHeader">
+                    <span className="postCardTitle">{title}</span>
+                    <Link className="postCardHeaderLink" to={`/profile/${userName}`}>@{userName}</Link>
+                  </Card.Title>
                   <Card.Text>
                     {notes}
                   </Card.Text>

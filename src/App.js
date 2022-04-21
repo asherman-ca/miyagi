@@ -13,6 +13,7 @@ import Create from './pages/Create'
 import ForgotPassword from './pages/ForgotPassword'
 import Post from './pages/Post'
 import EditPost from './pages/EditPost'
+import ProfileView from './pages/ProfileView'
 
 function App() {
   return (
@@ -21,10 +22,14 @@ function App() {
         <Topbar />
         <Routes>
           <Route path='/' element={<Explore />} />
+          <Route path='/:exploreParam' element={<Explore />} />
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
           </Route>
-          <Route path='/create' element={<Create />} />
+          <Route paht='/create' element={<PrivateRoute />}>
+            <Route path='/create' element={<Create />} />
+          </Route>
+          <Route path='/profile/:profileId' element={<ProfileView />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
