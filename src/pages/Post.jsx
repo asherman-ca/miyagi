@@ -6,7 +6,9 @@ import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
+import AddYouTubeModal from '../components/AddYouTubeModal'
 import InstaGramTile from '../components/InstagramTile'
+import YouTubeTile from '../components/YouTubeTile'
 import { toast } from 'react-toastify'
 
 const Post = () => {
@@ -101,7 +103,24 @@ const Post = () => {
   }
 
   const onYouTubeAdd = async (url) => {
-
+    console.log(url)
+    setLoading(true)
+    youTubeUrls.push(url)
+    const youTubeUrlsCopy = youTubeUrls
+    const formDataCopy = {
+      ...formData,
+      youTubeUrls: youTubeUrlsCopy
+    }
+    const docRef = doc(db, 'posts', params.postId)
+    await updateDoc(docRef, formDataCopy)
+    setPost(() => ({
+      ...formDataCopy
+    }))
+    setFormData(() => ({
+      ...formDataCopy
+    }))
+    handleYouTubeAddClose()
+    setLoading(false)
   }
 
   const onInstaRemove = async (url) => {
@@ -211,15 +230,22 @@ const Post = () => {
             <Col className="socialColumn" md={6}>
               <div className="socialColumnTitle">
                 <span>YouTube</span>
-                <Button variant="outline-dark">+</Button>
+                {post.userRef == auth.currentUser?.uid &&
+                  <Button variant="outline-dark" onClick={handleYouTubeAddShow}>+</Button>
+                }
+                <AddYouTubeModal
+                  youTubeAddShow={youTubeAddShow}
+                  handleYouTubeAddClose={handleYouTubeAddClose}
+                  onYouTubeAdd={onYouTubeAdd}
+                />
               </div>
               {youTubeUrls.map((url) => (
-                <>
-                  <iframe height="315" width="100%" src={`https://www.youtube.com/embed/${url.split("=")[1]}`} title="YouTube video player" frameborder="0" className="previewFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-                  {post.userRef == auth.currentUser?.uid &&
-                    <Button variant="outline-danger socialColumnDelete" onClick={() => onYouTubeRemove(url)}>Remove</Button>
-                  }
-                </>
+                <YouTubeTile
+                  postUser={post.userRef}
+                  currentUser={auth.currentUser?.uid}
+                  url={url}
+                  onYouTubeRemove={onYouTubeRemove}
+                />
               ))}
             </Col>
           </Row>
