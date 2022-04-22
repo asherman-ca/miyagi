@@ -82,15 +82,14 @@ function Profile() {
             <Col xs={9} className="profileHeaderText">
               <div className="profileHeaderInfo">
                 <span className="profileHeaderName">{auth.currentUser.displayName}</span>
-                {/* <span className="profileHeaderEmail">{auth.currentUser.email}</span> */}
               </div>
               <div>
-                <span className="asdasvrw">
+                <span className="profileHeaderMeta">
                   {posts.length} posts
                 </span>
               </div>
               <div>
-                <span className="asdasvrw">Joined {creationTime}</span>
+                <span className="profileHeaderMeta">Joined {creationTime}</span>
               </div>
               <Link className="editButton" to={'/edit-profile'}>
                 <Button variant="outline-dark">Edit</Button>

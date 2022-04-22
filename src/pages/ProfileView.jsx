@@ -63,7 +63,7 @@ function ProfileView() {
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-3">
-            <Col md={3}>
+            <Col xs={3}>
               <Image 
                 rounded
                 className="profileImage"
@@ -71,16 +71,15 @@ function ProfileView() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col md={9} className="profileHeaderText">
+            <Col xs={9} className="profileHeaderText">
               <div className="profileHeaderInfo">
                 <span className="profileHeaderName">{user.name}</span>
-                <span className="profileHeaderEmail">{user.email}</span>
               </div>
               <div>
-                <span className="asdasvrw">{posts.length} posts</span>
+                <span className="profileHeaderMeta">{posts.length} posts</span>
               </div>
               <div>
-                <span className="asdasvrw">Joined {creationTime}</span>
+                <span className="profileHeaderMeta">Joined {creationTime}</span>
               </div>
             </Col>
           </Row>
