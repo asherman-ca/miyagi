@@ -3,7 +3,7 @@ import { Card, Col } from 'react-bootstrap'
 
 function PostItem({post, id}) {
   return (
-    <Col md={4}>
+    <Col xs={4}>
       <Link to={`/post/${id}`}>
         <Card.Img className="cardImage" variant="top" src={post.imgUrls[0]}/>
       </Link>
