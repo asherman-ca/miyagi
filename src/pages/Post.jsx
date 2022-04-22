@@ -168,7 +168,7 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
-              <Col xs={4}>
+              <Col style={{paddingRight: '0px'}} xs={4}>
                 <Image
                   rounded
                   className="postImage"
