@@ -25,3 +25,10 @@ npm start
 ### Notes
 
 -private Route logic will protect from nullish auth objects using spinner and waiting (see profile route). Topbar uses a workaround from Firebase auth docs.
+
+demo accounts:
+genki@gmail.com
+neo123
+
+ismail@gmail.com
+ismail

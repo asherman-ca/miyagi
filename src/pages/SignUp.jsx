@@ -45,6 +45,7 @@ function SignUp() {
 
       const user = userCredential.user
 
+      // adds a displayName to our new auth object for this user. Oauth'd users already have displayname set by their providers
       updateProfile(auth.currentUser, {
         displayName: name,
       })

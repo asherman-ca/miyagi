@@ -21,13 +21,13 @@ export default function Explore() {
           q = query(
             postsRef,
             orderBy('timestamp', 'asc'),
-            limit(10)
+            limit(20)
           )
         } else {
           q = query(
             postsRef,
             orderBy('timestamp', 'desc'),
-            limit(10)
+            limit(20)
           )
         }
 
