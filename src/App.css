@@ -247,12 +247,13 @@ body {
 .socialColumnTitle {
 	font-weight: bold;
 	font-size: 1.25rem;
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .previewFrame {
+	margin-top: 20px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
 }
