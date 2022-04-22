@@ -258,12 +258,13 @@ body {
 }
 
 .socialColumnTitle {
-	font-weight: bold;
-	font-size: 1.25rem;
-	/* padding-bottom: 20px; */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.socialColumnEmbedTitle {
+	font-weight: bold !important;
 }
 
 .previewFrame {
