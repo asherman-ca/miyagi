@@ -71,7 +71,7 @@ function Profile() {
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-3">
-            <Col md={3}>
+            <Col xs={3}>
               <Image 
                 rounded
                 className="profileImage"
@@ -79,13 +79,15 @@ function Profile() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col md={9} className="profileHeaderText">
+            <Col xs={9} className="profileHeaderText">
               <div className="profileHeaderInfo">
                 <span className="profileHeaderName">{auth.currentUser.displayName}</span>
-                <span className="profileHeaderEmail">{auth.currentUser.email}</span>
+                {/* <span className="profileHeaderEmail">{auth.currentUser.email}</span> */}
               </div>
               <div>
-                <span className="asdasvrw">{posts.length} posts</span>
+                <span className="asdasvrw">
+                  {posts.length} posts
+                </span>
               </div>
               <div>
                 <span className="asdasvrw">Joined {creationTime}</span>
