@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getDoc, doc, updateDoc, serverTimestamp, deleteDoc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { Container, Row, Col, Image, Card, Button, Modal, Form } from 'react-bootstrap'
+import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
 import AddYouTubeModal from '../components/AddYouTubeModal'
@@ -168,7 +168,7 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
-              <Col md={4}>
+              <Col xs={4}>
                 <Image
                   rounded
                   className="postImage"
@@ -176,7 +176,7 @@ const Post = () => {
                   alt="Post Image"
                 />
               </Col>
-              <Col md={8} className="postCardCol">
+              <Col xs={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
                     <span className="postCardTitle">{title}</span>

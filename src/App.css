@@ -7,7 +7,7 @@
 /* Universals */
 
 body {
-	padding: 57px 0px 56px 0px;
+	padding: 53px 0px 56px 0px;
 	overflow-y: overlay;
 	/* background-color: #f9f9f9 !important; */
 	/* height: 100vh !important; */
@@ -193,7 +193,7 @@ body {
 /* Post View */
 
 .postHeader {
-	padding: 20px 0px;
+	padding: 10px 0px;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
@@ -207,17 +207,17 @@ body {
 
 .postImage {
 	width: 100%;
-	height: 269px;
+	height: 100%;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.postCardCol {
+	position: relative !important;
 }
 
 .postCard {
 	border: none !important;
 	white-space: pre-wrap;
-}
-
-.postCardCol {
-	position: relative !important;
 }
 
 .postCardHeader {
@@ -226,11 +226,12 @@ body {
 }
 
 .postCardTitle {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-weight: bold !important;
 }
 
 .postCardHeaderLink {
+	font-size: 1rem !important;
 	border-radius: 5px;
 	color: black;
 	text-decoration: none;
@@ -251,7 +252,7 @@ body {
 }
 
 .socialColumn {
-	padding: 20px 0px;
+	padding: 10px 0px;
 	display: flex;
 	flex-direction: column;
 }
