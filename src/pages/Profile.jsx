@@ -96,7 +96,7 @@ function Profile() {
             </Row>
           )}
           {!loading && posts?.length > 0 && (
-            <Row>
+            <Row className="postItemRow">
               {posts.map((post) => (
                 <PostItem
                   key={post.id}
