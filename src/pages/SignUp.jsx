@@ -104,15 +104,16 @@ function SignUp() {
             </Form.Group>
 
             <Row>
-              <Col>
+              <Col xs={7}>
                 <Button
                     variant="outline-dark"
                     type="submit"
+                    className="authButton"
                   >
-                    Sign Up
+                    Sign-Up
                 </Button>
               </Col>
-              <Col className="googleCol">
+              <Col className="googleCol" xs={5}>
                 <OAuth />
               </Col>
             </Row>

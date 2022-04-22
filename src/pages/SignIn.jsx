@@ -75,20 +75,20 @@ function SignIn() {
             </Form.Group>
 
             <Row>
-              <Col>
+              <Col xs={8}>
                 <Button
-                    variant="outline-dark"
+                    variant="outline-dark authButton"
                     type="submit"
                   >
-                    Sign In
+                    Sign-In
                 </Button>
                 <Link to='/forgot-password'>
-                  <Button className="resetButton" variant="outline-dark">
+                  <Button className="resetButton authButton" variant="outline-dark">
                     Reset Password
                   </Button>
                 </Link>
               </Col>
-              <Col className="googleCol">
+              <Col xs={4} className="googleCol">
                 <OAuth />
               </Col>
             </Row>

@@ -39,9 +39,9 @@ function OAuth() {
     <Button
       variant="outline-dark"
       onClick={onGoogleClick}
-      className="googleButton"
+      className="googleButton authButton"
     >
-      Google Sign {location.pathname === '/sign-up' ? 'Up' : 'In'}
+      Google-{location.pathname === '/sign-up' ? 'Up' : 'In'}
     </Button>
   )
 }

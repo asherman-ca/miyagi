@@ -109,6 +109,11 @@ body {
 	justify-content: right;
 }
 
+.authButton {
+	/* margin-left: auto !important; */
+	font-size: .875rem !important;
+}
+
 .googleButton:hover {
 	cursor: pointer;
 }
