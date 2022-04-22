@@ -160,18 +160,25 @@ body {
 }
 
 /* TODO: make this reorient instead of hiding */
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
 	.profileHeaderName {
 		line-height: 1rem;
 	}
-}
+} */
 
 .cardImage {
 	width: 100%;
-	height: 100%;
+	/* height: 100%; */
+	height: 150px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	transition-property: box-shadow;
 	transition-duration: 0.2s;
+}
+
+@media (min-width: 900px) {
+	.cardImage {
+		height: 250px;
+	}
 }
 
 .cardImage:hover {
@@ -207,9 +214,14 @@ body {
 
 .postImage {
 	width: 100%;
-	/* height: 196px; */
-	height: 100%;
+	height: 150px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@media (min-width: 900px) {
+	.postImage {
+		height: 250px;
+	}
 }
 
 .postCardCol {
@@ -218,8 +230,16 @@ body {
 }
 
 .postCard {
+	max-height: 150px;
+	overflow-y: overlay;
 	border: none !important;
 	white-space: pre-wrap;
+}
+
+@media (min-width: 900px) {
+	.postCard {
+		max-height: 250px;
+	}
 }
 
 .postCardHeader {
@@ -233,9 +253,11 @@ body {
 }
 
 .postCardHeaderLink {
-	font-size: 1rem !important;
+	width: 33%;
 	border-radius: 5px;
-	color: black;
+	text-align: end;
+	font-size: 1rem !important;
+	color: rgba(0,0,0,.55);
 	text-decoration: none;
 }
 
