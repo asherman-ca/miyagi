@@ -62,8 +62,8 @@ function ProfileView() {
       {console.log('user at render', user)}
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <Row className="profileHeader mb-3">
-            <Col xs={3}>
+          <Row className="profileHeader mb-2">
+            <Col xs={4} className="profileImageCol">
               <Image 
                 rounded
                 className="profileImage"
@@ -71,9 +71,9 @@ function ProfileView() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col xs={9} className="profileHeaderText">
+            <Col xs={8} className="profileHeaderText">
               <div className="profileHeaderInfo">
-                <span className="profileHeaderName">{user.name}</span>
+                <span className="profileHeaderName">@{user.name}</span>
               </div>
               <div>
                 <span className="profileHeaderMeta">{posts.length} posts</span>

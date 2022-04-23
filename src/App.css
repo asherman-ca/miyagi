@@ -121,13 +121,18 @@ body {
 /* Profile */
 
 .profileHeader {
-	padding: 20px 0px;
+	padding: 10px 0px;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+.profileImageCol {
+	/* padding-left: 0px !important; */
+	padding: 10px !important;
 }
 
 .profileImage {
 	width: 100%;
-	height: auto;
+	height: 175px;
 }
 
 .profileHeaderText {

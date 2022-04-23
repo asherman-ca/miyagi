@@ -64,8 +64,8 @@ function Profile() {
       {console.log('posts', posts)}
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <Row className="profileHeader mb-3">
-            <Col xs={3}>
+          <Row className="profileHeader mb-2">
+            <Col xs={4} className="profileImageCol">
               <Image 
                 rounded
                 className="profileImage"
@@ -73,9 +73,9 @@ function Profile() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col xs={9} className="profileHeaderText">
+            <Col xs={8} className="profileHeaderText">
               <div className="profileHeaderInfo">
-                <span className="profileHeaderName">{auth.currentUser.displayName}</span>
+                <span className="profileHeaderName">@{auth.currentUser.displayName}</span>
               </div>
               <div>
                 <span className="profileHeaderMeta">
