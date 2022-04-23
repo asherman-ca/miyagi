@@ -169,17 +169,19 @@ const Post = () => {
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
               <Col style={{paddingRight: '0px'}} xs={4}>
-                <Image
-                  rounded
-                  className="postImage"
-                  src={imgUrls[0]}
-                  alt="Post Image"
-                />
+                <Card>
+                  <Card.Img
+                    className="cardImage" variant="top" src={imgUrls[0]}/>
+                  <Card.Body className="postItemBody">
+                    <Card.Title className="cardTitleText">
+                      {title}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
               </Col>
               <Col xs={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
-                    <span className="postCardTitle">{title}</span>
                     <Link className="postCardHeaderLink" to={`/profile/${userRef}`}>@{userName}</Link>
                   </Card.Title>
                   <Card.Text>

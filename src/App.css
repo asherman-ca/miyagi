@@ -260,10 +260,10 @@ body {
 	}
 }
 
-.postCardHeader {
+/* .postCardHeader {
 	display: flex;
 	justify-content: space-between;
-}
+} */
 
 .postCardTitle {
 	font-size: 1.25rem;
@@ -285,7 +285,7 @@ body {
 
 .editButton {
 	position: absolute !important;
-	bottom: 0;
+	top: 0;
 	right: calc(var(--bs-gutter-x) * 0.5);
 }
 
