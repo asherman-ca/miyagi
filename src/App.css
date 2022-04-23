@@ -311,5 +311,6 @@ body {
 
 .previewFrame {
 	margin-top: 10px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important; */
 }
