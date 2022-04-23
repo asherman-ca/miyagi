@@ -188,6 +188,7 @@ body {
 
 .cardTitleText {
 	font-size: 1rem !important;
+	font-weight: bold !important;
 	margin-bottom: 0px !important;
 	white-space: nowrap;
 	overflow: hidden;
@@ -224,7 +225,11 @@ body {
 
 .postItemCol {
 	padding: 2.5px 2.5px !important;
-	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+	cursor: pointer !important;
+}
+
+.postItemCol:hover {
+	/* cursor: pointer; */
 }
 
 .postItemBody {
@@ -266,8 +271,12 @@ body {
 	justify-content: space-between;
 } */
 
+.postCardHeader {
+	font-weight: bold !important;
+	margin-bottom: 0px !important;
+}
+
 .postCardTitle {
-	font-size: 1.25rem;
 	font-weight: bold !important;
 }
 
@@ -276,8 +285,12 @@ body {
 	border-radius: 5px;
 	text-align: end;
 	font-size: 1rem !important;
-	color: rgba(0,0,0,.55);
+	color: black;
 	text-decoration: none;
+}
+
+.postCardHeaderLink span{
+	font-size: 1.1rem !important;
 }
 
 .postCardHeaderLink:hover {
