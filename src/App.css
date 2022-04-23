@@ -323,6 +323,6 @@ body {
 }
 
 .previewFrame {
-	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	/* border: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 	padding: 5px;
 }
