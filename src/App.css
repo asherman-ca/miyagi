@@ -198,13 +198,13 @@ body {
 /* Explore */
 
 .exploreContainer {
-	margin-top: 20px !important;
+	margin-top: 10px !important;
 }
 
 /* Post View */
 
 .postHeader {
-	padding: 20px 00px;
+	padding: 10px 00px;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
