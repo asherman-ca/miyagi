@@ -170,13 +170,11 @@ body {
 .cardImage {
 	width: 100%;
 	padding: 5px 5px;
-	/* height: 150px; */
-	height: 106px;
+	height: 116px;
 }
 
 @media (min-width: 900px) {
 	.cardImage {
-		/* height: 250px; */
 		height: 284px;
 	}
 }
