@@ -85,17 +85,6 @@ function Profile() {
                   -Joined: {creationTime}
                 </Card.Text>
               </Card>
-              {/* <div className="profileHeaderInfo">
-                <span className="profileHeaderName">@{auth.currentUser.displayName}</span>
-              </div>
-              <div>
-                <span className="profileHeaderMeta">
-                  {posts.length} posts
-                </span>
-              </div>
-              <div>
-                <span className="profileHeaderMeta">Joined {creationTime}</span>
-              </div> */}
               <Link className="editButton" to={'/edit-profile'}>
                 <Button variant="outline-dark">Edit</Button>
               </Link>

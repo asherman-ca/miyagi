@@ -264,7 +264,7 @@ body {
 }
 
 .postCardHeaderLink {
-	font-size: 1.25rem !important;
+	/* font-size: 1.25rem !important; */
 	font-weight: bold !important;
 	color: black;
 	text-decoration: none;
