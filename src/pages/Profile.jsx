@@ -4,7 +4,7 @@ import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { useNavigate, Link } from 'react-router-dom'
 import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
-import { Row, Col, Container, Image, Button } from 'react-bootstrap'
+import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
@@ -73,8 +73,19 @@ function Profile() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col xs={8} className="profileHeaderText">
-              <div className="profileHeaderInfo">
+            <Col xs={8}>
+              <Card className="profileHeaderCard">
+                <Card.Title>
+                  @{auth.currentUser.displayName}
+                </Card.Title>
+                <Card.Text>
+                  -{posts.length} posts
+                </Card.Text>
+                <Card.Text>
+                  -Joined: {creationTime}
+                </Card.Text>
+              </Card>
+              {/* <div className="profileHeaderInfo">
                 <span className="profileHeaderName">@{auth.currentUser.displayName}</span>
               </div>
               <div>
@@ -84,7 +95,7 @@ function Profile() {
               </div>
               <div>
                 <span className="profileHeaderMeta">Joined {creationTime}</span>
-              </div>
+              </div> */}
               <Link className="editButton" to={'/edit-profile'}>
                 <Button variant="outline-dark">Edit</Button>
               </Link>

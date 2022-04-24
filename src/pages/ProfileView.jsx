@@ -4,7 +4,7 @@ import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, getDoc } from 'firebase/firestore'
-import { Row, Col, Container, Image, Button } from 'react-bootstrap'
+import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
@@ -71,16 +71,18 @@ function ProfileView() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col xs={8} className="profileHeaderText">
-              <div className="profileHeaderInfo">
-                <span className="profileHeaderName">@{user.name}</span>
-              </div>
-              <div>
-                <span className="profileHeaderMeta">{posts.length} posts</span>
-              </div>
-              <div>
-                <span className="profileHeaderMeta">Joined {creationTime}</span>
-              </div>
+            <Col xs={8}>
+              <Card className="profileHeaderCard">
+                <Card.Title>
+                  @{user.name}
+                </Card.Title>
+                <Card.Text>
+                  -{posts.length} posts
+                </Card.Text>
+                <Card.Text>
+                  -Joined: {creationTime}
+                </Card.Text>
+              </Card>
             </Col>
           </Row>
           {!loading && posts?.length > 0 && (

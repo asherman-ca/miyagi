@@ -135,18 +135,12 @@ body {
 	height: 175px;
 }
 
-.profileHeaderText {
-	position: relative !important;
-	/* padding: 10px 0px; */
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+.profileHeaderCard {
+	border: none !important;
 }
 
-.profileHeaderText div {
-	display: flex;
-	flex-direction: column;
-	height: 33%;
+.profileHeaderCard p {
+	margin-bottom: 5px !important;
 }
 
 .profileHeaderMeta {
