@@ -270,7 +270,7 @@ body {
 }
 
 .socialColumn {
-	padding: 10px 0px;
+	padding-top: 10px;
 	display: flex;
 	flex-direction: column;
 }

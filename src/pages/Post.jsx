@@ -56,7 +56,7 @@ const Post = () => {
       }
     }
     fetchPost()
-  }, [params.postId, post])
+  }, [params.postId])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -105,21 +105,19 @@ const Post = () => {
   const onInstaAdd = async (url) => {
     setLoading(true)
     instaUrls.push(url)
-    const instaUrlsCopy = instaUrls
-    const formDataCopy = {
-      ...formData,
-      instaUrls: instaUrlsCopy
-    }
+    const urls = instaUrls
     const docRef = doc(db, 'posts', params.postId)
-    await updateDoc(docRef, formDataCopy)
-    setPost(() => ({
-      ...formDataCopy
-    }))
-    setFormData(() => ({
-      ...formDataCopy
+    await updateDoc(docRef, {
+      ...post,
+      instaUrls: urls
+    })
+    setPost((prev) => ({
+      ...prev,
+      instaUrls: urls
     }))
     handleInstaAddClose()
     setLoading(false)
+    toast.success('Instagram post added')
   }
 
   const onYouTubeAdd = async (url) => {
@@ -141,6 +139,7 @@ const Post = () => {
     }))
     handleYouTubeAddClose()
     setLoading(false)
+    toast.success('YouTube post added')
   }
 
   const onInstaRemove = async (url) => {
