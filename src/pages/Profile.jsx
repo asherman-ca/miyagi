@@ -78,10 +78,10 @@ function Profile() {
                   @{auth.currentUser.displayName}
                 </Card.Text>
                 <Card.Text>
-                  -{posts.length} posts
+                  <i class="bi bi-calendar2-check"></i> {creationTime}
                 </Card.Text>
                 <Card.Text>
-                  -Joined: {creationTime}
+                  <i class="bi bi-stickies"></i> {posts.length} posts
                 </Card.Text>
               </Card>
               <Link className="editButton" to={'/edit-profile'}>
