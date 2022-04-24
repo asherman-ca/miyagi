@@ -188,7 +188,10 @@ const Post = () => {
                     <Card.Title className="cardTitleText">
                       {title}
                     </Card.Title>
-                      <div>{likes}<i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer'}} class="bi bi-heart"></i></div>
+                    <div className="postItemBodyIcons">
+                      <span>{likes}</span>
+                      <i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer', paddingTop: '1.5px'}} class="bi bi-heart"></i>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
