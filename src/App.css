@@ -185,6 +185,14 @@ body {
 	text-overflow: ellipsis;
 }
 
+.postItemTitleSpan {
+	/* max-width: 80%; */
+	margin-right: auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+}
 /* Explore */
 
 .exploreContainer {
