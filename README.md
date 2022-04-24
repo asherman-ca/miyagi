@@ -32,3 +32,42 @@ neo123
 
 ismail@gmail.com
 ismail
+
+### Schema
+
+User
+
+{
+name: String,
+email: String,
+timestamp: Time
+}
+
+Post
+
+{
+userRef: Id,
+title: String,
+notes: String,
+instaUrls: [],
+youTubeUrls: [],
+images: [],
+likes: Number,
+timestamp: Time
+}
+
+Like
+
+{
+userRef: Id,
+postRef: Id,
+posterRef: Id,
+timestamp: Time
+}
+
+Follow
+
+{
+followerRef: Id,
+userRef: Id
+}
