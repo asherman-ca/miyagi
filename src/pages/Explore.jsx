@@ -99,7 +99,6 @@ export default function Explore() {
               type="text"
               id="url"
               onChange={onSearch}
-              autoFocus
             />
           </Form>
         </Nav>
