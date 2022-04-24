@@ -88,7 +88,6 @@ const Post = () => {
     if(!auth.currentUser) {
       toast.error('Must be logged in')
     } else {
-      setLoading(true)
       const docRef = doc(db, 'posts', params.postId)
       await updateDoc(docRef, {
         ...post,
@@ -98,7 +97,6 @@ const Post = () => {
         ...prev,
         likes: likes + 1
       }))
-      setLoading(false)
     }
   }
 
