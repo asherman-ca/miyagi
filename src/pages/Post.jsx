@@ -185,13 +185,9 @@ const Post = () => {
                   <Card.Img
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
-                    <Card.Title className="cardTitleText">
-                      {title}
-                    </Card.Title>
-                    <div className="postItemBodyIcons">
-                      <span>{likes}</span>
-                      <i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer', paddingTop: '1.5px'}} class="bi bi-heart"></i>
-                    </div>
+                    <span className="postItemTitleSpan">{title}</span>
+                    <span>{likes}</span>
+                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} class="bi bi-heart"></i>
                   </Card.Body>
                 </Card>
               </Col>
