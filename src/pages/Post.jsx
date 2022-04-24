@@ -56,7 +56,7 @@ const Post = () => {
       }
     }
     fetchPost()
-  }, [params.postId])
+  }, [params.postId, post])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -101,7 +101,6 @@ const Post = () => {
   }
 
   const onInstaAdd = async (url) => {
-    setLoading(true)
     instaUrls.push(url)
     const urls = instaUrls
     const docRef = doc(db, 'posts', params.postId)
@@ -114,13 +113,10 @@ const Post = () => {
       instaUrls: urls
     }))
     handleInstaAddClose()
-    setLoading(false)
     toast.success('Instagram post added')
   }
 
   const onYouTubeAdd = async (url) => {
-    console.log(url)
-    setLoading(true)
     youTubeUrls.push(url)
     const youTubeUrlsCopy = youTubeUrls
     const formDataCopy = {
@@ -136,12 +132,10 @@ const Post = () => {
       ...formDataCopy
     }))
     handleYouTubeAddClose()
-    setLoading(false)
     toast.success('YouTube post added')
   }
 
   const onInstaRemove = async (url) => {
-    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: formData.instaUrls.filter((prev) => prev !== url)
@@ -153,11 +147,9 @@ const Post = () => {
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost({...formDataCopy})
-    setLoading(false)
   }
 
   const onYouTubeRemove = async (url) => {
-    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
       youTubeUrls: youTubeUrls.filter((prev) => prev !== url)
@@ -171,7 +163,6 @@ const Post = () => {
     setPost((prevState) => ({
       ...formDataCopy
     }))
-    setLoading(false)
   }
 
   if (loading) {
