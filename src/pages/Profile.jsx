@@ -73,7 +73,7 @@ function Profile() {
               />
             </Col>            
             <Col xs={8}>
-              <Card className="profileHeaderCard">
+              <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   @{auth.currentUser.displayName}
                 </Card.Text>
