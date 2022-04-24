@@ -10,7 +10,7 @@ export default function Explore() {
   const params = useParams()
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [search, setSearch] = useState('')
+  // const [search, setSearch] = useState('')
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,13 +18,7 @@ export default function Explore() {
         const postsRef = collection(db, 'posts')
 
         let q
-        if (params.exploreParam == 'oldest') {
-          q = query(
-            postsRef,
-            orderBy('timestamp', 'asc'),
-            limit(20)
-          )
-        } else if (params.exploreParam == 'liked') {
+        if (params.exploreParam == 'liked') {
           q = query(
             postsRef,
             orderBy('likes', 'desc'),
@@ -36,7 +30,6 @@ export default function Explore() {
             orderBy('timestamp', 'desc'),
             limit(20)
           )
-
         }
 
         const querySnap = await getDocs(q)
@@ -63,7 +56,32 @@ export default function Explore() {
 
   const onSearch = async (e) => {
     e.preventDefault()
-    setSearch(() => (e.target.value))
+    // setSearch(() => (e.target.value))
+    const postsRef = collection(db, 'posts')
+    let q
+    if (params.exploreParam == 'liked') {
+      q = query(
+        postsRef,
+        where('userName','==',e.target.value),
+        orderBy('likes', 'desc'),
+        limit(10)
+      )
+    } else {
+      q = query(
+        postsRef,
+        where('userName','==',e.target.value),
+        orderBy('timestamp', 'desc'),
+        limit(10)
+      )
+    }
+    const querySnap = await getDocs(q)
+    console.log('hits', querySnap)
+    if(!querySnap.empty){
+      let postArray = []
+      querySnap.forEach(el => console.log('searchsnap',el.data()))
+      querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
+      setPosts(postArray)
+    }
   }
 
   return (
