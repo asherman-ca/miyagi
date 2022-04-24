@@ -10,9 +10,9 @@ function PostItem({post, id}) {
         </Link>
         <Card.Body className="postItemBody">
           <Card.Title className="cardTitleText">{post.title}</Card.Title>
-          <div> 
-            {post.likes}
-            <i style={{marginLeft: '5px'}} class="bi bi-heart"></i>
+          <div className="postItemBodyIcons"> 
+            <span>{post.likes}</span>
+            <i style={{marginLeft: '5px', paddingTop: '1.5px'}} class="bi bi-heart"></i>
           </div>
         </Card.Body>
       </Card>
