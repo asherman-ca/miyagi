@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Container, Nav } from 'react-bootstrap'
+import { Row, Col, Container, Nav, Form } from 'react-bootstrap'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import PostItem from '../components/PostItem'
@@ -10,6 +10,7 @@ export default function Explore() {
   const params = useParams()
   const [posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,12 +24,19 @@ export default function Explore() {
             orderBy('timestamp', 'asc'),
             limit(20)
           )
+        } else if (params.exploreParam == 'liked') {
+          q = query(
+            postsRef,
+            orderBy('likes', 'desc'),
+            limit(20)
+          )
         } else {
           q = query(
             postsRef,
             orderBy('timestamp', 'desc'),
             limit(20)
           )
+
         }
 
         const querySnap = await getDocs(q)
@@ -53,6 +61,11 @@ export default function Explore() {
     fetchPosts()
   }, [])
 
+  const onSearch = async (e) => {
+    e.preventDefault()
+    setSearch(() => (e.target.value))
+  }
+
   return (
     <Container>
       <Row className="exploreContainer">
@@ -62,8 +75,20 @@ export default function Explore() {
             <Nav.Link eventKey="/" href="/" className="tabLink">Newest</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="oldest" href="/oldest" className="tabLink">Oldest</Nav.Link>
+            <Nav.Link eventKey="liked" href="/liked" className="tabLink">Liked</Nav.Link>
           </Nav.Item>
+          
+          <Form className="exploreSearchBar">
+            {/* <Form.Group> */}
+              <Form.Control
+                placeholder="Search User" 
+                type="text"
+                id="url"
+                onChange={onSearch}
+                autoFocus
+              />
+            {/* </Form.Group> */}
+          </Form>
         </Nav>
         {!loading && posts?.length > 0 && (
           <Row className="postItemRow">
