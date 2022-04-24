@@ -23,8 +23,10 @@ const Post = () => {
     userRef: '',
     instaUrls: [],
     youTubeUrls: [],
-    images: []
+    images: [],
+    likes: 0
   })
+  const [likesArray, setLikesArray] = useState(null)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -54,7 +56,7 @@ const Post = () => {
       }
     }
     fetchPost()
-  }, [params.postId])
+  }, [params.postId, post])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -84,7 +86,19 @@ const Post = () => {
 
   const onLike = async () => {
     if(!auth.currentUser) {
-      toast.success('Must be logged in')
+      toast.error('Must be logged in')
+    } else {
+      setLoading(true)
+      const docRef = doc(db, 'posts', params.postId)
+      await updateDoc(docRef, {
+        ...post,
+        likes: likes + 1
+      })
+      setPost((prev) => ({
+        ...prev,
+        likes: likes + 1
+      }))
+      setLoading(false)
     }
   }
 
@@ -167,7 +181,7 @@ const Post = () => {
     return <Container>Loading</Container>
   }
   
-  const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef } = post
+  const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef, likes } = post
   
   return(
     <Container>
@@ -182,7 +196,7 @@ const Post = () => {
                     <Card.Title className="cardTitleText">
                       {title}
                     </Card.Title>
-                      <i class="bi bi-heart"></i>
+                      <div>{likes}<i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer'}} class="bi bi-heart"></i></div>
                   </Card.Body>
                 </Card>
               </Col>

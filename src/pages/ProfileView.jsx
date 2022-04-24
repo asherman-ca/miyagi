@@ -58,8 +58,6 @@ function ProfileView() {
 
   return (
     <Container>
-      {console.log('posts at render', posts)}
-      {console.log('user at render', user)}
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader mb-2">

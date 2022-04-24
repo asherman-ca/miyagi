@@ -40,8 +40,8 @@ const Post = () => {
   })
 
   return(
-    <div>Edit Post
-      {console.log('post', post)}
+    <div>
+      Edit Post
     </div>
   )
 }
