@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Container, Nav } from 'react-bootstrap'
+import { Row, Col, Container, Nav, Form } from 'react-bootstrap'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import PostItem from '../components/PostItem'
@@ -17,10 +17,10 @@ export default function Explore() {
         const postsRef = collection(db, 'posts')
 
         let q
-        if (params.exploreParam == 'oldest') {
+        if (params.exploreParam == 'liked') {
           q = query(
             postsRef,
-            orderBy('timestamp', 'asc'),
+            orderBy('likes', 'desc'),
             limit(20)
           )
         } else {
@@ -53,6 +53,34 @@ export default function Explore() {
     fetchPosts()
   }, [])
 
+  const onSearch = async (e) => {
+    e.preventDefault()
+    const postsRef = collection(db, 'posts')
+    let q
+    if (params.exploreParam == 'liked') {
+      q = query(
+        postsRef,
+        where('userName', '==', e.target.value),
+        orderBy('likes', 'desc'),
+        limit(10)
+      )
+    } else {
+      q = query(
+        postsRef,
+        where('userName','==', e.target.value),
+        orderBy('timestamp', 'desc'),
+        limit(10)
+      )
+    }
+    const querySnap = await getDocs(q)
+    console.log('hits', querySnap)
+    if(!querySnap.empty){
+      let postArray = []
+      querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
+      setPosts(postArray)
+    }
+  }
+
   return (
     <Container>
       <Row className="exploreContainer">
@@ -62,8 +90,18 @@ export default function Explore() {
             <Nav.Link eventKey="/" href="/" className="tabLink">Newest</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="oldest" href="/oldest" className="tabLink">Oldest</Nav.Link>
+            <Nav.Link eventKey="liked" href="/liked" className="tabLink">Liked</Nav.Link>
           </Nav.Item>
+          
+          <Form className="exploreSearchBar">
+            <Form.Control
+              placeholder="Search User" 
+              type="text"
+              id="url"
+              onChange={onSearch}
+              autoFocus
+            />
+          </Form>
         </Nav>
         {!loading && posts?.length > 0 && (
           <Row className="postItemRow">

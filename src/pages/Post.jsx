@@ -61,6 +61,7 @@ const Post = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     const docRef = doc(db, 'posts', params.postId)
+    console.log(formData, 'formData')
     await updateDoc(docRef, formData)
     setPost(() => ({
       ...formData
@@ -88,7 +89,6 @@ const Post = () => {
     if(!auth.currentUser) {
       toast.error('Must be logged in')
     } else {
-      setLoading(true)
       const docRef = doc(db, 'posts', params.postId)
       await updateDoc(docRef, {
         ...post,
@@ -98,12 +98,10 @@ const Post = () => {
         ...prev,
         likes: likes + 1
       }))
-      setLoading(false)
     }
   }
 
   const onInstaAdd = async (url) => {
-    setLoading(true)
     instaUrls.push(url)
     const urls = instaUrls
     const docRef = doc(db, 'posts', params.postId)
@@ -115,14 +113,14 @@ const Post = () => {
       ...prev,
       instaUrls: urls
     }))
+    setFormData(() => ({
+      ...post
+    }))
     handleInstaAddClose()
-    setLoading(false)
     toast.success('Instagram post added')
   }
 
   const onYouTubeAdd = async (url) => {
-    console.log(url)
-    setLoading(true)
     youTubeUrls.push(url)
     const youTubeUrlsCopy = youTubeUrls
     const formDataCopy = {
@@ -138,12 +136,10 @@ const Post = () => {
       ...formDataCopy
     }))
     handleYouTubeAddClose()
-    setLoading(false)
     toast.success('YouTube post added')
   }
 
   const onInstaRemove = async (url) => {
-    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: formData.instaUrls.filter((prev) => prev !== url)
@@ -155,11 +151,9 @@ const Post = () => {
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost({...formDataCopy})
-    setLoading(false)
   }
 
   const onYouTubeRemove = async (url) => {
-    setLoading(true)
     setFormData((prevState) => ({
       ...prevState,
       youTubeUrls: youTubeUrls.filter((prev) => prev !== url)
@@ -173,7 +167,6 @@ const Post = () => {
     setPost((prevState) => ({
       ...formDataCopy
     }))
-    setLoading(false)
   }
 
   if (loading) {
@@ -195,7 +188,10 @@ const Post = () => {
                     <Card.Title className="cardTitleText">
                       {title}
                     </Card.Title>
-                      <div>{likes}<i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer'}} class="bi bi-heart"></i></div>
+                    <div className="postItemBodyIcons">
+                      <span>{likes}</span>
+                      <i onClick={onLike} style={{marginLeft: '5px', cursor: 'pointer', paddingTop: '1.5px'}} class="bi bi-heart"></i>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
