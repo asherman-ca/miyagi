@@ -56,11 +56,12 @@ const Post = () => {
       }
     }
     fetchPost()
-  }, [params.postId, post])
+  }, [params.postId])
 
   const onSubmit = async (e) => {
     e.preventDefault()
     const docRef = doc(db, 'posts', params.postId)
+    console.log(formData, 'formData')
     await updateDoc(docRef, formData)
     setPost(() => ({
       ...formData
@@ -111,6 +112,9 @@ const Post = () => {
     setPost((prev) => ({
       ...prev,
       instaUrls: urls
+    }))
+    setFormData(() => ({
+      ...post
     }))
     handleInstaAddClose()
     toast.success('Instagram post added')
