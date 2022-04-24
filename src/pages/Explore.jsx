@@ -51,7 +51,7 @@ export default function Explore() {
     }
 
     fetchPosts()
-  }, [])
+  }, [params.exploreParam])
 
   const onSearch = async (e) => {
     e.preventDefault()
@@ -99,7 +99,6 @@ export default function Explore() {
               type="text"
               id="url"
               onChange={onSearch}
-              autoFocus
             />
           </Form>
         </Nav>
