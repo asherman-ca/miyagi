@@ -25,7 +25,8 @@
       images: {},
       notes: "",
       instagramUrl: '',
-      youTubeUrl: ''
+      youTubeUrl: '',
+      likes: 0
     })
 
     useEffect(() => {
