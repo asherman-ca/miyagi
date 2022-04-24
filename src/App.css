@@ -124,10 +124,12 @@ body {
 }
 
 .profileImageCol {
-	padding: 10px !important;
+	/* padding: 10px !important; */
 }
 
 .profileImage {
+	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	padding: 5px !important;
 	width: 100%;
 	height: 175px;
 }

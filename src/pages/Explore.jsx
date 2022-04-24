@@ -51,7 +51,7 @@ export default function Explore() {
     }
 
     fetchPosts()
-  }, [])
+  }, [params.exploreParam])
 
   const onSearch = async (e) => {
     e.preventDefault()
