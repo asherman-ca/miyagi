@@ -19,6 +19,7 @@ function SignUp() {
     name: '',
     email: '',
     password: '',
+    imageUrl: ''
   })
   const { name, email, password } = formData
 
