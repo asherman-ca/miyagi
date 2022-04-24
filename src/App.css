@@ -176,17 +176,9 @@ body {
 	}
 }
 
-.cardTitleText {
-	font-size: 1rem !important;
-	font-weight: bold !important;
-	margin-bottom: 0px !important;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
 .postItemTitleSpan {
-	/* max-width: 80%; */
+	max-width: 70%;
+	font-weight: bold;
 	margin-right: auto;
 	white-space: nowrap;
 	overflow: hidden;
