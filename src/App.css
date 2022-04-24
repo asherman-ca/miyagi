@@ -125,8 +125,12 @@ body {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
+.profileHeaderTitle {
+	font-size: 1.25rem !important;
+	font-weight: bold;
+}
+
 .profileImageCol {
-	/* padding-left: 0px !important; */
 	padding: 10px !important;
 }
 
@@ -158,31 +162,16 @@ body {
 	color: grey;
 }
 
-/* TODO: make this reorient instead of hiding */
-/* @media (max-width: 1200px) {
-	.profileHeaderName {
-		line-height: 1rem;
-	}
-} */
-
 .cardImage {
 	width: 100%;
 	padding: 5px 5px;
-	/* height: 100%; */
 	height: 150px;
-	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
-	transition-property: box-shadow;
-	transition-duration: 0.2s;
 }
 
 @media (min-width: 900px) {
 	.cardImage {
 		height: 250px;
 	}
-}
-
-.cardImage:hover {
-	box-shadow: none;
 }
 
 .cardTitleText {
@@ -265,11 +254,6 @@ body {
 	}
 }
 
-/* .postCardHeader {
-	display: flex;
-	justify-content: space-between;
-} */
-
 .postCardHeader {
 	font-weight: bold !important;
 	margin-bottom: 5px !important;
@@ -280,16 +264,10 @@ body {
 }
 
 .postCardHeaderLink {
-	width: 33%;
-	border-radius: 5px;
-	text-align: end;
-	font-size: 1rem !important;
+	font-size: 1.25rem !important;
+	font-weight: bold !important;
 	color: black;
 	text-decoration: none;
-}
-
-.postCardHeaderLink span{
-	font-size: 1.1rem !important;
 }
 
 .postCardHeaderLink:hover {

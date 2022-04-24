@@ -75,9 +75,9 @@ function Profile() {
             </Col>            
             <Col xs={8}>
               <Card className="profileHeaderCard">
-                <Card.Title>
+                <Card.Text className="profileHeaderTitle">
                   @{auth.currentUser.displayName}
-                </Card.Title>
+                </Card.Text>
                 <Card.Text>
                   -{posts.length} posts
                 </Card.Text>

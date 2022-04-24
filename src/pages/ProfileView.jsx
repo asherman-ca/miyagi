@@ -73,9 +73,10 @@ function ProfileView() {
             </Col>            
             <Col xs={8}>
               <Card className="profileHeaderCard">
-                <Card.Title>
+                <Card.Text className="profileHeaderTitle">
                   @{user.name}
-                </Card.Title>
+                  
+                </Card.Text>
                 <Card.Text>
                   -{posts.length} posts
                 </Card.Text>
