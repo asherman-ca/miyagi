@@ -124,15 +124,25 @@ body {
 }
 
 .profileImageCol {
-	/* padding: 10px !important; */
+	padding-left: 5px !important;
+	padding-right: 0px !important;
+	/* margin-right: none !important; */
 }
 
 .profileImage {
 	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 	padding: 5px !important;
 	width: 100%;
-	height: 175px;
+	/* height: 175px; */
+	height: 120px;
 }
+
+@media (min-width: 900px) {
+	.profileImage {
+		height: 288px;
+		/* height: 175px; */
+	}
+} */
 
 .profileHeaderCard {
 	border: none !important;
@@ -160,12 +170,14 @@ body {
 .cardImage {
 	width: 100%;
 	padding: 5px 5px;
-	height: 150px;
+	/* height: 150px; */
+	height: 106px;
 }
 
 @media (min-width: 900px) {
 	.cardImage {
-		height: 250px;
+		/* height: 250px; */
+		height: 284px;
 	}
 }
 
