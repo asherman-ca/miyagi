@@ -221,7 +221,10 @@ body {
 }
 
 .postItemBody {
-	padding: 0px 5px 5px !important;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0px 5px !important;
 }
 
 .postImage {
@@ -264,7 +267,6 @@ body {
 }
 
 .postCardHeaderLink {
-	/* font-size: 1.25rem !important; */
 	font-weight: bold !important;
 	color: black;
 	text-decoration: none;

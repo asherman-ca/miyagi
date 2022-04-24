@@ -82,6 +82,12 @@ const Post = () => {
     }))
   }
 
+  const onLike = async () => {
+    if(!auth.currentUser) {
+      toast.success('Must be logged in')
+    }
+  }
+
   const onInstaAdd = async (url) => {
     setLoading(true)
     instaUrls.push(url)
@@ -176,6 +182,7 @@ const Post = () => {
                     <Card.Title className="cardTitleText">
                       {title}
                     </Card.Title>
+                      <i class="bi bi-heart"></i>
                   </Card.Body>
                 </Card>
               </Col>
