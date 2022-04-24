@@ -70,7 +70,7 @@ function ProfileView() {
               />
             </Col>            
             <Col xs={8}>
-              <Card className="profileHeaderCard" style={{border: 'none'}}>
+              <Card className="profileHeaderCard">
                 <Card.Text className="profileHeaderTitle">
                   @{user.name}
                   
