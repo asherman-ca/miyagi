@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit } from 'firebase/firestore'
+import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit, addDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
@@ -26,7 +26,7 @@ const Post = () => {
     images: [],
     likes: 0
   })
-  const [likesArray, setLikesArray] = useState(null)
+  const [userLike, setUserLike] = useState(null)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -65,6 +65,7 @@ const Post = () => {
       const querySnap = await getDocs(q)
       querySnap.forEach((doc) => {
         console.log(doc.data())
+        setUserLike(doc.data())
       })
       // console.log('hitsss')
       // console.log('querysnap', querySnap)
@@ -108,13 +109,28 @@ const Post = () => {
       const docRef = doc(db, 'posts', params.postId)
       // first time sending a single field worked!
       console.log('hits')
-      await updateDoc(docRef, {
-        likes: likes + 1
-      })
-      setPost((prev) => ({
-        ...prev,
-        likes: likes + 1
-      }))
+      console.log('userLikeTest', userLike)
+      if (!userLike){
+        await updateDoc(docRef, {
+          likes: likes + 1
+        })
+        await addDoc(collection(db, 'likes'), {
+          userRef: auth.currentUser.uid,
+          postRef: params.postId,
+          postUserRef: userRef
+        })
+        setPost((prev) => ({
+          ...prev,
+          likes: likes + 1
+        }))
+        setUserLike({
+          userRef: auth.currentUser.uid,
+          postRef: params.postId,
+          postUserRef: userRef
+        })
+      } else {
+        toast.error('already liked')
+      }
     }
     // TODO: smart button
     // Make useEffect also fetch any likes from this logged in user for this post and add to state
