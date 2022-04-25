@@ -11,7 +11,7 @@ function PostItem({post, id}) {
         <Card.Body className="postItemBody">
           <span className="postItemTitleSpan">{post.title}</span>
           <span>{post.likes}</span>
-          <i style={{marginLeft: '3px', paddingTop: '1.5px'}} class="bi bi-heart"></i>
+          <i style={{marginLeft: '3px', paddingTop: '1.5px'}} class="bi bi-heart-fill"></i>
         </Card.Body>
       </Card>
     </Col>
