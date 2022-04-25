@@ -76,7 +76,7 @@ function Profile() {
             <Col xs={8}>
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
-                  @{auth.currentUser.displayName}
+                  @ {auth.currentUser.displayName}
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}

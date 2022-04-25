@@ -252,7 +252,7 @@ const Post = () => {
               <Col xs={8} className="postCardCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
-                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
+                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@ {userName}</span></Link>
                   </Card.Title>
                   <Card.Text>
                     {notes}
