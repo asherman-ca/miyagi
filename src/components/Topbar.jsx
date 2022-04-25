@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import {  useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -10,6 +10,10 @@ function Topbar() {
   const auth = getAuth();
   const [currentUser, setCurrentUser] = useState({})
   const [loading, setLoading] = useState(true)
+  const demoCreds = {
+    email: 'genki@gmail.com',
+    password: 'neo123'
+  }
 
   // onauthstatechanged works like useEffect here
   onAuthStateChanged(auth, (user) => {
@@ -31,6 +35,24 @@ function Topbar() {
     toast.info('Logged out')
   }
 
+  const onDemo = async () => {
+    try {
+      const { email, password } = demoCreds
+      let userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      
+      if (userCredentials.user) {
+        navigate('/profile')
+      }
+    } catch (error) {
+      toast.error('Login failed')
+    }
+    console.log('hits')
+  }
+
   let authButton
   if(currentUser){
     authButton = <Nav.Link className="topbarLink" onClick={onLogout}>Sign Out</Nav.Link>
@@ -49,6 +71,8 @@ function Topbar() {
           </Navbar.Brand>
         </Nav.Link>
         <Nav>
+          {!currentUser && <Nav.Link className="topbarLink" style={{marginRight: '5px'}} onClick={onDemo}>Demo</Nav.Link>}
+          {/* <div onClick={onDemo}>Demo</div> */}
           {loading ? <></> : authButton}
         </Nav>
       </Container>
