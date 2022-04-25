@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit, addDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
@@ -26,7 +26,7 @@ const Post = () => {
     images: [],
     likes: 0
   })
-  const [likesArray, setLikesArray] = useState(null)
+  const [userLike, setUserLike] = useState([])
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -46,7 +46,7 @@ const Post = () => {
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        console.log('id', docSnap.id)
+        // console.log('id', docSnap.id)
         setPost({
           id: docSnap.id,
           ...docSnap.data()
@@ -54,6 +54,26 @@ const Post = () => {
         setFormData({...docSnap.data()})
         setLoading(false)
       }
+      const likesRef = collection(db, 'likes')
+      const q = query(
+        likesRef,
+        where('postRef', '==', params.postId),
+        where('userRef', '==', auth.currentUser.uid),
+        limit(20)
+      )
+      console.log('likesRef')
+      const querySnap = await getDocs(q)
+      querySnap.forEach((doc) => {
+        console.log(doc.data())
+        setUserLike([{
+          data: doc.data(),
+          id: doc.id
+        }])
+      })
+      
+      // console.log('hitsss')
+      // console.log('querysnap', querySnap)
+      // console.log('useeffect querysnap', querySnap)
     }
     fetchPost()
   }, [params.postId])
@@ -86,19 +106,57 @@ const Post = () => {
   }
 
   const onLike = async () => {
+    console.log('init userLike', userLike)
     if(!auth.currentUser) {
       toast.error('Must be logged in')
     } else {
       const docRef = doc(db, 'posts', params.postId)
-      await updateDoc(docRef, {
-        ...post,
-        likes: likes + 1
-      })
-      setPost((prev) => ({
-        ...prev,
-        likes: likes + 1
-      }))
+      // first time sending a single field worked!
+      console.log('userLike state', userLike)
+      console.log('userLike truthy', userLike.length)
+      if (userLike.length < 1){
+        await updateDoc(docRef, {
+          likes: likes + 1
+        })
+        const newDoc = await addDoc(collection(db, 'likes'), {
+          userRef: auth.currentUser.uid,
+          postRef: params.postId,
+          postUserRef: userRef
+        })
+        console.log('new doc', newDoc);
+        setPost((prev) => ({
+          ...prev,
+          likes: likes + 1
+        }))
+        setUserLike([
+        {
+          data: {
+          userRef: auth.currentUser.uid,
+          postRef: params.postId,
+          postUserRef: userRef
+          },
+          id: newDoc.id
+        }
+        ])
+      } else {
+        console.log('remove like hit', userLike[0])
+        await updateDoc(docRef, {
+          likes: likes - 1
+        })
+        await deleteDoc(doc(db, 'likes', userLike[0].id))
+        setPost((prev) => ({
+          ...prev,
+          likes: likes - 1
+        }))
+        setUserLike([])
+      }
     }
+    // TODO: smart button
+    // Make useEffect also fetch any likes from this logged in user for this post and add to state
+    // const [like, setLike] = useState({})
+    // query like table where likerId = currentUser.Id
+    // Creates or deletes a like depending on if there is a like in the state
+    // make the icon render depending on whether or not there is a like in the state
   }
 
   const onInstaAdd = async (url) => {
@@ -187,7 +245,7 @@ const Post = () => {
                   <Card.Body className="postItemBody">
                     <span className="postItemTitleSpan">{title}</span>
                     <span>{likes}</span>
-                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} class="bi bi-heart"></i>
+                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
                   </Card.Body>
                 </Card>
               </Col>

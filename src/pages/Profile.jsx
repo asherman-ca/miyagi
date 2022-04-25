@@ -18,8 +18,9 @@ function Profile() {
   })
   const [posts, setPosts] = useState(null)
 
-  let profileImage = auth.currentUser.profileImage
-  if (!profileImage && auth.currentUser.photoURL) {
+  // let profileImage = auth.currentUser.imageUrl
+  let profileImage
+  if (auth.currentUser.photoURL) {
     profileImage = auth.currentUser.photoURL
   } else if (!profileImage) {
     profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
@@ -78,10 +79,10 @@ function Profile() {
                   @{auth.currentUser.displayName}
                 </Card.Text>
                 <Card.Text>
-                  <i class="bi bi-calendar2-check"></i> {creationTime}
+                  <i className="bi bi-calendar2-check"></i> {creationTime}
                 </Card.Text>
                 <Card.Text>
-                  <i class="bi bi-stickies"></i> {posts.length} posts
+                  <i className="bi bi-stickies"></i> {posts.length} posts
                 </Card.Text>
               </Card>
               <Link className="editButton" to={'/edit-profile'}>
