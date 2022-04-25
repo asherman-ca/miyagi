@@ -11,6 +11,7 @@
 /* Universals */
 
 body {
+	font-family: 'Permanent Marker';
 	padding: 53px 0px 56px 0px;
 	overflow-y: overlay;
 }
@@ -19,7 +20,7 @@ body {
 }
 
 .topbarTitle {
-	font-family: 'Satisfy', cursive;
+	font-family: 'Permanent Marker';
 	font-size: 1.5rem !important;
 	font-weight: bold;
 }
