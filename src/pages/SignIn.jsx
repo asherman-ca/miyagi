@@ -75,7 +75,7 @@ function SignIn() {
             </Form.Group>
 
             <Row>
-              <Col xs={8}>
+              <Col xs={8} style={{paddingRight: '0px'}}>
                 <Button
                     variant="outline-dark authButton"
                     type="submit"
@@ -88,7 +88,7 @@ function SignIn() {
                   </Button>
                 </Link>
               </Col>
-              <Col xs={4} className="googleCol">
+              <Col xs={4} className="googleCol" style={{paddingLeft: '0px'}}>
                 <OAuth />
               </Col>
             </Row>
