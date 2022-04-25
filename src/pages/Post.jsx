@@ -260,7 +260,6 @@ const Post = () => {
                 </Card>
                 {post.userRef == auth.currentUser?.uid &&
                   <i onClick={handleShow} className="bi bi-gear editButton"></i>
-                    // <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
                 }
                 <EditModal 
                   show={show}
