@@ -26,7 +26,7 @@ const Post = () => {
     images: [],
     likes: 0
   })
-  const [userLike, setUserLike] = useState(null)
+  const [userLike, setUserLike] = useState([])
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -65,12 +65,15 @@ const Post = () => {
       const querySnap = await getDocs(q)
       querySnap.forEach((doc) => {
         console.log(doc.data())
-        setUserLike(doc.data())
+        setUserLike([{
+          data: doc.data(),
+          id: doc.id
+        }])
       })
+      
       // console.log('hitsss')
       // console.log('querysnap', querySnap)
       // console.log('useeffect querysnap', querySnap)
-
     }
     fetchPost()
   }, [params.postId])
@@ -103,33 +106,49 @@ const Post = () => {
   }
 
   const onLike = async () => {
+    console.log('init userLike', userLike)
     if(!auth.currentUser) {
       toast.error('Must be logged in')
     } else {
       const docRef = doc(db, 'posts', params.postId)
       // first time sending a single field worked!
-      console.log('hits')
-      console.log('userLikeTest', userLike)
-      if (!userLike){
+      console.log('userLike state', userLike)
+      console.log('userLike truthy', userLike.length)
+      if (userLike.length < 1){
         await updateDoc(docRef, {
           likes: likes + 1
         })
-        await addDoc(collection(db, 'likes'), {
+        const newDoc = await addDoc(collection(db, 'likes'), {
           userRef: auth.currentUser.uid,
           postRef: params.postId,
           postUserRef: userRef
         })
+        console.log('new doc', newDoc);
         setPost((prev) => ({
           ...prev,
           likes: likes + 1
         }))
-        setUserLike({
+        setUserLike([
+        {
+          data: {
           userRef: auth.currentUser.uid,
           postRef: params.postId,
           postUserRef: userRef
-        })
+          },
+          id: newDoc.id
+        }
+        ])
       } else {
-        toast.error('already liked')
+        console.log('remove like hit', userLike[0])
+        await updateDoc(docRef, {
+          likes: likes - 1
+        })
+        await deleteDoc(doc(db, 'likes', userLike[0].id))
+        setPost((prev) => ({
+          ...prev,
+          likes: likes - 1
+        }))
+        setUserLike([])
       }
     }
     // TODO: smart button
