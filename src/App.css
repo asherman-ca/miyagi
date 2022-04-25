@@ -295,6 +295,11 @@ body {
 	position: absolute !important;
 	top: 0;
 	right: calc(var(--bs-gutter-x) * 0.5);
+	cursor: pointer;
+}
+
+.editButton:hover {
+	color: grey;
 }
 
 .postDeleteButton {
@@ -310,11 +315,18 @@ body {
 .socialColumnTitle {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 }
 
 .socialColumnEmbedTitle {
 	font-weight: bold !important;
+}
+
+.socialEmbedAddButton {
+	cursor: pointer;
+}
+
+.socialEmbedAddButton:hover {
+	color: grey;
 }
 
 .socialCardBody {

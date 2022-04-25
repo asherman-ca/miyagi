@@ -259,7 +259,8 @@ const Post = () => {
                   </Card.Text>
                 </Card>
                 {post.userRef == auth.currentUser?.uid &&
-                    <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
+                  <i onClick={handleShow} className="bi bi-gear editButton"></i>
+                    // <Button className="editButton" variant="outline-dark" onClick={handleShow}>Edit</Button>
                 }
                 <EditModal 
                   show={show}
@@ -282,7 +283,7 @@ const Post = () => {
               <div className="socialColumnTitle">
                 <span className="socialColumnEmbedTitle">Instagram</span>
                 {post.userRef == auth.currentUser?.uid &&
-                  <Button variant="outline-dark" onClick={handleInstaAddShow}>+</Button>
+                  <i onClick={handleInstaAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
                 }
                 <AddInstaModal
                   instaAddShow={instaAddShow}
@@ -303,7 +304,7 @@ const Post = () => {
               <div className="socialColumnTitle">
                 <span className="socialColumnEmbedTitle">YouTube</span>
                 {post.userRef == auth.currentUser?.uid &&
-                  <Button variant="outline-dark" onClick={handleYouTubeAddShow}>+</Button>
+                  <i onClick={handleYouTubeAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
                 }
                 <AddYouTubeModal
                   youTubeAddShow={youTubeAddShow}
