@@ -245,7 +245,7 @@ const Post = () => {
                   <Card.Body className="postItemBody">
                     <span className="postItemTitleSpan">{title}</span>
                     <span>{likes}</span>
-                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} class="bi bi-heart"></i>
+                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
                   </Card.Body>
                 </Card>
               </Col>
