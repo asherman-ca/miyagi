@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
@@ -46,7 +46,7 @@ const Post = () => {
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        console.log('id', docSnap.id)
+        // console.log('id', docSnap.id)
         setPost({
           id: docSnap.id,
           ...docSnap.data()
@@ -54,6 +54,22 @@ const Post = () => {
         setFormData({...docSnap.data()})
         setLoading(false)
       }
+      const likesRef = collection(db, 'likes')
+      const q = query(
+        likesRef,
+        where('postRef', '==', params.postId),
+        where('userRef', '==', auth.currentUser.uid),
+        limit(20)
+      )
+      console.log('likesRef')
+      const querySnap = await getDocs(q)
+      querySnap.forEach((doc) => {
+        console.log(doc.data())
+      })
+      // console.log('hitsss')
+      // console.log('querysnap', querySnap)
+      // console.log('useeffect querysnap', querySnap)
+
     }
     fetchPost()
   }, [params.postId])
@@ -90,8 +106,9 @@ const Post = () => {
       toast.error('Must be logged in')
     } else {
       const docRef = doc(db, 'posts', params.postId)
+      // first time sending a single field worked!
+      console.log('hits')
       await updateDoc(docRef, {
-        ...post,
         likes: likes + 1
       })
       setPost((prev) => ({
@@ -99,6 +116,12 @@ const Post = () => {
         likes: likes + 1
       }))
     }
+    // TODO: smart button
+    // Make useEffect also fetch any likes from this logged in user for this post and add to state
+    // const [like, setLike] = useState({})
+    // query like table where likerId = currentUser.Id
+    // Creates or deletes a like depending on if there is a like in the state
+    // make the icon render depending on whether or not there is a like in the state
   }
 
   const onInstaAdd = async (url) => {

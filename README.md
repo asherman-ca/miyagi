@@ -61,8 +61,7 @@ Like
 {
 userRef: Id,
 postRef: Id,
-posterRef: Id,
-timestamp: Time
+postUserRef: Id
 }
 
 Follow

@@ -18,8 +18,9 @@ function Profile() {
   })
   const [posts, setPosts] = useState(null)
 
-  let profileImage = auth.currentUser.profileImage
-  if (!profileImage && auth.currentUser.photoURL) {
+  // let profileImage = auth.currentUser.imageUrl
+  let profileImage
+  if (auth.currentUser.photoURL) {
     profileImage = auth.currentUser.photoURL
   } else if (!profileImage) {
     profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
