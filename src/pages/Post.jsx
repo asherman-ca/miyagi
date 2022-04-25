@@ -80,6 +80,9 @@ const Post = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
     const docRef = doc(db, 'posts', params.postId)
     console.log(formData, 'formData')
     await updateDoc(docRef, formData)
@@ -87,13 +90,18 @@ const Post = () => {
       ...formData
     }))
     handleClose()
+    }
   }
 
   const onDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete?')) {
-      await deleteDoc(doc(db, 'posts', id))
-      toast.success('Post deleted')
-      navigate('/profile')
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
+      if (window.confirm('Are you sure you want to delete?')) {
+        await deleteDoc(doc(db, 'posts', id))
+        toast.success('Post deleted')
+        navigate('/profile')
+      }
     }
   }
 
@@ -106,6 +114,10 @@ const Post = () => {
   }
 
   const onLike = async () => {
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
+
     console.log('init userLike', userLike)
     if(!auth.currentUser) {
       toast.error('Must be logged in')
@@ -151,6 +163,7 @@ const Post = () => {
         setUserLike([])
       }
     }
+    }
     // TODO: smart button
     // Make useEffect also fetch any likes from this logged in user for this post and add to state
     // const [like, setLike] = useState({})
@@ -160,6 +173,10 @@ const Post = () => {
   }
 
   const onInstaAdd = async (url) => {
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
+
     instaUrls.push(url)
     const urls = instaUrls
     const docRef = doc(db, 'posts', params.postId)
@@ -176,9 +193,13 @@ const Post = () => {
     }))
     handleInstaAddClose()
     toast.success('Instagram post added')
+    }
   }
 
   const onYouTubeAdd = async (url) => {
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
     youTubeUrls.push(url)
     const youTubeUrlsCopy = youTubeUrls
     const formDataCopy = {
@@ -195,9 +216,14 @@ const Post = () => {
     }))
     handleYouTubeAddClose()
     toast.success('YouTube post added')
+    }
   }
 
   const onInstaRemove = async (url) => {
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
+
     setFormData((prevState) => ({
       ...prevState,
       instaUrls: formData.instaUrls.filter((prev) => prev !== url)
@@ -209,9 +235,14 @@ const Post = () => {
     const docRef = doc(db, 'posts', params.postId)
     await updateDoc(docRef, formDataCopy)
     setPost({...formDataCopy})
+    }
   }
 
   const onYouTubeRemove = async (url) => {
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo post locked')
+    } else {
+
     setFormData((prevState) => ({
       ...prevState,
       youTubeUrls: youTubeUrls.filter((prev) => prev !== url)
@@ -225,6 +256,7 @@ const Post = () => {
     setPost((prevState) => ({
       ...formDataCopy
     }))
+    }
   }
 
   if (loading) {
