@@ -44,9 +44,7 @@ const Post = () => {
     const fetchPost = async () => {
       const docRef = doc(db, 'posts', params.postId)
       const docSnap = await getDoc(docRef)
-
       if (docSnap.exists()) {
-        // console.log('id', docSnap.id)
         setPost({
           id: docSnap.id,
           ...docSnap.data()
@@ -61,19 +59,13 @@ const Post = () => {
         where('userRef', '==', auth.currentUser.uid),
         limit(20)
       )
-      console.log('likesRef')
       const querySnap = await getDocs(q)
       querySnap.forEach((doc) => {
-        console.log(doc.data())
         setUserLike([{
           data: doc.data(),
           id: doc.id
         }])
       })
-      
-      // console.log('hitsss')
-      // console.log('querysnap', querySnap)
-      // console.log('useeffect querysnap', querySnap)
     }
     fetchPost()
   }, [params.postId])
@@ -81,10 +73,9 @@ const Post = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
     const docRef = doc(db, 'posts', params.postId)
-    console.log(formData, 'formData')
     await updateDoc(docRef, formData)
     setPost(() => ({
       ...formData
@@ -95,7 +86,7 @@ const Post = () => {
 
   const onDelete = async (id) => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
       if (window.confirm('Are you sure you want to delete?')) {
         await deleteDoc(doc(db, 'posts', id))
@@ -115,66 +106,53 @@ const Post = () => {
 
   const onLike = async () => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
-
-    console.log('init userLike', userLike)
-    if(!auth.currentUser) {
-      toast.error('Must be logged in')
-    } else {
-      const docRef = doc(db, 'posts', params.postId)
-      // first time sending a single field worked!
-      console.log('userLike state', userLike)
-      console.log('userLike truthy', userLike.length)
-      if (userLike.length < 1){
-        await updateDoc(docRef, {
-          likes: likes + 1
-        })
-        const newDoc = await addDoc(collection(db, 'likes'), {
-          userRef: auth.currentUser.uid,
-          postRef: params.postId,
-          postUserRef: userRef
-        })
-        console.log('new doc', newDoc);
-        setPost((prev) => ({
-          ...prev,
-          likes: likes + 1
-        }))
-        setUserLike([
-        {
-          data: {
-          userRef: auth.currentUser.uid,
-          postRef: params.postId,
-          postUserRef: userRef
-          },
-          id: newDoc.id
-        }
-        ])
+      if(!auth.currentUser) {
+        toast.error('Must be logged in')
       } else {
-        console.log('remove like hit', userLike[0])
-        await updateDoc(docRef, {
-          likes: likes - 1
-        })
-        await deleteDoc(doc(db, 'likes', userLike[0].id))
-        setPost((prev) => ({
-          ...prev,
-          likes: likes - 1
-        }))
-        setUserLike([])
+        const docRef = doc(db, 'posts', params.postId)
+        if (userLike.length < 1){
+          await updateDoc(docRef, {
+            likes: likes + 1
+          })
+          const newDoc = await addDoc(collection(db, 'likes'), {
+            userRef: auth.currentUser.uid,
+            postRef: params.postId,
+            postUserRef: userRef
+          })
+          setPost((prev) => ({
+            ...prev,
+            likes: likes + 1
+          }))
+          setUserLike([
+          {
+            data: {
+            userRef: auth.currentUser.uid,
+            postRef: params.postId,
+            postUserRef: userRef
+            },
+            id: newDoc.id
+          }
+          ])
+        } else {
+          await updateDoc(docRef, {
+            likes: likes - 1
+          })
+          await deleteDoc(doc(db, 'likes', userLike[0].id))
+          setPost((prev) => ({
+            ...prev,
+            likes: likes - 1
+          }))
+          setUserLike([])
+        }
       }
     }
-    }
-    // TODO: smart button
-    // Make useEffect also fetch any likes from this logged in user for this post and add to state
-    // const [like, setLike] = useState({})
-    // query like table where likerId = currentUser.Id
-    // Creates or deletes a like depending on if there is a like in the state
-    // make the icon render depending on whether or not there is a like in the state
   }
 
   const onInstaAdd = async (url) => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
 
     instaUrls.push(url)
@@ -198,7 +176,7 @@ const Post = () => {
 
   const onYouTubeAdd = async (url) => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
     youTubeUrls.push(url)
     const youTubeUrlsCopy = youTubeUrls
@@ -221,7 +199,7 @@ const Post = () => {
 
   const onInstaRemove = async (url) => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
 
     setFormData((prevState) => ({
@@ -240,7 +218,7 @@ const Post = () => {
 
   const onYouTubeRemove = async (url) => {
     if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
-      toast.error('Demo post locked')
+      toast.error('Demo account locked')
     } else {
 
     setFormData((prevState) => ({

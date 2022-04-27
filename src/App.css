@@ -295,6 +295,7 @@ body {
 }
 
 .editButton {
+	font-size: 1rem;
 	position: absolute !important;
 	top: 0;
 	right: calc(var(--bs-gutter-x) * 0.5);
@@ -326,10 +327,12 @@ body {
 
 .socialEmbedAddButton {
 	cursor: pointer;
+	font-size: 1rem;
 }
 
 .socialEmbedAddButton:hover {
 	color: grey;
+	transform: rotate(90deg);
 }
 
 .socialCardBody {
