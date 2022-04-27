@@ -311,13 +311,22 @@ body {
 }
 
 .socialColumn {
+	margin-top: 5px;
 	padding: 0px;
 	display: flex;
 	flex-direction: column;
 }
 
+@media (min-width: 768px) {
+	.instaColumn {
+		padding-left: 2.5px;
+	}
+	.youTubeColumn {
+		padding-right: 2.5px;
+	}
+}
+
 .socialColumnTitle {
-	margin-top: 5px;
 	display: flex;
 	justify-content: space-between;
 }

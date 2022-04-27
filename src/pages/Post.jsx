@@ -288,28 +288,7 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
           <Row>
-            <Col className="socialColumn" style={{paddingRight: '2.5px'}} md={6}>
-              <div className="socialColumnTitle">
-                <span className="socialColumnEmbedTitle">Instagram</span>
-                {post.userRef == auth.currentUser?.uid &&
-                  <i onClick={handleInstaAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
-                }
-                <AddInstaModal
-                  instaAddShow={instaAddShow}
-                  handleInstaAddClose={handleInstaAddClose}
-                  onInstaAdd={onInstaAdd}
-                />
-              </div>
-              {instaUrls.map((url) => (
-                <InstaGramTile 
-                  url={url}
-                  onInstaRemove={onInstaRemove}
-                  postUser={post.userRef}
-                  currentUser={auth.currentUser?.uid}
-                />
-              ))}
-            </Col>
-            <Col className="socialColumn" style={{paddingLeft: '2.5px'}} md={6}>
+            <Col className="socialColumn youTubeColumn" md={6}>
               <div className="socialColumnTitle">
                 <span className="socialColumnEmbedTitle">YouTube</span>
                 {post.userRef == auth.currentUser?.uid &&
@@ -327,6 +306,27 @@ const Post = () => {
                   currentUser={auth.currentUser?.uid}
                   url={url}
                   onYouTubeRemove={onYouTubeRemove}
+                />
+              ))}
+            </Col>
+            <Col className="socialColumn instaColumn" md={6}>
+              <div className="socialColumnTitle">
+                <span className="socialColumnEmbedTitle">Instagram</span>
+                {post.userRef == auth.currentUser?.uid &&
+                  <i onClick={handleInstaAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
+                }
+                <AddInstaModal
+                  instaAddShow={instaAddShow}
+                  handleInstaAddClose={handleInstaAddClose}
+                  onInstaAdd={onInstaAdd}
+                />
+              </div>
+              {instaUrls.map((url) => (
+                <InstaGramTile 
+                  url={url}
+                  onInstaRemove={onInstaRemove}
+                  postUser={post.userRef}
+                  currentUser={auth.currentUser?.uid}
                 />
               ))}
             </Col>
