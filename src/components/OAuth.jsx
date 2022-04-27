@@ -22,11 +22,13 @@ function OAuth() {
       const docSnap = await getDoc(docRef)
 
       // If user, doesn't exist, create user
+      console.log('user info', user)
       if (!docSnap.exists()) {
         await setDoc(doc(db, 'users', user.uid), {
           name: user.displayName,
           email: user.email,
           timestamp: serverTimestamp(),
+          imageUrl: user.photoURL
         })
       }
       navigate('/')

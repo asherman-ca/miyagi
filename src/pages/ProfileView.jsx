@@ -54,7 +54,12 @@ function ProfileView() {
   const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
 
   // TODO: add provider images to profileimage key in user records
-  const profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
+  let profileImage
+  if (user.imageUrl) {
+    profileImage = user.imageUrl
+  } else {
+    profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
+  }
 
   return (
     <Container>
