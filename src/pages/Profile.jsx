@@ -64,7 +64,7 @@ function Profile() {
     <Container>
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <Row className="profileHeader mb-2">
+          <Row className="profileHeader">
             <Col xs={4} className="profileImageCol">
               <Image 
                 rounded

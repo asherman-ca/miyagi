@@ -248,7 +248,7 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
-              <Col style={{paddingRight: '0px'}} xs={4}>
+              <Col style={{paddingRight: '0px', paddingLeft: '0px'}} xs={4}>
                 <Card>
                   <Card.Img
                     className="cardImage" variant="top" src={imgUrls[0]}/>
@@ -259,7 +259,7 @@ const Post = () => {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col xs={8} className="postCardCol">
+              <Col xs={8} className="postCardDetailsCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
                     <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@ {userName}</span></Link>
