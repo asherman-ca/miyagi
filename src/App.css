@@ -104,6 +104,10 @@ body {
 	cursor: pointer;
 }
 
+.postItemRow {
+	padding: 0 5px;
+}
+
 .postItemRow .postItemCol:nth-child(3n + 2) {
 	padding: 2.5px 2.5px !important;
 }
@@ -148,7 +152,7 @@ body {
 
 .profileHeader {
 	margin-bottom: 2.5px;
-	padding: 5px 0px;
+	padding: 5px;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
@@ -223,7 +227,7 @@ body {
 /* Post View */
 
 .postHeader {
-	padding: 5px 0px;
+	padding: 5px;
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
@@ -266,21 +270,21 @@ body {
 
 .postCardDetailsCol {
 	position: relative !important;
-	padding-left: 10px !important;
+	padding-left: 5px !important;
 }
 
 .postCard {
-	/* max-height: 150px; */
+	max-height: 116px;
 	overflow-y: overlay;
 	border: none !important;
 	white-space: pre-wrap;
 }
 
-/* @media (min-width: 900px) {
+@media (min-width: 900px) {
 	.postCard {
-		max-height: 250px;
+		max-height: 284px;
 	}
-} */
+}
 
 .postCardHeader {
 	font-weight: bold !important;
@@ -319,7 +323,7 @@ body {
 
 .socialColumn {
 	margin-top: 5px;
-	padding: 0px;
+	padding: 0px 5px;
 	display: flex;
 	flex-direction: column;
 }
@@ -336,7 +340,8 @@ body {
 .socialColumnTitle {
 	display: flex;
 	justify-content: space-between;
-	padding-left: 5px;
+	padding: 0 5px;
+	
 }
 
 .socialColumnEmbedTitle {
