@@ -288,7 +288,7 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
           <Row>
-            <Col className="socialColumn" md={6}>
+            <Col className="socialColumn" style={{paddingRight: '2.5px'}} md={6}>
               <div className="socialColumnTitle">
                 <span className="socialColumnEmbedTitle">Instagram</span>
                 {post.userRef == auth.currentUser?.uid &&
@@ -309,7 +309,7 @@ const Post = () => {
                 />
               ))}
             </Col>
-            <Col className="socialColumn" md={6}>
+            <Col className="socialColumn" style={{paddingLeft: '2.5px'}} md={6}>
               <div className="socialColumnTitle">
                 <span className="socialColumnEmbedTitle">YouTube</span>
                 {post.userRef == auth.currentUser?.uid &&

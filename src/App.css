@@ -311,12 +311,13 @@ body {
 }
 
 .socialColumn {
-	padding-top: 10px;
+	padding: 0px;
 	display: flex;
 	flex-direction: column;
 }
 
 .socialColumnTitle {
+	margin-top: 5px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -344,7 +345,7 @@ body {
 }
 
 .socialCardContainer {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .previewFrame {
