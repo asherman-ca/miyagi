@@ -74,10 +74,10 @@ function ProfileView() {
                 alt="Change Profile Photo"
               />
             </Col>            
-            <Col xs={8}>
+            <Col xs={8} className="profileHeaderCol">
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
-                  @ {user.name}
+                  <span>{user.name}</span>
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}

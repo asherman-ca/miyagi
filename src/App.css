@@ -317,7 +317,8 @@ body {
 	font-size: 1rem;
 	position: absolute !important;
 	top: 0;
-	right: calc(var(--bs-gutter-x) * 0.5);
+	/* right: calc(var(--bs-gutter-x) * 0.5); */
+	right: 0;
 	cursor: pointer;
 }
 
