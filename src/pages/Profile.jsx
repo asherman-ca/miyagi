@@ -3,19 +3,20 @@ import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { useNavigate, Link } from 'react-router-dom'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, limit } from 'firebase/firestore'
 import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
 import {
   getStorage,
   ref,
   uploadBytesResumable,
-  getDownloadURL,
+  getDownloadURL
 } from 'firebase/storage'
-import PostItem from '../components/PostItem'
+import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
+import PostItem from '../components/PostItem'
 import Spinner from '../components/Spinner'
 import ProfileImageModal from '../components/ProfileImageModal'
-import { v4 as uuidv4 } from 'uuid'
+import ProfileEditModal from '../components/ProfileEditModal'
 
 function Profile() {
   const auth = getAuth()
@@ -23,9 +24,14 @@ function Profile() {
   const [posts, setPosts] = useState(null)
   const [nameForm, setNameForm] = useState(auth.currentUser.displayName)
   const [urlForm, setUrlForm] = useState({})
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [editShow, setEditShow] = useState(false);
+  const handleEditClose = () => setEditShow(false);
+  const handleEditShow = () => setEditShow(true);
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -57,16 +63,29 @@ function Profile() {
 
   const onNameSubmit = async (e) => {
     e.preventDefault()
-    
-    await updateProfile(auth.currentUser, {
-      displayName: nameForm,
-    })
 
-    const userRef = doc(db, 'users', auth.currentUser.uid)
-    await updateDoc(userRef, {
-      name: nameForm
-    })
-    toast.success('Name updated')
+    const existingUserRef = collection(db, 'users')
+    const q = query(
+      existingUserRef,
+      where('name', '==', nameForm),
+      limit(10)
+    )
+    
+    const existingUserSnap = await getDocs(q)
+    if(existingUserSnap.empty){
+      await updateProfile(auth.currentUser, {
+        displayName: nameForm,
+      })
+
+      const userRef = doc(db, 'users', auth.currentUser.uid)
+      await updateDoc(userRef, {
+        name: nameForm
+      })
+      toast.success('Name updated')
+      handleEditClose()
+    } else {
+      toast.error('Name unavailable')
+    }
   }
 
   const onNameChange = (e) => {
@@ -135,6 +154,7 @@ function Profile() {
     })
 
     setLoading(false)  
+    handleClose()
     toast.success('Image saved')
   }
 
@@ -157,6 +177,12 @@ function Profile() {
         onImageUpdate={onImageUpdate}
         handleClose={handleClose}
       />
+      <ProfileEditModal
+        editShow={editShow}
+        onNameChange={onNameChange}
+        onNameSubmit={onNameSubmit}
+        handleEditClose={handleEditClose}
+      />
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader">
@@ -173,7 +199,7 @@ function Profile() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <span>{auth.currentUser.displayName}</span>
-                  <Button variant="outline-dark" className="editButton">Edit</Button>
+                  <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}

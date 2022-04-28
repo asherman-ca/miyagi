@@ -157,7 +157,7 @@ body {
 }
 
 .profileHeaderCol {
-	padding: 0 5px !important;
+	padding: 0 5px 0 10px !important;
 }
 
 .profileHeaderTitle {
@@ -276,7 +276,7 @@ body {
 
 .postCardDetailsCol {
 	position: relative !important;
-	padding: 0 5px !important;
+	padding: 0 5px 0 10px !important;
 }
 
 .postCard {

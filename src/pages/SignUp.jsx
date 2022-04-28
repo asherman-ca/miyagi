@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import OAuth from '../components/OAuth'
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
+import { setDoc, doc, serverTimestamp, collection, query, where, limit, getDocs } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from '../assets/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/visibilityIcon.svg'
@@ -34,33 +34,79 @@ function SignUp() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    const existingUserRef = collection(db, 'users')
+    const q = query(
+      existingUserRef,
+      where('name', '==', formData.name),
+      limit(10)
+    )
+    const q2 = query(
+      existingUserRef,
+      where('email', '==', formData.email),
+      limit(10)
+    )
+    const existingUserSnap = await getDocs(q)
+    const existingUserSnap2 =  await getDocs(q2)
+    if(existingUserSnap.empty && existingUserSnap2.empty){
+      try {
+        const auth = getAuth()
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        )
 
-    try {
-      const auth = getAuth()
+        const user = userCredential.user
 
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      )
+        // adds a displayName to our new auth object for this user. Oauth'd users already have displayname set by their providers
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
 
-      const user = userCredential.user
+        const formDataCopy = { ...formData }
+        delete formDataCopy.password
+        formDataCopy.timestamp = serverTimestamp()
 
-      // adds a displayName to our new auth object for this user. Oauth'd users already have displayname set by their providers
-      updateProfile(auth.currentUser, {
-        displayName: name,
-      })
+        await setDoc(doc(db, 'users', user.uid), formDataCopy)
+        toast.success('User created')
 
-      const formDataCopy = { ...formData }
-      delete formDataCopy.password
-      formDataCopy.timestamp = serverTimestamp()
-
-      await setDoc(doc(db, 'users', user.uid), formDataCopy)
-
-      navigate('/')
-    } catch (error) {
-      toast.error('Something went wrong with registration')
+        navigate('/')
+      } catch (error) {
+        toast.error('Something went wrong with registration')
+      }
     }
+    else {
+      toast.error('Name or email taken')
+    }
+
+    // try {
+    //   const auth = getAuth()
+
+
+
+    //   const userCredential = await createUserWithEmailAndPassword(
+    //     auth,
+    //     email,
+    //     password
+    //   )
+
+    //   const user = userCredential.user
+
+    //   // adds a displayName to our new auth object for this user. Oauth'd users already have displayname set by their providers
+    //   updateProfile(auth.currentUser, {
+    //     displayName: name,
+    //   })
+
+    //   const formDataCopy = { ...formData }
+    //   delete formDataCopy.password
+    //   formDataCopy.timestamp = serverTimestamp()
+
+    //   await setDoc(doc(db, 'users', user.uid), formDataCopy)
+
+    //   navigate('/')
+    // } catch (error) {
+    //   toast.error('Something went wrong with registration')
+    // }
   }
 
   return (
