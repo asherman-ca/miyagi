@@ -21,14 +21,8 @@ function Profile() {
   const auth = getAuth()
   const [loading, setLoading] = useState(true)
   const [posts, setPosts] = useState(null)
-  const [formData, setFormData] = useState({
-    name: auth.currentUser.displayName,
-    email: auth.currentUser.email
-  })
+  const [nameForm, setNameForm] = useState(auth.currentUser.displayName)
   const [urlForm, setUrlForm] = useState({})
-
-  const {name, email} = formData
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -61,17 +55,26 @@ function Profile() {
     fetchUserPosts()
   }, [auth.currentUser.uid])
 
-  // const onChange = (e) => {
-  //   e.preventDefault()
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [e.target.id]: e.target.value
-  //   }))
-  // }
+  const onNameSubmit = async (e) => {
+    e.preventDefault()
+    
+    await updateProfile(auth.currentUser, {
+      displayName: nameForm,
+    })
+
+    const userRef = doc(db, 'users', auth.currentUser.uid)
+    await updateDoc(userRef, {
+      name: nameForm
+    })
+    toast.success('Name updated')
+  }
+
+  const onNameChange = (e) => {
+    e.preventDefault()
+    setNameForm(() => (e.target.value))
+  }
 
   const onImageSubmit = async (e) => {
-    console.log('submit hit', urlForm)
-
     e.preventDefault()
     setLoading(true)
     const storeImage = async (image) => {
@@ -131,9 +134,6 @@ function Profile() {
       imageUrl: imgUrls[0]
     })
 
-
-    console.log('image urls', imgUrls[0])
-
     setLoading(false)  
     toast.success('Image saved')
   }
@@ -141,19 +141,11 @@ function Profile() {
   const onImageUpdate = (e) => {
     e.preventDefault()
     setUrlForm(() => (e.target.files))
-    console.log(urlForm)
   }
 
   if (loading) {
     return <Container>Loading</Container>
   }
-
-  // let profileImage
-  // if (imageUrl) {
-  //   profileImage = imageUrl
-  // } else if (!profileImage) {
-  //   profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
-  // }
 
   const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')
 
@@ -177,10 +169,11 @@ function Profile() {
                 style={{cursor: 'pointer'}}
               />
             </Col>            
-            <Col xs={8}>
+            <Col xs={8} className="profileHeaderCol">
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
-                  @ {auth.currentUser.displayName}
+                  <span>@ {auth.currentUser.displayName}</span>
+                  <Button variant="outline-dark">Edit</Button>
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}
@@ -189,9 +182,6 @@ function Profile() {
                   <i className="bi bi-stickies"></i> {posts.length} posts
                 </Card.Text>
               </Card>
-              <Link className="editButton" to={'/edit-profile'}>
-                <Button variant="outline-dark">Edit</Button>
-              </Link>
             </Col>
           </Row>
           {!loading && !posts.length && (
