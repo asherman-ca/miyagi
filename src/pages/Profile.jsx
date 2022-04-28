@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { useNavigate, Link } from 'react-router-dom'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, limit } from 'firebase/firestore'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, limit, writeBatch } from 'firebase/firestore'
 import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
 import {
   getStorage,
@@ -81,6 +81,16 @@ function Profile() {
       await updateDoc(userRef, {
         name: nameForm
       })
+
+      if(posts.length > 0) {
+        const batch = writeBatch(db)
+        posts.forEach((post) => {
+          const postRef = doc(db, 'posts', post.id)
+          batch.update(postRef, {userName: nameForm})
+        })
+        await batch.commit()
+      }
+      
       toast.success('Name updated')
       handleEditClose()
     } else {
