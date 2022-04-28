@@ -157,7 +157,10 @@ body {
 }
 
 .profileHeaderCol {
-	padding: 0 5px 0 10px !important;
+	padding: 0 5px !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .profileHeaderTitle {
@@ -247,10 +250,6 @@ body {
 	box-shadow: none;
 }
 
-.postItemRow {
-	/* padding: 0px 10px !important; */
-}
-
 .postItemBody {
 	display: flex;
 	flex-direction: row;
@@ -262,21 +261,11 @@ body {
 	display: flex;
 }
 
-/* .postImage {
-	width: 100%;
-	height: 150px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-@media (min-width: 900px) {
-	.postImage {
-		height: 250px;
-	}
-} */
-
 .postCardDetailsCol {
-	position: relative !important;
-	padding: 0 5px 0 10px !important;
+	padding: 0 5px !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .postCard {
@@ -293,10 +282,7 @@ body {
 }
 
 .postCardHeader {
-	font-weight: bold !important;
 	margin-bottom: 0px !important;
-	display: flex;
-	justify-content: space-between;
 }
 
 .postCardTitle {
@@ -314,11 +300,6 @@ body {
 }
 
 .editButton {
-	font-size: 1rem;
-	/* position: absolute !important; */
-	top: 0;
-	/* right: calc(var(--bs-gutter-x) * 0.5); */
-	right: 0;
 	cursor: pointer;
 }
 

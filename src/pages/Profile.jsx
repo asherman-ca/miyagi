@@ -199,7 +199,7 @@ function Profile() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <span>{auth.currentUser.displayName}</span>
-                  <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
+                  
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}
@@ -208,6 +208,7 @@ function Profile() {
                   <i className="bi bi-stickies"></i> {posts.length} posts
                 </Card.Text>
               </Card>
+              <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
             </Col>
           </Row>
           {!loading && !posts.length && (
