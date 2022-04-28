@@ -8,23 +8,23 @@ import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
+import ProfileImageModal from '../components/ProfileImageModal'
 
 function Profile() {
   const auth = getAuth()
   const [loading, setLoading] = useState(true)
+  const [posts, setPosts] = useState(null)
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email
   })
-  const [posts, setPosts] = useState(null)
+  const [urlForm, setUrlForm] = useState({})
 
-  // let profileImage = auth.currentUser.imageUrl
-  let profileImage
-  if (auth.currentUser.photoURL) {
-    profileImage = auth.currentUser.photoURL
-  } else if (!profileImage) {
-    profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
-  }
+  const {name, email} = formData
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -54,23 +54,56 @@ function Profile() {
     fetchUserPosts()
   }, [auth.currentUser.uid])
 
+  // const onChange = (e) => {
+  //   e.preventDefault()
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [e.target.id]: e.target.value
+  //   }))
+  // }
+
+  const onImageSubmit = (e) => {
+    e.preventDefault()
+    console.log('submit hit', urlForm)
+  }
+
+  const onImageUpdate = (e) => {
+    e.preventDefault()
+    setUrlForm(() => (e.target.files))
+    console.log(urlForm)
+  }
+
   if (loading) {
     return <div><Spinner/></div>
   }
+
+  // let profileImage
+  // if (imageUrl) {
+  //   profileImage = imageUrl
+  // } else if (!profileImage) {
+  //   profileImage = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'
+  // }
 
   const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')
 
   return (
     <Container>
+      <ProfileImageModal 
+        show={show}
+        onImageSubmit={onImageSubmit}
+        onImageUpdate={onImageUpdate}
+        handleClose={handleClose}
+      />
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
           <Row className="profileHeader">
-            <Col xs={4} className="profileImageCol">
+            <Col xs={4} className="profileImageCol" onClick={handleShow}>
               <Image 
                 rounded
                 className="profileImage"
-                src={profileImage}
+                src={auth.currentUser?.photoURL || 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'}
                 alt="Change Profile Photo"
+                style={{cursor: 'pointer'}}
               />
             </Col>            
             <Col xs={8}>

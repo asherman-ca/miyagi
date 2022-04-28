@@ -28,10 +28,10 @@ const AddInstaModal = ({handleInstaAddClose, onInstaAdd, instaAddShow}) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleInstaAddClose}>
+        <Button variant="outline-dark" onClick={handleInstaAddClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => onInstaAdd(url)}>
+        <Button variant="outline-dark" onClick={() => onInstaAdd(url)}>
           Save Changes
         </Button>
       </Modal.Footer>

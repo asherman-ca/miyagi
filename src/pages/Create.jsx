@@ -174,7 +174,7 @@
               <Form.Group className="mb-3">
                 {/* <Form.Label>Instagram</Form.Label> */}
                 <Form.Text className="text-muted">
-                  Add an Instagram page to your post. You can add more later.
+                  Add an Instagram page to your post.
                 </Form.Text>
                 <Form.Control
                   type="instagram"
@@ -187,7 +187,7 @@
               <Form.Group className="mb-3">
                 {/* <Form.Label>YouTube</Form.Label> */}
                 <Form.Text className="text-muted">
-                  Add a YouTube page to your post. You can add more later.
+                  Add a YouTube page to your post.
                 </Form.Text>
                 <Form.Control
                   type="youtube"

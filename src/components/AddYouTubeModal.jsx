@@ -28,10 +28,10 @@ const AddYouTubeModal = ({handleYouTubeAddClose, onYouTubeAdd, youTubeAddShow}) 
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleYouTubeAddClose}>
+        <Button variant="outline-dark" onClick={handleYouTubeAddClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => onYouTubeAdd(url)}>
+        <Button variant="outline-dark" onClick={() => onYouTubeAdd(url)}>
           Save Changes
         </Button>
       </Modal.Footer>
