@@ -5,10 +5,17 @@ import { db } from '../firebase.config'
 import { useNavigate, Link } from 'react-router-dom'
 import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
 import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import ProfileImageModal from '../components/ProfileImageModal'
+import { v4 as uuidv4 } from 'uuid'
 
 function Profile() {
   const auth = getAuth()
@@ -62,9 +69,73 @@ function Profile() {
   //   }))
   // }
 
-  const onImageSubmit = (e) => {
-    e.preventDefault()
+  const onImageSubmit = async (e) => {
     console.log('submit hit', urlForm)
+
+    e.preventDefault()
+    setLoading(true)
+    const storeImage = async (image) => {
+      return new Promise((resolve, reject) => {
+        const storage = getStorage()
+        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+
+        const storageRef = ref(storage, 'images/' + fileName)
+
+        const uploadTask = uploadBytesResumable(storageRef, image)
+
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            console.log('Upload is ' + progress + '% done')
+            switch (snapshot.state) {
+              case 'paused':
+                console.log('Upload is paused')
+                break
+              case 'running':
+                console.log('Upload is running')
+                break
+              default:
+                break  
+            }
+          },
+          (error) => {
+            reject(error)
+          },
+          () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              resolve(downloadURL)
+            })
+          }
+        )
+      })
+    }
+
+    const imgUrls = await Promise.all(
+      [...urlForm].map((image) => storeImage(image))
+    ).catch(() => {
+      setLoading(false)
+      toast.error('Images not uploaded')
+      return
+    })
+
+    await updateProfile(auth.currentUser, {
+      photoURL: imgUrls[0],
+    })
+
+    const userRef = doc(db, 'users', auth.currentUser.uid)
+    await updateDoc(userRef, {
+      imageUrl: imgUrls[0]
+    })
+
+
+    console.log('image urls', imgUrls[0])
+
+    setLoading(false)  
+    toast.success('Image saved')
   }
 
   const onImageUpdate = (e) => {
@@ -74,7 +145,7 @@ function Profile() {
   }
 
   if (loading) {
-    return <div><Spinner/></div>
+    return <Container>Loading</Container>
   }
 
   // let profileImage
