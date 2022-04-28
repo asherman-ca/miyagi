@@ -262,15 +262,15 @@ const Post = () => {
               <Col xs={8} className="postCardDetailsCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
-                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@ {userName}</span></Link>
+                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
                   </Card.Title>
                   <Card.Text>
                     {notes}
                   </Card.Text>
                 </Card>
                 {post.userRef == auth.currentUser?.uid &&
-                  <i onClick={handleShow} className="bi bi-gear editButton"></i>
-                }
+                      <Button variant="outline-dark" className="editButton" onClick={handleShow}>Edit</Button>
+                    }
                 <EditModal 
                   show={show}
                   title={title}
