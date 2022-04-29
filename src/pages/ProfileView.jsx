@@ -78,7 +78,7 @@ function ProfileView() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <div>
-                    <i class="bi bi-bookmarks profileIcon" style={{paddingRight: '2.5px'}} />{user.name}
+                    <i class="bi bi-bookmarks profileIcon" style={{paddingRight: '4px'}} />{user.name}
                   </div>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
