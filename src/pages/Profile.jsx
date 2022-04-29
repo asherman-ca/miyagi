@@ -63,7 +63,9 @@ function Profile() {
 
   const onNameSubmit = async (e) => {
     e.preventDefault()
-
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo account locked')
+    } else {
     const existingUserRef = collection(db, 'users')
     const q = query(
       existingUserRef,
@@ -96,6 +98,7 @@ function Profile() {
     } else {
       toast.error('Name unavailable')
     }
+    }
   }
 
   const onNameChange = (e) => {
@@ -105,6 +108,9 @@ function Profile() {
 
   const onImageSubmit = async (e) => {
     e.preventDefault()
+    if (auth.currentUser?.uid === 'cvT4fO1bQIR8HykmCmHYz82IlAu1') {
+      toast.error('Demo account locked')
+    } else {
     setLoading(true)
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
@@ -166,6 +172,7 @@ function Profile() {
     setLoading(false)  
     handleClose()
     toast.success('Image saved')
+    }
   }
 
   const onImageUpdate = (e) => {
@@ -192,6 +199,7 @@ function Profile() {
         onNameChange={onNameChange}
         onNameSubmit={onNameSubmit}
         handleEditClose={handleEditClose}
+        placeHolder={auth.currentUser.displayName}
       />
       <Row>
         <Col md={{ span: 8, offset: 2 }}>

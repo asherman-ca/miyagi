@@ -1,6 +1,6 @@
 import { Modal, Form, Button } from 'react-bootstrap'
 
-const ProfileEditModal = ({handleEditClose, onNameChange, onNameSubmit, editShow }) => {
+const ProfileEditModal = ({handleEditClose, onNameChange, onNameSubmit, editShow, placeHolder }) => {
 
   return (
     <Modal show={editShow} onHide={handleEditClose}>
@@ -15,6 +15,7 @@ const ProfileEditModal = ({handleEditClose, onNameChange, onNameSubmit, editShow
                 type="text"
                 id="name"
                 onChange={onNameChange}
+                placeholder={placeHolder}
                 required
               />
             </Form.Group>
