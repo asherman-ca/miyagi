@@ -295,7 +295,7 @@ const Post = () => {
                 onClick={post.userRef == auth.currentUser?.uid && handleYouTubeAddShow} 
                 className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
               >
-                <i className="bi bi-youtube socialEmbedAddIcon"/><span className="socialColumnEmbedTitle">YouTube</span>
+                <i className="bi bi-youtube socialEmbedAddIcon"/><span className="socialColumnName">YouTube</span>
               </div>
               {youTubeUrls.map((url) => (
                 <YouTubeTile
@@ -311,7 +311,7 @@ const Post = () => {
                 onClick={post.userRef == auth.currentUser?.uid && handleInstaAddShow} 
                 className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
               >
-                <i  className="bi bi-instagram socialEmbedAddIcon"/><span className="socialColumnEmbedTitle">Instagram</span>
+                <i  className="bi bi-instagram socialEmbedAddIcon"/><span className="socialColumnName">Instagram</span>
               </div>
               {instaUrls.map((url) => (
                 <InstaGramTile 

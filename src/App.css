@@ -1,5 +1,10 @@
 /* Utilities */
 
+:root {
+	--clr-neon: hsl(317 100% 54%);
+	--clr-bg: hsl(323 21% 6%)
+}
+
 .marginLeftAuto {
 	margin-left: auto;
 }
@@ -15,6 +20,9 @@ body {
 	font-size: .9rem;
 	padding: 53px 0px 56px 0px;
 	overflow-y: overlay;
+	/* background-color: var(--clr-bg); */
+	/* color: var(--clr-neon); */
+	/* min-height: 100vh; */
 }
 
 .form-control {
@@ -299,14 +307,6 @@ body {
 	color: grey;
 }
 
-.editButton {
-	cursor: pointer;
-}
-
-.editButton:hover {
-	color: grey;
-}
-
 .postDeleteButton {
 	margin-right: auto !important;
 }
@@ -328,20 +328,8 @@ body {
 }
 
 .socialColumnTitle {
-	/* display: flex; */
-	/* justify-content: space-between; */
 	margin-right: auto;
 	padding: 0 5px;
-	
-}
-
-.socialColumnEmbedTitle {
-	font-weight: bold !important;
-}
-
-.socialEmbedAddIcon {
-	font-size: 1rem;
-	padding-right: 5px;
 }
 
 .socialColumnButtonTitle {
@@ -354,20 +342,14 @@ body {
 	color: grey;
 }
 
-/* .socialEmbedAddButton {
-	cursor: pointer;
+.socialColumnName {
+	font-weight: bold !important;
+}
+
+.socialEmbedAddIcon {
 	font-size: 1rem;
 	padding-right: 5px;
 }
-
-.socialEmbedAddButtonAlt {
-	font-size: 1rem;
-	padding-right: 5px;
-}
-
-.socialEmbedAddButton:hover {
-	color: grey;
-} */
 
 .socialCardBody {
 	padding: 0px !important;
