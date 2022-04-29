@@ -5,6 +5,7 @@ import { collection, getDocs, query, where, orderBy, limit } from 'firebase/fire
 import { db } from '../firebase.config'
 import PostItem from '../components/PostItem'
 import { toast } from 'react-toastify'
+import { onOrderChange, onSearch } from '../actions/exploreActions'
 
 export default function Explore() {
   const params = useParams()
@@ -17,22 +18,11 @@ export default function Explore() {
     const fetchPosts = async () => {
       try {
         const postsRef = collection(db, 'posts')
-
-        let q
-        if (params.exploreParam == 'liked') {
-          q = query(
-            postsRef,
-            orderBy('likes', 'desc'),
-            limit(20)
-          )
-        } else {
-          q = query(
-            postsRef,
-            orderBy('timestamp', 'desc'),
-            limit(20)
-          )
-        }
-
+        let  q = query(
+          postsRef,
+          orderBy('timestamp', 'desc'),
+          limit(20)
+        )
         const querySnap = await getDocs(q)
         const posts = []
 
@@ -53,114 +43,16 @@ export default function Explore() {
     fetchPosts()
   }, [params.exploreParam])
 
-  const onOrderChange = async (type) => {
-    setSearchOrder(type)
-    console.log('type', type)
-    const postsRef = collection(db, 'posts')
-    let q
-    if (type == 'timestamp') {
-        q = query(
-          postsRef,
-          where('userName', '==', searchWord),
-          orderBy('timestamp', 'desc'),
-          limit(20)
-        )
-        const querySnap = await getDocs(q)
-        if(!querySnap.empty){
-          let postArray = []
-          querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
-          setPosts(postArray)
-        } else {
-          q = query(
-            postsRef,
-            orderBy('timestamp', 'desc'),
-            limit(20)
-          )
-          const querySnap = await getDocs(q)
-          const posts = []
-
-          querySnap.forEach((doc) => {
-            return posts.push({
-              id: doc.id,
-              data: doc.data()
-            })
-          })
-
-          setPosts(posts)
-        }
-    } else {
-      q = query(
-        postsRef,
-        where('userName', '==', searchWord),
-        orderBy('likes', 'desc'),
-        limit(20)
-      )
-      const querySnap = await getDocs(q)
-      if(!querySnap.empty){
-        let postArray = []
-        querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
-        setPosts(postArray)
-      } else {
-        q = query(
-          postsRef,
-          orderBy('likes', 'desc'),
-          limit(20)
-        )
-        const querySnap = await getDocs(q)
-        const posts = []
-
-        querySnap.forEach((doc) => {
-          return posts.push({
-            id: doc.id,
-            data: doc.data()
-          })
-        })
-
-        setPosts(posts)
-      }
-    }
-    
-  }
-
-  const onSearch = async (e) => {
-    e.preventDefault()
-    setSearchWord(e.target.value)
-    const postsRef = collection(db, 'posts')
-    let q
-    if (params.exploreParam == 'liked' || searchOrder == 'liked') {
-      q = query(
-        postsRef,
-        where('userName', '==', e.target.value),
-        orderBy('likes', 'desc'),
-        limit(10)
-      )
-    } else {
-      q = query(
-        postsRef,
-        where('userName','==', e.target.value),
-        orderBy('timestamp', 'desc'),
-        limit(10)
-      )
-    }
-    const querySnap = await getDocs(q)
-    if(!querySnap.empty){
-      let postArray = []
-      querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
-      setPosts(postArray)
-    }
-  }
-
   return (
     <Container>
-      {console.log('render state', searchOrder)}
       <Row className="exploreContainer">
         <Col md={{ span: 8, offset: 2 }}>
-        <Nav variant="tabs" defaultActiveKey="/" activeKey={params.exploreParam} className="exploreNav">
+        <Nav variant="tabs" defaultActiveKey="/" className="exploreNav">
           <Nav.Item>
-            <Nav.Link eventKey="/" onClick={() => onOrderChange('timestamp')} className="tabLink">Newest</Nav.Link>
+            <Nav.Link eventKey="/" onClick={() => onOrderChange('timestamp', searchWord, setPosts, setSearchOrder)} className="tabLink">Newest</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="liked" onClick={() => onOrderChange('liked')} className="tabLink">Liked</Nav.Link>
+            <Nav.Link eventKey="liked" onClick={() => onOrderChange('liked', searchWord, setPosts, setSearchOrder)} className="tabLink">Liked</Nav.Link>
           </Nav.Item>
           
           <Form className="exploreSearchBar">
@@ -168,7 +60,7 @@ export default function Explore() {
               placeholder="Search User" 
               type="text"
               id="url"
-              onChange={onSearch}
+              onChange={(e) => onSearch(e, setSearchWord, searchOrder, setPosts)}
             />
           </Form>
         </Nav>
