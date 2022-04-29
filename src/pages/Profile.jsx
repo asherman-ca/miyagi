@@ -116,8 +116,8 @@ function Profile() {
           </Row>
           <Row>
             <Col className="profileNavTabs">
-              <i onClick={() => onSearchChange('posts', auth, setPosts)} className="bi bi-grid-3x3 profileNavIcon"> Posts</i>
-              <i onClick={() => onSearchChange('likes', auth, setPosts)} className="bi bi-heart-fill profileNavIcon"> Likes</i>
+              <i onClick={() => onSearchChange('posts', auth, setPosts, setSearchType)} className={searchType == 'posts' ? "bi bi-grid-3x3 profileNavIcon searched" : "bi bi-grid-3x3 profileNavIcon"}> Posts</i>
+              <i onClick={() => onSearchChange('likes', auth, setPosts, setSearchType)} className={searchType == 'likes' ? "bi bi-heart-fill profileNavIcon searched" : "bi bi-heart-fill profileNavIcon"}> Likes</i>
             </Col>
           </Row>
           {!loading && !posts.length && (

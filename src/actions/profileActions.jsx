@@ -130,7 +130,7 @@ const onImageUpdate = (e, setUrlForm) => {
   setUrlForm(() => (e.target.files))
 }
 
-const onSearchChange = async (type, auth, setPosts) => {
+const onSearchChange = async (type, auth, setPosts, setSearchType) => {
   const postsRef = collection(db, 'posts')
   if(type == 'posts') {
       const q = query(
@@ -140,7 +140,6 @@ const onSearchChange = async (type, auth, setPosts) => {
       )
 
       const querySnap = await getDocs(q)
-
       let posts = []
 
       querySnap.forEach((doc) => {
@@ -150,9 +149,9 @@ const onSearchChange = async (type, auth, setPosts) => {
         })
       })
 
+      setSearchType('posts')
       setPosts(posts)
   } else {
-    console.log('search hits')
     const likesRef = collection(db, 'likes')
     const q = query(
       likesRef,
@@ -162,10 +161,8 @@ const onSearchChange = async (type, auth, setPosts) => {
     const querySnap = await getDocs(q)
     let postRefs = []
     querySnap.forEach((doc) => {
-      // console.log(doc.data())
       postRefs.push(doc.data().postRef)
     })
-    // console.log(postRefs)
     const q2 = query(
       postsRef,
       where(documentId(), 'in', postRefs),
@@ -178,6 +175,7 @@ const onSearchChange = async (type, auth, setPosts) => {
         data: doc.data()
       })
     })
+    setSearchType('likes')
     setPosts(posts)
   }
 }

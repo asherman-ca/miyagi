@@ -252,12 +252,23 @@ body {
 }
 
 .profileNavTabs {
+	padding: 10px 0px;
 	display: flex;
 	justify-content: space-around;
+	/* border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 }
 
 .profileNavIcon {
 	font-size: 1rem;
+	cursor: pointer;
+}
+
+.profileNavIcon:hover {
+	color: grey;
+}
+
+.searched {
+	color: grey;
 }
 
 /* Post View */
