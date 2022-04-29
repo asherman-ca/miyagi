@@ -26,7 +26,9 @@ body {
 }
 
 .spinnerContainer {
-	margin-top: 33vh;
+	/* margin-top: 33vh; */
+	width: 50vh;
+	margin: 25vh auto 0;
 	display: flex;
 	justify-content: center;
 }
