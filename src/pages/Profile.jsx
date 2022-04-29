@@ -17,6 +17,7 @@ function Profile() {
   const [nameForm, setNameForm] = useState(auth.currentUser.displayName)
   const [urlForm, setUrlForm] = useState({})
   const [searchType, setSearchType] = useState('posts')
+  const [postTotal, setPostTotal] = useState(0)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -48,6 +49,7 @@ function Profile() {
       })
 
       setPosts(posts)
+      setPostTotal(posts.length)
       setLoading(false)
     }
 
@@ -108,7 +110,7 @@ function Profile() {
                   <i className="bi bi-calendar2-check"></i> {creationTime}
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies"></i> {posts.length} posts
+                  <i className="bi bi-stickies"></i> {postTotal} posts
                 </Card.Text>
               </Card>
               <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
