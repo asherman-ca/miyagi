@@ -22,7 +22,6 @@ function App() {
         <Topbar />
         <Routes>
           <Route path='/' element={<Explore />} />
-          <Route path='/:exploreParam' element={<Explore />} />
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
           </Route>
