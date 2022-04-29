@@ -253,16 +253,18 @@ const Post = () => {
                   <Card.Img
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
-                    <span className="postItemTitleSpan">{title}</span>
-                    <span>{likes}</span>
-                    <i onClick={onLike} style={{marginLeft: '3px', paddingTop: '1.25px', cursor: 'pointer'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
+                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
+                    <div style={{cursor: 'pointer'}} onClick={onLike}>
+                      <span>{likes}</span>
+                      <i style={{marginLeft: '3px', paddingTop: '1.25px'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
               <Col xs={8} className="postCardDetailsCol">
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
-                    <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
+                    <span>{title}</span>
                   </Card.Title>
                   <Card.Text>
                     {notes}
@@ -289,16 +291,11 @@ const Post = () => {
         <Col md={{ span: 8, offset: 2}}>
           <Row>
             <Col className="socialColumn youTubeColumn" md={6}>
-              <div className="socialColumnTitle">
-                <span className="socialColumnEmbedTitle">YouTube</span>
-                {post.userRef == auth.currentUser?.uid &&
-                  <i onClick={handleYouTubeAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
-                }
-                <AddYouTubeModal
-                  youTubeAddShow={youTubeAddShow}
-                  handleYouTubeAddClose={handleYouTubeAddClose}
-                  onYouTubeAdd={onYouTubeAdd}
-                />
+              <div 
+                onClick={post.userRef == auth.currentUser?.uid && handleYouTubeAddShow} 
+                className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
+              >
+                <i className="bi bi-youtube socialEmbedAddIcon"/><span className="socialColumnEmbedTitle">YouTube</span>
               </div>
               {youTubeUrls.map((url) => (
                 <YouTubeTile
@@ -310,16 +307,11 @@ const Post = () => {
               ))}
             </Col>
             <Col className="socialColumn instaColumn" md={6}>
-              <div className="socialColumnTitle">
-                <span className="socialColumnEmbedTitle">Instagram</span>
-                {post.userRef == auth.currentUser?.uid &&
-                  <i onClick={handleInstaAddShow} className="bi bi-plus-circle socialEmbedAddButton"></i>
-                }
-                <AddInstaModal
-                  instaAddShow={instaAddShow}
-                  handleInstaAddClose={handleInstaAddClose}
-                  onInstaAdd={onInstaAdd}
-                />
+              <div 
+                onClick={post.userRef == auth.currentUser?.uid && handleInstaAddShow} 
+                className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
+              >
+                <i  className="bi bi-instagram socialEmbedAddIcon"/><span className="socialColumnEmbedTitle">Instagram</span>
               </div>
               {instaUrls.map((url) => (
                 <InstaGramTile 
@@ -333,6 +325,16 @@ const Post = () => {
           </Row>
         </Col>
       </Row>
+      <AddYouTubeModal
+        youTubeAddShow={youTubeAddShow}
+        handleYouTubeAddClose={handleYouTubeAddClose}
+        onYouTubeAdd={onYouTubeAdd}
+      />
+      <AddInstaModal
+        instaAddShow={instaAddShow}
+        handleInstaAddClose={handleInstaAddClose}
+        onInstaAdd={onInstaAdd}
+      />
     </Container>
   )
 }

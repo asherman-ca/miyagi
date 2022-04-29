@@ -328,8 +328,9 @@ body {
 }
 
 .socialColumnTitle {
-	display: flex;
-	justify-content: space-between;
+	/* display: flex; */
+	/* justify-content: space-between; */
+	margin-right: auto;
 	padding: 0 5px;
 	
 }
@@ -338,15 +339,35 @@ body {
 	font-weight: bold !important;
 }
 
-.socialEmbedAddButton {
+.socialEmbedAddIcon {
+	font-size: 1rem;
+	padding-right: 5px;
+}
+
+.socialColumnButtonTitle {
+	margin-right: auto;
+	padding: 0 5px;
+}
+
+.socialColumnButtonTitle:hover {
+	cursor: pointer;
+	color: grey;
+}
+
+/* .socialEmbedAddButton {
 	cursor: pointer;
 	font-size: 1rem;
+	padding-right: 5px;
+}
+
+.socialEmbedAddButtonAlt {
+	font-size: 1rem;
+	padding-right: 5px;
 }
 
 .socialEmbedAddButton:hover {
 	color: grey;
-	transform: rotate(90deg);
-}
+} */
 
 .socialCardBody {
 	padding: 0px !important;
