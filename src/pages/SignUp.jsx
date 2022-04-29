@@ -78,35 +78,6 @@ function SignUp() {
     else {
       toast.error('Name or email taken')
     }
-
-    // try {
-    //   const auth = getAuth()
-
-
-
-    //   const userCredential = await createUserWithEmailAndPassword(
-    //     auth,
-    //     email,
-    //     password
-    //   )
-
-    //   const user = userCredential.user
-
-    //   // adds a displayName to our new auth object for this user. Oauth'd users already have displayname set by their providers
-    //   updateProfile(auth.currentUser, {
-    //     displayName: name,
-    //   })
-
-    //   const formDataCopy = { ...formData }
-    //   delete formDataCopy.password
-    //   formDataCopy.timestamp = serverTimestamp()
-
-    //   await setDoc(doc(db, 'users', user.uid), formDataCopy)
-
-    //   navigate('/')
-    // } catch (error) {
-    //   toast.error('Something went wrong with registration')
-    // }
   }
 
   return (

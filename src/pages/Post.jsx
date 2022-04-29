@@ -254,7 +254,7 @@ const Post = () => {
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
                     <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
-                    <div style={{cursor: 'pointer'}} onClick={onLike}>
+                    <div style={{cursor: 'pointer'}} onClick={onLike} className="likesDiv">
                       <span>{likes}</span>
                       <i style={{marginLeft: '3px', paddingTop: '1.25px'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
                     </div>

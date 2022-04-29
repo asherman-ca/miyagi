@@ -1,8 +1,8 @@
 /* Utilities */
 
 :root {
-	--clr-neon: hsl(317 100% 54%);
-	--clr-bg: hsl(323 21% 6%)
+	--clr-grey: rgba(var(--b6a, 219, 219, 219), 1);
+	--clr-bg: hsl(323 21% 6%);
 }
 
 .marginLeftAuto {
@@ -309,6 +309,10 @@ body {
 
 .postDeleteButton {
 	margin-right: auto !important;
+}
+
+.likesDiv:hover {
+	color: grey;
 }
 
 .socialColumn {
