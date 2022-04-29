@@ -1,10 +1,8 @@
-// import React from 'react'
 import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { useNavigate, Link } from 'react-router-dom'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, limit, writeBatch } from 'firebase/firestore'
-import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch } from 'firebase/firestore'
+import { Row, Col, Container, Image, Button, Card, Spinner } from 'react-bootstrap'
 import {
   getStorage,
   ref,
@@ -14,7 +12,6 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
 import PostItem from '../components/PostItem'
-import Spinner from '../components/Spinner'
 import ProfileImageModal from '../components/ProfileImageModal'
 import ProfileEditModal from '../components/ProfileEditModal'
 
@@ -181,7 +178,13 @@ function Profile() {
   }
 
   if (loading) {
-    return <Container>Loading</Container>
+    return ( 
+      <Container className="spinnerContainer">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    )
   }
 
   const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')

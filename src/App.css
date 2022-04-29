@@ -25,6 +25,12 @@ body {
 	/* min-height: 100vh; */
 }
 
+.spinnerContainer {
+	margin-top: 33vh;
+	display: flex;
+	justify-content: center;
+}
+
 .form-control {
 	font-size: .9rem !important;
 }

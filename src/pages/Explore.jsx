@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Container, Nav, Form } from 'react-bootstrap'
+import { Row, Col, Container, Nav, Form, Spinner } from 'react-bootstrap'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import PostItem from '../components/PostItem'
@@ -102,6 +102,15 @@ export default function Explore() {
             />
           </Form>
         </Nav>
+        {loading && (
+         
+              <Container className="spinnerContainer">
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </Container>
+          
+        )}
         {!loading && posts?.length > 0 && (
           <Row className="postItemRow">
             {posts.map((post) => (

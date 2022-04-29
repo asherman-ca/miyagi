@@ -1,13 +1,12 @@
-// import React from 'react'
 import { useState, useEffect } from 'react'
-import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { useNavigate, Link, useParams } from 'react-router-dom'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, getDoc } from 'firebase/firestore'
-import { Row, Col, Container, Image, Button, Card } from 'react-bootstrap'
-import PostItem from '../components/PostItem'
+import { useParams } from 'react-router-dom'
+import { doc, collection, getDocs, query, where, orderBy, getDoc } from 'firebase/firestore'
+import { Row, Col, Container, Image, Card, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
-import Spinner from '../components/Spinner'
+import PostItem from '../components/PostItem'
+// import Spinner from '../components/Spinner'
+
 
 function ProfileView() {
   const params = useParams()
@@ -48,7 +47,13 @@ function ProfileView() {
   }, [params.profileId])
 
   if (loading) {
-    return <div><Spinner/></div>
+    return ( 
+      <Container className="spinnerContainer">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    )
   }
 
   const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')

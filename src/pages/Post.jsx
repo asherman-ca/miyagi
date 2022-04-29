@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit, addDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Spinner, Card, Button } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
 import AddYouTubeModal from '../components/AddYouTubeModal'
@@ -238,7 +238,13 @@ const Post = () => {
   }
 
   if (loading) {
-    return <Container>Loading</Container>
+    return ( 
+      <Container className="spinnerContainer">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    )
   }
   
   const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef, likes } = post
