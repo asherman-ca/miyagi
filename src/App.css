@@ -291,6 +291,8 @@ body {
 
 .postCardHeader {
 	margin-bottom: 0px !important;
+	display: flex;
+	justify-content: space-between;
 }
 
 .postCardTitle {
@@ -334,6 +336,15 @@ body {
 .socialColumnTitle {
 	margin-right: auto;
 	padding: 0 5px;
+}
+
+.uploadButton {
+	font-size: 1.25rem;
+}
+
+.uploadButton:hover {
+	color: grey;
+	cursor: pointer;
 }
 
 .socialColumnButtonTitle {

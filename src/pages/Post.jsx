@@ -265,6 +265,10 @@ const Post = () => {
                 <Card border="secondary" className="postCard">
                   <Card.Title className="postCardHeader">
                     <span>{title}</span>
+                    <i onClick={() => {
+                      navigator.clipboard.writeText(window.location.href)
+                      toast.success('Link copied')
+                    }} className="bi bi-upload uploadButton"/>
                   </Card.Title>
                   <Card.Text>
                     {notes}

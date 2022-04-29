@@ -78,6 +78,10 @@ function ProfileView() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <span>{user.name}</span>
+                  <i onClick={() => {
+                    navigator.clipboard.writeText(window.location.href)
+                    toast.success('Link copied')
+                  }} className="bi bi-upload uploadButton"/>
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-calendar2-check"></i> {creationTime}
