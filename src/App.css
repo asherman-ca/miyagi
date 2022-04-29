@@ -26,7 +26,6 @@ body {
 }
 
 .spinnerContainer {
-	/* margin-top: 33vh; */
 	width: 50vh;
 	margin: 25vh auto 0;
 	display: flex;
@@ -250,7 +249,15 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
 
+.profileNavTabs {
+	display: flex;
+	justify-content: space-around;
+}
+
+.profileNavIcon {
+	font-size: 1rem;
 }
 
 /* Post View */

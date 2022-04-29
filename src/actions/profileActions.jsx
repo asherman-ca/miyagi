@@ -1,5 +1,5 @@
 import { db } from '../firebase.config'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch } from 'firebase/firestore'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch, documentId } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { updateProfile } from 'firebase/auth'
 import {
@@ -130,5 +130,57 @@ const onImageUpdate = (e, setUrlForm) => {
   setUrlForm(() => (e.target.files))
 }
 
+const onSearchChange = async (type, auth, setPosts) => {
+  const postsRef = collection(db, 'posts')
+  if(type == 'posts') {
+      const q = query(
+        postsRef,
+        where('userRef', '==', auth.currentUser.uid),
+        orderBy('timestamp', 'desc')
+      )
 
-export { onNameChange, onNameSubmit, onImageSubmit, onImageUpdate }
+      const querySnap = await getDocs(q)
+
+      let posts = []
+
+      querySnap.forEach((doc) => {
+        return posts.push({
+          id: doc.id,
+          data: doc.data()
+        })
+      })
+
+      setPosts(posts)
+  } else {
+    console.log('search hits')
+    const likesRef = collection(db, 'likes')
+    const q = query(
+      likesRef,
+      where('userRef', '==', auth.currentUser.uid),
+      limit(20)
+    )
+    const querySnap = await getDocs(q)
+    let postRefs = []
+    querySnap.forEach((doc) => {
+      // console.log(doc.data())
+      postRefs.push(doc.data().postRef)
+    })
+    // console.log(postRefs)
+    const q2 = query(
+      postsRef,
+      where(documentId(), 'in', postRefs),
+    )
+    const postsSnap = await getDocs(q2)
+    let posts = []
+    postsSnap.forEach((doc) => {
+      return posts.push({
+        id: doc.id,
+        data: doc.data()
+      })
+    })
+    setPosts(posts)
+  }
+}
+
+
+export { onNameChange, onNameSubmit, onImageSubmit, onImageUpdate, onSearchChange }

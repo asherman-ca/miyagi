@@ -8,7 +8,7 @@ import PostItem from '../components/PostItem'
 import ProfileImageModal from '../components/ProfileImageModal'
 import ProfileEditModal from '../components/ProfileEditModal'
 
-import {onNameSubmit, onNameChange, onImageSubmit, onImageUpdate} from '../actions/profileActions'
+import {onNameSubmit, onNameChange, onImageSubmit, onImageUpdate, onSearchChange} from '../actions/profileActions'
 
 function Profile() {
   const auth = getAuth()
@@ -16,6 +16,7 @@ function Profile() {
   const [posts, setPosts] = useState(null)
   const [nameForm, setNameForm] = useState(auth.currentUser.displayName)
   const [urlForm, setUrlForm] = useState({})
+  const [searchType, setSearchType] = useState('posts')
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -111,6 +112,12 @@ function Profile() {
                 </Card.Text>
               </Card>
               <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="profileNavTabs">
+              <i onClick={() => onSearchChange('posts', auth, setPosts)} className="bi bi-grid-3x3 profileNavIcon"> Posts</i>
+              <i onClick={() => onSearchChange('likes', auth, setPosts)} className="bi bi-heart-fill profileNavIcon"> Likes</i>
             </Col>
           </Row>
           {!loading && !posts.length && (
