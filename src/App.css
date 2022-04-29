@@ -190,6 +190,10 @@ body {
 	height: 116px;
 }
 
+.profileIcon {
+	font-size: 1rem;
+}
+
 @media (min-width: 900px) {
 	.profileImage {
 		height: 284px;

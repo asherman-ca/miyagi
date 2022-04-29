@@ -216,7 +216,9 @@ function Profile() {
             <Col xs={8} className="profileHeaderCol">
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
-                  <span>{auth.currentUser.displayName}</span>
+                  <div>
+                    <i class="bi bi-bookmark profileIcon" style={{paddingRight: '2.5px'}} />{auth.currentUser.displayName}
+                  </div>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')

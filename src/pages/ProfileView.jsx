@@ -77,17 +77,19 @@ function ProfileView() {
             <Col xs={8} className="profileHeaderCol">
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
-                  <span>{user.name}</span>
+                  <div>
+                    <i class="bi bi-bookmark profileIcon" style={{paddingRight: '2.5px'}} />{user.name}
+                  </div>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')
                   }} className="bi bi-upload uploadButton"/>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-calendar2-check"></i> {creationTime}
+                  <i className="bi bi-calendar2-check profileIcon"></i> {creationTime}
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies"></i> {posts.length} posts
+                  <i className="bi bi-stickies profileIcon"></i> {posts.length} posts
                 </Card.Text>
               </Card>
             </Col>
