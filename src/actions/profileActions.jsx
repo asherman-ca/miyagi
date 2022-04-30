@@ -152,6 +152,7 @@ const onSearchChange = async (type, auth, setPosts, setSearchType) => {
       setSearchType('posts')
       setPosts(posts)
   } else {
+    setSearchType('likes')
     // find user likes (limit b/c 'in' query below can only pass array length <= 10)
     const likesRef = collection(db, 'likes')
     const q = query(
@@ -167,21 +168,24 @@ const onSearchChange = async (type, auth, setPosts, setSearchType) => {
       postRefs.push(doc.data().postRef)
     })
 
-    // find the liked posts
-    const q2 = query(
-      postsRef,
-      where(documentId(), 'in', postRefs),
-    )
-    const postsSnap = await getDocs(q2)
-    let posts = []
-    postsSnap.forEach((doc) => {
-      return posts.push({
-        id: doc.id,
-        data: doc.data()
+    if (postRefs.length) {
+      // find the liked posts
+      const q2 = query(
+        postsRef,
+        where(documentId(), 'in', postRefs),
+      )
+      const postsSnap = await getDocs(q2)
+      let posts = []
+      postsSnap.forEach((doc) => {
+        return posts.push({
+          id: doc.id,
+          data: doc.data()
+        })
       })
-    })
-    setSearchType('likes')
-    setPosts(posts)
+      setPosts(posts)
+    } else {
+      setPosts([])
+    }
   }
 }
 
