@@ -152,17 +152,22 @@ const onSearchChange = async (type, auth, setPosts, setSearchType) => {
       setSearchType('posts')
       setPosts(posts)
   } else {
+    // find user likes (limit b/c 'in' query below can only pass array length <= 10)
     const likesRef = collection(db, 'likes')
     const q = query(
       likesRef,
       where('userRef', '==', auth.currentUser.uid),
-      limit(20)
+      limit(10)
     )
     const querySnap = await getDocs(q)
+
+    // create an array of postRefs from the likes
     let postRefs = []
     querySnap.forEach((doc) => {
       postRefs.push(doc.data().postRef)
     })
+
+    // find the liked posts
     const q2 = query(
       postsRef,
       where(documentId(), 'in', postRefs),

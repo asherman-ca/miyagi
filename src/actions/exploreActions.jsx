@@ -41,6 +41,7 @@ const onOrderChange = async (type, searchWord, setPosts, setSearchOrder) => {
         limit(20)
       )
       const querySnap = await getDocs(q)
+      // Check for any result if search term is in field else return default
       if(!querySnap.empty){
         let postArray = []
         querySnap.forEach(el => postArray.push({data: el.data(), id: el.id}))
