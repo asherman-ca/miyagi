@@ -1,8 +1,9 @@
+
+
 /* Utilities */
 
 :root {
-	--clr-grey: rgba(var(--b6a, 219, 219, 219), 1);
-	--clr-bg: hsl(323 21% 6%);
+	--clr-grey: rgba(0,0,0,.55);
 }
 
 .marginLeftAuto {
@@ -47,15 +48,25 @@ body {
 	font-family: 'Permanent Marker';
 	font-size: 1.5rem !important;
 	font-weight: bold;
+
+	/* transition: 150ms;
+	transition-property: text-shadow; */
+}
+
+.topbarTitle:hover{
+	color: var(--clr-grey) !important;
+	/* text-shadow: 1px 1px var(--clr-grey); */
 }
 
 .topbarLink {
-	border-radius: 5px;
+	/* padding: 0px !important; */
+	/* border-radius: 5px; */
 	padding: 0.35rem !important;
 }
 
 .topbarLink:hover {
-	background-color: #eaeaea;
+	/* background-color: #eaeaea; */
+	color: black;
 }
 
 .navbarLink {
@@ -63,7 +74,7 @@ body {
 }
 
 .navbarLink:hover {
-	background-color: #eaeaea;
+	/* background-color: #eaeaea; */
 }
 
 .navbarLinkActive {
@@ -72,7 +83,7 @@ body {
 }
 
 .navbarLinkActive:hover {
-	background-color: #eaeaea;
+	/* background-color: #eaeaea; */
 }
 
 .topbar {
@@ -115,7 +126,8 @@ body {
 }
 
 .postItemCol {
-	padding: 2.5px 0px;
+	/* padding: 2.5px 0px; */
+	padding: 0px;
 	cursor: pointer;
 }
 
@@ -124,7 +136,7 @@ body {
 }
 
 .postItemRow .postItemCol:nth-child(3n + 2) {
-	padding: 2.5px 2.5px !important;
+	/* padding: 0px 2.5px !important; */
 }
 
 .exploreContainer {
@@ -232,7 +244,8 @@ body {
 
 .cardImage {
 	width: 100%;
-	padding: 5px 5px;
+	/* padding: 5px 5px; */
+	padding: 2.5px;
 	height: 116px;
 }
 
@@ -261,14 +274,15 @@ body {
 .profileNavIcon {
 	font-size: 1rem;
 	cursor: pointer;
+	color: var(--clr-grey)
 }
 
 .profileNavIcon:hover {
-	color: grey;
+	color: black;
 }
 
 .searched {
-	color: grey;
+	color: black;
 }
 
 /* Post View */
@@ -278,8 +292,15 @@ body {
 	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
+.postHeaderImageCol {
+	padding-right: 0px;
+	padding-left: 0px;
+	border: none;
+}
+
 .postItemCard {
-	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	border: none;
+	/* border: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 	transition-property: box-shadow;
 	transition-duration: 0.2s;
 }
@@ -331,20 +352,24 @@ body {
 
 .postCardHeaderLink {
 	font-weight: bold !important;
-	color: black;
+	color: var(--clr-grey);
 	text-decoration: none;
 }
 
 .postCardHeaderLink:hover {
-	color: grey;
+	color: black;
 }
 
 .postDeleteButton {
 	margin-right: auto !important;
 }
 
+.likesDiv {
+	color: var(--clr-grey);
+}
+
 .likesDiv:hover {
-	color: grey;
+	color: black;
 }
 
 .socialColumn {
@@ -370,21 +395,24 @@ body {
 
 .uploadButton {
 	font-size: 1.25rem;
+	color: var(--clr-grey);
 }
 
 .uploadButton:hover {
-	color: grey;
+	color: black;
 	cursor: pointer;
 }
 
 .socialColumnButtonTitle {
 	margin-right: auto;
 	padding: 0 5px;
+	color: var(--clr-grey);
 }
 
 .socialColumnButtonTitle:hover {
 	cursor: pointer;
-	color: grey;
+	/* color: grey; */
+	color: black;
 }
 
 .socialColumnName {

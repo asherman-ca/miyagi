@@ -254,8 +254,8 @@ const Post = () => {
       <Row>
         <Col md={{ span: 8, offset: 2}}>
             <Row className="postHeader">
-              <Col style={{paddingRight: '0px', paddingLeft: '0px'}} xs={4}>
-                <Card>
+              <Col className="postHeaderImageCol" xs={4}>
+                <Card style={{border: 'none'}}>
                   <Card.Img
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
