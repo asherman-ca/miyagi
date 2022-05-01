@@ -269,13 +269,15 @@ const Post = () => {
               </Col>
               <Col xs={8} className="postCardDetailsCol">
                 <Card border="secondary" className="postCard">
-                  <Card.Title className="postCardHeader">
-                    <span>{title}</span>
+                  {/* <Card.Title className="postCardHeader"> */}
+                  <Card.Text className="postCardHeader">
+                    {title}
                     <i onClick={() => {
                       navigator.clipboard.writeText(window.location.href)
                       toast.success('Link copied')
                     }} className="bi bi-upload uploadButton"/>
-                  </Card.Title>
+                  {/* </Card.Title> */}
+                  </Card.Text>
                   <Card.Text>
                     {notes}
                   </Card.Text>
