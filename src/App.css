@@ -17,9 +17,10 @@
 /* Universals */
 
 body {
-	font-family: 'Permanent Marker';
-	font-size: .9rem;
-	padding: 53px 0px 56px 0px;
+	/* font-family: 'Permanent Marker'; */
+	font-family: 'Robot', sans-serif;
+	/* font-size: .9rem; */
+	padding: 65px 0px 56px 0px;
 	overflow-y: overlay;
 	/* background-color: var(--clr-bg); */
 	/* color: var(--clr-neon); */
@@ -45,8 +46,9 @@ body {
 }
 
 .topbarTitle {
-	font-family: 'Permanent Marker';
-	font-size: 1.5rem !important;
+	/* font-family: 'Permanent Marker'; */
+	font-family: 'Billabong', san-serif;
+	font-size: 2rem !important;
 	font-weight: bold;
 
 	/* transition: 150ms;
@@ -418,11 +420,13 @@ body {
 
 .socialColumnName {
 	font-weight: bold !important;
+	font-size: 1rem;
 }
 
 .socialEmbedAddIcon {
 	font-size: 1rem;
-	padding-right: 5px;
+	font-style: normal !important;
+	/* padding-right: 5px; */
 }
 
 .socialCardBody {
