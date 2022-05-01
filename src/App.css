@@ -277,6 +277,7 @@ body {
 .profileNavIcon {
 	font-size: 1rem;
 	cursor: pointer;
+	font-style: normal;
 	color: var(--clr-grey)
 }
 
