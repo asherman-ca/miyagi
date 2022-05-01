@@ -168,9 +168,9 @@ body {
 /* Profile */
 
 .profileHeader {
-	margin-bottom: 2.5px;
+	/* margin-bottom: 2.5px; */
 	padding: 5px;
-	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	/* border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 }
 
 .profileHeaderCol {
@@ -182,7 +182,7 @@ body {
 
 .profileHeaderTitle {
 	font-size: 1.25rem !important;
-	font-weight: bold;
+	font-weight: 500;
 	display: flex;
 	justify-content: space-between;
 }
@@ -195,7 +195,7 @@ body {
 
 .profileImage {
 	/* border: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
-	padding: 5px !important;
+	/* padding: 2.5px !important; */
 	width: 100%;
 	height: 116px;
 }
@@ -247,8 +247,8 @@ body {
 }
 
 .postItemTitleSpan {
-	max-width: 70%;
-	font-weight: bold;
+	max-width: 80%;
+	font-weight: 500;
 	margin-right: auto;
 	white-space: nowrap;
 	overflow: hidden;
@@ -280,8 +280,8 @@ body {
 /* Post View */
 
 .postHeader {
-	padding: 5px;
-	border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+	padding: 5px 5px 0px;
+	/* border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 }
 
 .postHeaderImageCol {
@@ -333,17 +333,15 @@ body {
 }
 
 .postCardHeader {
+	font-size: 1.25rem;
+	font-weight: 500;
 	margin-bottom: 0px !important;
 	display: flex;
 	justify-content: space-between;
 }
 
-.postCardTitle {
-	font-weight: bold !important;
-}
-
 .postCardHeaderLink {
-	font-weight: bold !important;
+	/* font-weight: bold !important; */
 	color: var(--clr-grey);
 	text-decoration: none;
 }
@@ -366,7 +364,7 @@ body {
 
 .socialColumn {
 	/* margin-top: 5px; */
-	padding: 10px 5px;
+	padding: 5px;
 	display: flex;
 	flex-direction: column;
 }
@@ -382,10 +380,11 @@ body {
 
 .socialColumnTitle {
 	margin-right: auto;
-	padding: 0 5px;
+	padding: 5px;
 }
 
 .uploadButton {
+	line-height: 0;
 	font-size: 1.25rem;
 	color: var(--clr-grey);
 }
