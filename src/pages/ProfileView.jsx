@@ -70,7 +70,7 @@ function ProfileView() {
     <Container>
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <Row className="profileHeader">
+          <Row className="profileHeader profileViewHeader">
             <Col xs={4} className="profileImageCol">
               <Image 
                 rounded
