@@ -88,7 +88,6 @@ function Profile() {
           <Row className="profileHeader">
             <Col xs={4} className="profileImageCol" onClick={handleShow}>
               <Image 
-                rounded
                 className="profileImage"
                 src={auth.currentUser?.photoURL || 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png'}
                 alt="Change Profile Photo"

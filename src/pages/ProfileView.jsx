@@ -73,7 +73,6 @@ function ProfileView() {
           <Row className="profileHeader profileViewHeader">
             <Col xs={4} className="profileImageCol">
               <Image 
-                rounded
                 className="profileImage"
                 src={profileImage}
                 alt="Change Profile Photo"

@@ -194,6 +194,7 @@ body {
 }
 
 .profileImage {
+	border-radius: 50%;
 	/* border: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 	padding: 0px 2.5px !important;
 	width: 100%;
