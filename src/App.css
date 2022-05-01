@@ -386,7 +386,19 @@ body {
 
 .socialColumnTitle {
 	margin-right: auto;
-	padding: 5px;
+	padding: 10px 5px;
+}
+
+.socialColumnButtonTitle {
+	margin-right: auto;
+	padding: 10px 5px;
+	color: var(--clr-grey);
+}
+
+.socialColumnButtonTitle:hover {
+	cursor: pointer;
+	/* color: grey; */
+	color: black;
 }
 
 .uploadButton {
@@ -398,18 +410,6 @@ body {
 .uploadButton:hover {
 	color: black;
 	cursor: pointer;
-}
-
-.socialColumnButtonTitle {
-	margin-right: auto;
-	padding: 0 5px;
-	color: var(--clr-grey);
-}
-
-.socialColumnButtonTitle:hover {
-	cursor: pointer;
-	/* color: grey; */
-	color: black;
 }
 
 .socialColumnName {
@@ -432,7 +432,7 @@ body {
 }
 
 .socialCardContainer {
-	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .previewFrame {
