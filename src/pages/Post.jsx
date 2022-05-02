@@ -261,8 +261,7 @@ const Post = () => {
                   <Card.Body className="postItemBody">
                     <Link className="postCardHeaderLink" to={`/profile/${userRef}`}><span>@{userName}</span></Link>
                     <div style={{cursor: 'pointer'}} onClick={onLike} className="likesDiv">
-                      <span>{likes}</span>
-                      <i style={{marginLeft: '3px', paddingTop: '1.25px'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
+                      <i style={{fontStyle: 'normal'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}> {likes}</i>
                     </div>
                   </Card.Body>
                 </Card>
