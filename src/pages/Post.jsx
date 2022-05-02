@@ -247,9 +247,13 @@ const Post = () => {
     )
   }
   
-  const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef, likes, timestamp } = post
+  const { instaUrls, youTubeUrls, title, notes, imgUrls, id, userName, userRef, likes } = post
 
-  const creationTime = post.timestamp.toDate().toString().split(' ').slice(1, 4).join(' ')
+  const creationVar = post.timestamp.toDate().toString().split(' ')
+
+  const creationTime = creationVar.slice(1, 3).join(' ')
+
+  const creationYear = creationVar[3]
   
   return(
     <Container>
@@ -261,8 +265,8 @@ const Post = () => {
                   <Card.Img
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
-                    <span>{creationTime}</span>
-                    <i style={{fontStyle: 'normal'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}> {likes}</i>
+                    <span>{creationTime}, {creationYear}</span>
+                    {/* <i style={{fontStyle: 'normal'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}> {likes}</i> */}
                   </Card.Body>
                 </Card>
               </Col>
@@ -272,7 +276,7 @@ const Post = () => {
                     {title}
                     {post.userRef == auth.currentUser?.uid ?
                       <i onClick={handleShow} className="bi bi-gear editIcon"></i> :
-                      <i style={{fontStyle: 'normal', cursor: 'pointer'}} onClick={onLike} className={userLike.length ? 'bi bi-heart-fill likesIconButton' : 'bi bi-heart likesIconButton'}></i>
+                      <i style={{fontStyle: 'normal', cursor: 'pointer'}} onClick={onLike} className={userLike.length ? 'bi bi-heart-fill likesIconButton' : 'bi bi-heart likesIconButton'}> {likes}</i>
                     }
                     <i onClick={() => {
                       navigator.clipboard.writeText(window.location.href)
