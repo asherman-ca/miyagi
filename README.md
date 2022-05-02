@@ -68,5 +68,5 @@ Follow
 
 {
 followerRef: Id,
-userRef: Id
+followedRef: Id
 }

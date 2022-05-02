@@ -5,10 +5,12 @@ import { doc, collection, getDocs, query, where, orderBy, getDoc } from 'firebas
 import { Row, Col, Container, Image, Card, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import PostItem from '../components/PostItem'
-// import Spinner from '../components/Spinner'
+import { onFollow } from '../actions/profileViewActions'
+import { getAuth } from 'firebase/auth'
 
 
 function ProfileView() {
+  const auth = getAuth()
   const params = useParams()
   const [loading, setLoading] = useState(true)
   const [posts, setPosts] = useState(null)
@@ -36,7 +38,6 @@ function ProfileView() {
 
       const docRef = doc(db, 'users', params.profileId)
       const docSnap = await getDoc(docRef)
-      console.log('docsnap data', docSnap.data())
       setUser(docSnap.data())
 
       setPosts(posts)
@@ -84,6 +85,7 @@ function ProfileView() {
                   <div>
                     <i class="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{user.name}
                   </div>
+                  <i onClick={(e) => onFollow(e, auth)} className="bi bi-bookmark editIcon"></i>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')
