@@ -343,7 +343,7 @@ body {
 }
 
 .postCard {
-	max-height: 116px;
+	max-height: 140px;
 	overflow-y: overlay;
 	border: none !important;
 	white-space: pre-wrap;
@@ -351,7 +351,7 @@ body {
 
 @media (min-width: 900px) {
 	.postCard {
-		max-height: 284px;
+		max-height: 308px;
 	}
 }
 
@@ -364,19 +364,10 @@ body {
 	
 }
 
-.postCardHeaderLink {
-	/* font-weight: bold !important; */
-	color: var(--clr-grey);
-	text-decoration: none;
-}
-
-.postCardHeaderLink:hover {
-	color: black;
-}
-
 .postCardHeaderAuthor {
 	color: var(--clr-grey);
 	text-decoration: none;
+	font-weight: 500;
 }
 
 .postCardHeaderAuthor:hover {
@@ -414,11 +405,13 @@ body {
 }
 
 .socialColumnTitle {
+	font-weight: 500;
 	margin-right: auto;
 	padding: 10px 5px;
 }
 
 .socialColumnButtonTitle {
+	font-weight: 500;
 	margin-right: auto;
 	padding: 10px 5px;
 	color: var(--clr-grey);
