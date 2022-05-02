@@ -101,6 +101,18 @@ body {
 	padding: 0px !important;
 }
 
+.editIcon {
+	margin-left: auto;
+	padding-right: 1rem;
+	line-height: 0;
+	cursor: pointer;
+	color: var(--clr-grey);
+}
+
+.editIcon:hover {
+	color: black;
+}
+
 /* 		Pages    */
 /* ----------- */
 

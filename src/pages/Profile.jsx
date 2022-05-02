@@ -98,8 +98,9 @@ function Profile() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <div>
-                    <i class="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{auth.currentUser.displayName}
+                    <i className="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{auth.currentUser.displayName}
                   </div>
+                  <i onClick={handleEditShow} className="bi bi-gear editIcon"></i>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')
@@ -112,7 +113,7 @@ function Profile() {
                   <i className="bi bi-stickies"></i> {postTotal} posts
                 </Card.Text>
               </Card>
-              <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button>
+              {/* <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button> */}
             </Col>
           </Row>
           <Row>

@@ -268,22 +268,20 @@ const Post = () => {
               </Col>
               <Col xs={8} className="postCardDetailsCol">
                 <Card border="secondary" className="postCard">
-                  {/* <Card.Title className="postCardHeader"> */}
                   <Card.Text className="postCardHeader">
                     {title}
+                    {post.userRef == auth.currentUser?.uid &&
+                      <i onClick={handleShow} className="bi bi-gear editIcon"></i>
+                    }
                     <i onClick={() => {
                       navigator.clipboard.writeText(window.location.href)
                       toast.success('Link copied')
                     }} className="bi bi-upload uploadButton"/>
-                  {/* </Card.Title> */}
                   </Card.Text>
                   <Card.Text>
                     {notes}
                   </Card.Text>
                 </Card>
-                {post.userRef == auth.currentUser?.uid &&
-                      <Button variant="outline-dark" className="editButton" onClick={handleShow}>Edit</Button>
-                    }
                 <EditModal 
                   show={show}
                   title={title}
