@@ -339,6 +339,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	line-height: 1.5rem;
 }
 
 .postCard {
@@ -360,6 +361,7 @@ body {
 	margin-bottom: 0px !important;
 	display: flex;
 	justify-content: space-between;
+	
 }
 
 .postCardHeaderLink {
@@ -372,15 +374,26 @@ body {
 	color: black;
 }
 
+.postCardHeaderAuthor {
+	color: var(--clr-grey);
+	text-decoration: none;
+}
+
+.postCardHeaderAuthor:hover {
+	color: black;
+}
+
 .postDeleteButton {
 	margin-right: auto !important;
 }
 
-.likesDiv {
+.likesIconButton {
 	color: var(--clr-grey);
+	margin-left: auto;
+	padding-right: 1rem;
 }
 
-.likesDiv:hover {
+.likesIconButton:hover {
 	color: black;
 }
 
