@@ -200,7 +200,7 @@ body {
 .profileImage {
 	border-radius: 50%;
 	/* border: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
-	padding: 0px 2.5px !important;
+	padding: 0px 1.25px !important;
 	width: 100%;
 	height: 116px;
 }
@@ -241,7 +241,7 @@ body {
 .cardImage {
 	width: 100%;
 	/* padding: 5px 5px; */
-	padding: 2.5px;
+	padding: 1.25px;
 	height: 116px;
 }
 
@@ -252,7 +252,7 @@ body {
 }
 
 .postItemTitleSpan {
-	max-width: 80%;
+	max-width: 70%;
 	font-weight: 500;
 	margin-right: auto;
 	white-space: nowrap;
