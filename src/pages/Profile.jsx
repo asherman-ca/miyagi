@@ -119,7 +119,7 @@ function Profile() {
                   <i className="bi bi-calendar2-check"></i> {creationTime}, {creationYear}
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies"></i> {postTotal} posts
+                  <i className="bi bi-stickies"></i> {postTotal} post{posts.length === 1 ? '' : 's'}
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-bookmark profileIcon"> {user.follows} follower{user.follows === 1 ? '' : 's'}</i>

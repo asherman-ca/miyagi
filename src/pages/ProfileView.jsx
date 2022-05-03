@@ -120,10 +120,10 @@ function ProfileView() {
                   <i className="bi bi-calendar2-check profileIcon"> {creationTime}, {creationYear}</i>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies profileIcon"> {posts.length} posts</i>
+                  <i className="bi bi-stickies profileIcon"> {posts.length} post{posts.length === 1 ? '' : 's'}</i>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-bookmark profileIcon"> {user.follows} follower{user.follows > 1 ? 's' : ''}</i>
+                  <i className="bi bi-bookmark profileIcon"> {user.follows} follower{user.follows === 1 ? '' : 's'}</i>
                 </Card.Text>
               </Card>
             </Col>
