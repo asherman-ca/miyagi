@@ -34,7 +34,6 @@
       if (isMounted) {
         onAuthStateChanged(auth, (user) => {
           if(user) {
-            console.log('user', user)
             setFormData({...formData, userRef: user.uid, userName: user.displayName })
           } else {
             Navigate('/sign-in')
@@ -44,7 +43,7 @@
       return () => {
         isMounted.current = false
       }
-    }, [isMounted])
+    }, [isMounted, auth, formData])
 
     const onSubmit = async (e) => {
       e.preventDefault()

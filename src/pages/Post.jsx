@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { getDoc, doc, updateDoc, deleteDoc, query, where, collection, getDocs, limit, addDoc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { Container, Row, Col, Spinner, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Spinner, Card } from 'react-bootstrap'
 import EditModal from '../components/EditModal'
 import AddInstaModal from '../components/AddInstaModal'
 import AddYouTubeModal from '../components/AddYouTubeModal'
@@ -68,7 +68,7 @@ const Post = () => {
       })
     }
     fetchPost()
-  }, [params.postId])
+  }, [params.postId, auth.currentUser])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -266,7 +266,6 @@ const Post = () => {
                     className="cardImage" variant="top" src={imgUrls[0]}/>
                   <Card.Body className="postItemBody">
                     <span>{creationTime}, {creationYear}</span>
-                    {/* <i style={{fontStyle: 'normal'}} className={userLike.length ? 'bi bi-heart-fill' : 'bi bi-heart'}> {likes}</i> */}
                   </Card.Body>
                 </Card>
               </Col>
@@ -274,7 +273,7 @@ const Post = () => {
                 <Card border="secondary" className="postCard">
                   <Card.Text className="postCardHeader">
                     {title}
-                    {post.userRef == auth.currentUser?.uid ?
+                    {post.userRef === auth.currentUser?.uid ?
                       <i onClick={handleShow} className="bi bi-gear editIcon"></i> :
                       <i style={{fontStyle: 'normal', cursor: 'pointer'}} onClick={onLike} className={userLike.length ? 'bi bi-heart-fill likesIconButton' : 'bi bi-heart likesIconButton'}> {likes}</i>
                     }
@@ -309,8 +308,8 @@ const Post = () => {
           <Row>
             <Col className="socialColumn youTubeColumn" md={6}>
               <div 
-                onClick={post.userRef == auth.currentUser?.uid && handleYouTubeAddShow} 
-                className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
+                onClick={post.userRef === auth.currentUser?.uid && handleYouTubeAddShow} 
+                className={post.userRef === auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
               >
                 <i className="bi bi-youtube socialEmbedAddIcon"> YouTube</i>
               </div>
@@ -325,8 +324,8 @@ const Post = () => {
             </Col>
             <Col className="socialColumn instaColumn" md={6}>
               <div 
-                onClick={post.userRef == auth.currentUser?.uid && handleInstaAddShow} 
-                className={post.userRef == auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
+                onClick={post.userRef === auth.currentUser?.uid && handleInstaAddShow} 
+                className={post.userRef === auth.currentUser?.uid ? "socialColumnButtonTitle" : "socialColumnTitle"}
               >
                 <i  className="bi bi-instagram socialEmbedAddIcon"> Instagram</i>
               </div>

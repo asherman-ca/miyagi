@@ -3,8 +3,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
-import googleIcon from '../assets/googleIcon.svg'
-import { Button, Image } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 function OAuth() {
   const navigate = useNavigate()

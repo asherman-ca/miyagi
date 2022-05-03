@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { getAuth, updateProfile } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch, getDoc } from 'firebase/firestore'
-import { Row, Col, Container, Image, Button, Card, Spinner } from 'react-bootstrap'
+import { doc, collection, getDocs, query, where, orderBy, getDoc } from 'firebase/firestore'
+import { Row, Col, Container, Image, Card, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import PostItem from '../components/PostItem'
 import ProfileImageModal from '../components/ProfileImageModal'
@@ -129,8 +129,8 @@ function Profile() {
           </Row>
           <Row>
             <Col className="profileNavTabs">
-              <i onClick={() => onSearchChange('posts', auth, setPosts, setSearchType)} className={searchType == 'posts' ? "bi bi-grid-3x3 profileNavIcon searched" : "bi bi-grid-3x3 profileNavIcon"}> Posts</i>
-              <i onClick={() => onSearchChange('likes', auth, setPosts, setSearchType)} className={searchType == 'likes' ? "bi bi-heart-fill profileNavIcon searched" : "bi bi-heart-fill profileNavIcon"}> Likes</i>
+              <i onClick={() => onSearchChange('posts', auth, setPosts, setSearchType)} className={searchType === 'posts' ? "bi bi-grid-3x3 profileNavIcon searched" : "bi bi-grid-3x3 profileNavIcon"}> Posts</i>
+              <i onClick={() => onSearchChange('likes', auth, setPosts, setSearchType)} className={searchType === 'likes' ? "bi bi-heart-fill profileNavIcon searched" : "bi bi-heart-fill profileNavIcon"}> Likes</i>
             </Col>
           </Row>
           {!loading && !posts.length && (

@@ -57,13 +57,12 @@ function ProfileView() {
             id: doc.id
           }])
         })
-        console.log('userFollow', userFollow)
       }
       setLoading(false)
     }
 
     fetchUserAndPosts()
-  }, [params.profileId])
+  }, [params.profileId, auth.currentUser])
 
   if (loading) {
     return ( 

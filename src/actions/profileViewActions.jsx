@@ -1,5 +1,5 @@
 import { toast } from "react-toastify"
-import { getDoc, doc, deleteDoc, query, where, collection, getDocs, limit, addDoc, updateDoc } from 'firebase/firestore'
+import { doc, deleteDoc, collection, addDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 
 const onFollow = async (e, auth, userFollow, setUserFollow, profileUser, setUser, follows) => {
