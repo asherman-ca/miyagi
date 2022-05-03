@@ -134,11 +134,11 @@ body {
 }
 
 .postItemRow {
-	padding: 0 5px;
+	padding: 0 2.5px;
 }
 
 .postItemRow .postItemCol:nth-child(3n + 2) {
-	/* padding: 0px 2.5px !important; */
+	padding: 0px 1.25px !important;
 }
 
 .postItemLikeIcon {
