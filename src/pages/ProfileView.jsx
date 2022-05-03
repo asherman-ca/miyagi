@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { db } from '../firebase.config'
 import { useParams } from 'react-router-dom'
-import { doc, collection, getDocs, query, where, orderBy, getDoc } from 'firebase/firestore'
+import { doc, collection, getDocs, query, where, orderBy, getDoc, limit } from 'firebase/firestore'
 import { Row, Col, Container, Image, Card, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import PostItem from '../components/PostItem'
@@ -15,32 +15,50 @@ function ProfileView() {
   const [loading, setLoading] = useState(true)
   const [posts, setPosts] = useState(null)
   const [user, setUser] = useState(null)
+  const [userFollow, setUserFollow] = useState([])
 
   useEffect(() => {
     const fetchUserAndPosts = async () => {
+      // fetch and set posts
       const postsRef = collection(db, 'posts')
       const q = query(
         postsRef,
         where('userRef', '==', params.profileId),
         orderBy('timestamp', 'desc')
       )
-
       const querySnap = await getDocs(q)
-
       let posts = []
-
       querySnap.forEach((doc) => {
         return posts.push({
           id: doc.id,
           data: doc.data()
         })
       })
+      setPosts(posts)
 
+      // fetch and set user
       const docRef = doc(db, 'users', params.profileId)
       const docSnap = await getDoc(docRef)
       setUser(docSnap.data())
 
-      setPosts(posts)
+      // fetch and set current user follow
+      if (auth.currentUser) {
+        const followRef = collection(db, 'follows')
+        const followQ = query(
+          followRef,
+          where('followedUserRef', '==', params.profileId),
+          where('userRef', '==', auth.currentUser.uid),
+          limit(10)
+        )
+        const followSnap = await getDocs(followQ)
+        followSnap.forEach((doc) => {
+          setUserFollow([{
+            data: doc.data(),
+            id: doc.id
+          }])
+        })
+        console.log('userFollow', userFollow)
+      }
       setLoading(false)
     }
 
@@ -85,7 +103,7 @@ function ProfileView() {
                   <div>
                     <i class="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{user.name}
                   </div>
-                  <i onClick={(e) => onFollow(e, auth)} className="bi bi-bookmark editIcon"></i>
+                  <i onClick={(e) => onFollow(e, auth, userFollow, setUserFollow, params.profileId, setUser, user.follows)} className="bi bi-bookmark editIcon"></i>
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')
@@ -96,6 +114,9 @@ function ProfileView() {
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-stickies profileIcon"></i> {posts.length} posts
+                </Card.Text>
+                <Card.Text>
+                  <i className="bi bi-stickies profileIcon"></i> {user.follows} follows
                 </Card.Text>
               </Card>
             </Col>

@@ -67,6 +67,6 @@ postUserRef: Id
 Follow
 
 {
-followerRef: Id,
-followedRef: Id
+userRef: Id,
+followedUserRef: Id
 }

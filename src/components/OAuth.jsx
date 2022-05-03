@@ -28,7 +28,9 @@ function OAuth() {
           name: user.displayName,
           email: user.email,
           timestamp: serverTimestamp(),
-          imageUrl: user.photoURL
+          imageUrl: user.photoURL,
+          likes: 0,
+          follows: 0
         })
       }
       navigate('/')
