@@ -71,7 +71,11 @@ function Profile() {
     )
   }
 
-  const creationTime = auth.currentUser.metadata.creationTime.split(' ').slice(0, 4).join(' ')
+  const creationVar = auth.currentUser.metadata.creationTime.split(' ')
+
+  const creationTime = creationVar.slice(1, 3).join(' ')
+
+  const creationYear = creationVar[3]
 
   return (
     <Container>
@@ -112,7 +116,7 @@ function Profile() {
                   }} className="bi bi-upload uploadButton"/>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-calendar2-check"></i> {creationTime}
+                  <i className="bi bi-calendar2-check"></i> {creationTime}, {creationYear}
                 </Card.Text>
                 <Card.Text>
                   <i className="bi bi-stickies"></i> {postTotal} posts

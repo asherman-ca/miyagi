@@ -75,8 +75,6 @@ function ProfileView() {
     )
   }
 
-  // const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
-
   const creationVar = user.timestamp.toDate().toString().split(' ')
 
   const creationTime = creationVar.slice(1, 3).join(' ')
