@@ -48,27 +48,19 @@ body {
 
 .topbarTitle {
 	font-family: 'Permanent Marker';
-	/* font-family: 'Billabong', san-serif; */
-	font-size: 2rem !important;
+	font-size: 1.5rem !important;
 	font-weight: bold;
-
-	/* transition: 150ms;
-	transition-property: text-shadow; */
 }
 
 .topbarTitle:hover{
 	color: var(--clr-grey) !important;
-	/* text-shadow: 1px 1px var(--clr-grey); */
 }
 
 .topbarLink {
-	/* padding: 0px !important; */
-	/* border-radius: 5px; */
 	padding: 0.35rem !important;
 }
 
 .topbarLink:hover {
-	/* background-color: #eaeaea; */
 	color: black;
 }
 
@@ -76,12 +68,7 @@ body {
 	color: black !important;
 }
 
-.topbar {
-	/* border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
-}
-
 .bottombar {
-	/* border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1); */
 	padding: 0px !important;
 }
 
