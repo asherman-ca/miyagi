@@ -103,7 +103,10 @@ function ProfileView() {
                   <div>
                     <i class="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{user.name}
                   </div>
-                  <i onClick={(e) => onFollow(e, auth, userFollow, setUserFollow, params.profileId, setUser, user.follows)} className="bi bi-bookmark editIcon"></i>
+                  {auth.currentUser?.uid !== params.profileId && 
+                  <i 
+                    onClick={(e) => onFollow(e, auth, userFollow, setUserFollow, params.profileId, setUser, user.follows)} 
+                    className={userFollow.length === 0 ? "bi bi-bookmark editIcon" : "bi bi-bookmark-check-fill editIcon"} />}
                   <i onClick={() => {
                     navigator.clipboard.writeText(window.location.href)
                     toast.success('Link copied')
