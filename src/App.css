@@ -190,7 +190,7 @@ body {
 }
 
 .profileHeaderCol {
-	/* padding: 0 5px !important; */
+	padding: 0 5px !important;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
