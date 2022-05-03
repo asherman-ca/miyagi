@@ -75,7 +75,13 @@ function ProfileView() {
     )
   }
 
-  const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
+  // const creationTime = user.timestamp.toDate().toString().split(' ').slice(0, 4).join(' ')
+
+  const creationVar = user.timestamp.toDate().toString().split(' ')
+
+  const creationTime = creationVar.slice(1, 3).join(' ')
+
+  const creationYear = creationVar[3]
 
   // TODO: add provider images to profileimage key in user records
   let profileImage
@@ -101,7 +107,7 @@ function ProfileView() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <div>
-                    <i class="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{user.name}
+                    {user.name}
                   </div>
                   {auth.currentUser?.uid !== params.profileId && 
                   <i 
@@ -113,13 +119,13 @@ function ProfileView() {
                   }} className="bi bi-upload uploadButton"/>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-calendar2-check profileIcon"></i> {creationTime}
+                  <i className="bi bi-calendar2-check profileIcon"> {creationTime}, {creationYear}</i>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies profileIcon"></i> {posts.length} posts
+                  <i className="bi bi-stickies profileIcon"> {posts.length} posts</i>
                 </Card.Text>
                 <Card.Text>
-                  <i className="bi bi-stickies profileIcon"></i> {user.follows} follows
+                  <i className="bi bi-bookmark profileIcon"> {user.follows} follower{user.follows > 1 ? 's' : ''}</i>
                 </Card.Text>
               </Card>
             </Col>

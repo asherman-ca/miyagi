@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch } from 'firebase/firestore'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, limit, writeBatch, getDoc } from 'firebase/firestore'
 import { Row, Col, Container, Image, Button, Card, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import PostItem from '../components/PostItem'
@@ -18,6 +18,7 @@ function Profile() {
   const [urlForm, setUrlForm] = useState({})
   const [searchType, setSearchType] = useState('posts')
   const [postTotal, setPostTotal] = useState(0)
+  const [user, setUser] = useState(null)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -48,6 +49,10 @@ function Profile() {
         })
       })
 
+      const userRef = doc(db, 'users', auth.currentUser.uid)
+      const userSnap = await getDoc(userRef)
+      setUser(userSnap.data())
+      
       setPosts(posts)
       setPostTotal(posts.length)
       setLoading(false)
@@ -98,7 +103,7 @@ function Profile() {
               <Card className="profileHeaderCard" style={{border: '0px'}}>
                 <Card.Text className="profileHeaderTitle">
                   <div>
-                    <i className="bi bi-person-circle profileIcon" style={{paddingRight: '4px'}} />{auth.currentUser.displayName}
+                    {auth.currentUser.displayName}
                   </div>
                   <i onClick={handleEditShow} className="bi bi-gear editIcon"></i>
                   <i onClick={() => {
@@ -112,8 +117,10 @@ function Profile() {
                 <Card.Text>
                   <i className="bi bi-stickies"></i> {postTotal} posts
                 </Card.Text>
+                <Card.Text>
+                  <i className="bi bi-bookmark profileIcon"> {user.follows} follower{user.follows === 1 ? '' : 's'}</i>
+                </Card.Text>
               </Card>
-              {/* <Button variant="outline-dark" className="editButton" onClick={handleEditShow}>Edit</Button> */}
             </Col>
           </Row>
           <Row>

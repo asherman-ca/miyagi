@@ -190,7 +190,7 @@ body {
 }
 
 .profileHeaderCol {
-	padding: 0 5px !important;
+	/* padding: 0 5px !important; */
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -218,7 +218,8 @@ body {
 }
 
 .profileIcon {
-	font-size: 1rem;
+	font-style: normal;
+	/* font-size: 1rem; */
 }
 
 @media (min-width: 900px) {
